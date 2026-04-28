@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sono — Infrastructure that knows itself.</title>
+  <meta name="description" content="Sono uses AI and operational data to detect inefficiencies in data center cooling, power and compressed air systems and surface ranked recommendations to operators." />
+  <meta property="og:title" content="Sono — Infrastructure that knows itself.">
+  <meta property="og:description" content="We use AI and operational data to reduce energy waste in data center cooling, power and compressed air. Starting with chilled water setpoint optimisation.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── Brand tokens ── */
+    :root {
+      --ink:        #242220;
+      --paper:      #F7F3EE;
+      --terracotta: #C87A4F;
+      --sage:       #6A9470;
+      --ink-60:     rgba(36,34,32,0.6);
+      --ink-15:     rgba(36,34,32,0.15);
+      --ink-08:     rgba(36,34,32,0.08);
+      --paper-70:   rgba(247,243,238,0.7);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, .stat-num, .nav-logo, .label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+    }
+
+    /* ── Grain overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ── Utility ── */
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+
+    .label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+      font-weight: 600;
+    }
+
+    /* ── Header ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--paper-70);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--ink-15);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 28px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .nav-logo {
+      font-size: 20px;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    nav { display: flex; align-items: center; gap: 36px; }
+    nav a {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--ink-60);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--ink); }
+    .btn-primary {
+      display: inline-block;
+      background: var(--terracotta);
+      color: var(--paper);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.1s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { opacity: 0.88; }
+    .btn-primary:active { transform: translateY(1px); }
+    .btn-secondary {
+      display: inline-block;
+      background: transparent;
+      color: var(--ink);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 1.5px solid var(--ink-15);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--ink-60); background: var(--ink-08); }
+
+    /* ── Hero ── */
+    #hero {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--ink-15);
+      background: var(--ink);
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url("https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.22;
+    }
+    /* Warm vignette overlay */
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 60%, rgba(200,122,79,0.18) 0%, transparent 65%),
+                  linear-gradient(to right, rgba(36,34,32,0.6) 0%, transparent 70%);
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      padding: 100px 28px 96px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      background: rgba(106,148,112,0.25);
+      color: var(--sage);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+      border: 1px solid rgba(106,148,112,0.4);
+      margin-bottom: 28px;
+      animation: fadeUp 0.7s ease both;
+    }
+    h1 {
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--paper);
+      max-width: 700px;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    .hero-tagline {
+      margin-top: 12px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 20px;
+      color: var(--terracotta);
+      letter-spacing: -0.01em;
+      animation: fadeUp 0.7s 0.15s ease both;
+    }
+    .hero-sub {
+      margin-top: 24px;
+      font-size: 18px;
+      line-height: 1.6;
+      color: rgba(247,243,238,0.72);
+      max-width: 540px;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+    .hero-actions {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+    /* Stats bar */
+    .hero-stats {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      border-top: 1px solid rgba(247,243,238,0.1);
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 28px;
+      animation: fadeUp 0.7s 0.45s ease both;
+    }
+    .stat {
+      flex: 1;
+      min-width: 160px;
+      padding: 24px 28px 32px;
+      border-right: 1px solid rgba(247,243,238,0.1);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-size: 36px;
+      color: var(--paper);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .stat-label {
+      margin-top: 6px;
+      font-size: 13px;
+      color: rgba(247,243,238,0.5);
+      font-weight: 500;
+    }
+
+    /* ── Capabilities ── */
+    #capabilities {
+      padding: 96px 0;
+      border-bottom: 1px solid var(--ink-15);
+    }
+    .section-header {
+      margin-bottom: 56px;
+    }
+    .section-header h2 {
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin-top: 12px;
+    }
+    .section-header p {
+      margin-top: 16px;
+      font-size: 16px;
+      color: var(--ink-60);
+      max-width: 560px;
+    }
+
+    /* ── Capabilities tabs ── */
+    .cap-tabs {
+      border: 1px solid var(--ink-15);
+      border-radius: 16px;
+      overflow: hidden;
+      background: white;
+    }
+    .cap-tab-nav {
+      display: flex;
+      border-bottom: 1px solid var(--ink-15);
+      background: var(--paper);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .cap-tab-nav::-webkit-scrollbar { display: none; }
+    .cap-tab {
+      flex: 1;
+      min-width: 130px;
+      padding: 14px 20px;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--ink-60);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: color 0.2s, border-color 0.2s;
+      margin-bottom: -1px;
+    }
+    .cap-tab:hover { color: var(--ink); }
+    .cap-tab.active { color: var(--ink); border-bottom-color: var(--terracotta); }
+
+    .cap-panels { position: relative; }
+    .cap-panel { display: none; }
+    .cap-panel.active { display: block; }
+
+    .cap-panel-img {
+      width: 100%;
+      height: 320px;
+      overflow: hidden;
+    }
+    .cap-panel-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .cap-panel.active .cap-panel-img img { transform: scale(1.01); }
+
+    .cap-panel-body {
+      padding: 32px 36px 36px;
+    }
+    .cap-panel-body h3 {
+      font-size: 22px;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    .cap-panel-body p {
+      font-size: 15px;
+      color: var(--ink-60);
+      line-height: 1.65;
+      max-width: 620px;
+    }
+    .cap-tag {
+      display: inline-block;
+      margin-top: 16px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+
+    /* ── How it works ── */
+    #how {
+      padding: 96px 0;
+      border-bottom: 1px solid var(--ink-15);
+    }
+    .steps {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--ink-15);
+      border: 1px solid var(--ink-15);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .step {
+      background: var(--paper);
+      padding: 36px;
+    }
+    .step-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 48px;
+      color: var(--ink-15);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+    .step h3 {
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      margin-top: 16px;
+      margin-bottom: 10px;
+    }
+    .step p { font-size: 14px; color: var(--ink-60); line-height: 1.65; }
+
+    /* Phase badge */
+    .phase-badge {
+      display: inline-block;
+      margin-top: 16px;
+      background: var(--ink-08);
+      color: var(--ink-60);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    /* ── Team ── */
+    #team {
+      padding: 96px 0;
+      border-bottom: 1px solid var(--ink-15);
+    }
+    .team-grid {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .team-card {
+      background: white;
+      border: 1px solid var(--ink-15);
+      border-radius: 16px;
+      padding: 32px;
+    }
+    .team-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: var(--ink-08);
+      margin-bottom: 20px;
+    }
+    .team-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .team-card h3 {
+      font-size: 18px;
+      letter-spacing: -0.02em;
+    }
+    .team-role {
+      font-size: 13px;
+      color: var(--terracotta);
+      font-weight: 500;
+      margin-top: 2px;
+      margin-bottom: 12px;
+    }
+    .team-card p {
+      font-size: 14px;
+      color: var(--ink-60);
+      line-height: 1.65;
+    }
+    .team-linkedin {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--ink-60);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      border-bottom: 1px solid var(--ink-15);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .team-linkedin:hover { color: var(--ink); border-color: var(--ink-60); }
+
+    /* ── Contact ── */
+    #contact {
+      padding: 96px 0;
+    }
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .contact-left h2 {
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin-top: 12px;
+    }
+    .contact-left p {
+      margin-top: 16px;
+      font-size: 16px;
+      color: var(--ink-60);
+      line-height: 1.65;
+    }
+    .contact-emails {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0;
+      padding-left: calc(50% + 32px);
+      justify-content: center;
+    }
+    .contact-emails a {
+      font-size: 12px;
+      color: var(--ink-60);
+      text-decoration: none;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    .contact-emails a:hover { color: var(--ink); }
+    .contact-emails .dot {
+      margin: 0 8px;
+      color: var(--ink-15);
+      font-size: 12px;
+    }
+
+    /* Team name as LinkedIn link */
+    .team-card a { text-decoration: none; }
+    .team-card a h3 {
+      transition: color 0.2s;
+    }
+    .team-card a:hover h3 { color: var(--terracotta); }
+
+    /* Form */
+    .contact-form {
+      background: white;
+      border: 1px solid var(--ink-15);
+      border-radius: 16px;
+      padding: 36px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+    }
+    input, textarea {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      background: var(--paper);
+      border: 1.5px solid var(--ink-15);
+      border-radius: 8px;
+      padding: 11px 14px;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    input::placeholder, textarea::placeholder { color: var(--ink-60); }
+    input:focus, textarea:focus { border-color: var(--ink-60); }
+    textarea { resize: vertical; min-height: 110px; }
+    .form-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .form-check input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      min-width: 16px;
+      margin-top: 2px;
+      accent-color: var(--terracotta);
+    }
+    .form-check label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--ink-60);
+      font-weight: 400;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--ink-15);
+      padding: 28px 0;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    footer p, footer a {
+      font-size: 13px;
+      color: var(--ink-60);
+    }
+    footer a { text-decoration: none; }
+    footer a:hover { color: var(--ink); }
+    .footer-links { display: flex; gap: 24px; }
+
+    /* ── Modals ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(36,34,32,0.6);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal-box {
+      background: var(--paper);
+      border: 1px solid var(--ink-15);
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 520px;
+      width: 100%;
+      position: relative;
+      transform: translateY(10px);
+      transition: transform 0.25s;
+    }
+    .modal-overlay.open .modal-box { transform: none; }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--ink-60);
+      font-size: 20px;
+      line-height: 1;
+      padding: 4px;
+    }
+    .modal-close:hover { color: var(--ink); }
+    .modal-box h2 {
+      font-size: 22px;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+    .modal-box p { font-size: 14px; color: var(--ink-60); line-height: 1.7; }
+
+    /* ── Animation ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: none; }
+    }
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .steps { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+      .contact-layout { grid-template-columns: 1fr; gap: 40px; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-stats { flex-direction: column; }
+      .stat { border-right: none; border-bottom: 1px solid rgba(247,243,238,0.1); }
+      .stat:last-child { border-bottom: none; }
+      nav .btn-secondary { display: none; }
+    }
+    @media (max-width: 600px) {
+      nav a:not(:last-child) { display: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <a href="#hero" class="nav-logo">Sono</a>
+      <nav>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#how">How it works</a>
+        <a href="#team">Team</a>
+        <a href="#contact" class="btn-secondary">Get in touch</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-vignette"></div>
+    <div class="hero-inner container">
+      <div class="hero-eyebrow">Backed by Carbon13</div>
+      <h1>Utility intelligence for data centers</h1>
+      <p class="hero-sub">
+        We use AI and operational data to detect inefficiencies in cooling, power and compressed air systems,
+        and surface ranked recommendations to operators. No new hardware. Start with chilled water.
+      </p>
+      <div class="hero-actions">
+        <a href="#capabilities" class="btn-primary">Explore capabilities</a>
+        <a href="#contact" class="btn-secondary" style="color:var(--paper); border-color:rgba(247,243,238,0.25);">Request a pilot</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">3–8%</div>
+        <div class="stat-label">Typical cooling energy reduction</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">Zero</div>
+        <div class="stat-label">New hardware required</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">Days</div>
+        <div class="stat-label">To first signal, not months</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">Phase 1</div>
+        <div class="stat-label">Fully supervised. Operators approve every action</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capabilities -->
+  <section id="capabilities">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">Capabilities</span>
+        <h2>Where we listen</h2>
+        <p>
+          We focus on the utility systems that drive energy waste in data centers: cooling, power and on-site energy assets.
+          We work with your existing operational data and historian signals.
+        </p>
+      </div>
+
+      <div class="cap-tabs reveal">
+        <!-- Tab nav -->
+        <div class="cap-tab-nav" role="tablist">
+          <button class="cap-tab active" role="tab" aria-selected="true" data-tab="0">Chilled Water</button>
+          <button class="cap-tab" role="tab" aria-selected="false" data-tab="1">CRAH &amp; Airflow</button>
+          <button class="cap-tab" role="tab" aria-selected="false" data-tab="2">Power &amp; PUE</button>
+          <button class="cap-tab" role="tab" aria-selected="false" data-tab="3">Energy Orchestration</button>
+        </div>
+
+        <!-- Tab panels -->
+        <div class="cap-panels">
+
+          <div class="cap-panel active" data-panel="0">
+            <div class="cap-panel-img">
+              <img src="https://images.unsplash.com/photo-1527738697320-513f6648bc26?auto=format&fit=crop&w=900&h=420&q=80" alt="Chilled water cooling plant" loading="lazy" />
+            </div>
+            <div class="cap-panel-body">
+              <h3>Chilled Water Optimisation</h3>
+              <p>Setpoints fixed at commissioning and never revisited. Sono detects headroom and recommends safe upward adjustments, reducing compressor load without thermal risk.</p>
+              <span class="cap-tag">Primary pilot entry point</span>
+            </div>
+          </div>
+
+          <div class="cap-panel" data-panel="1">
+            <div class="cap-panel-img">
+              <img src="https://images.unsplash.com/photo-1762163516269-3c143e04175c?auto=format&fit=crop&w=900&h=420&q=80" alt="Data center CRAH units and airflow" loading="lazy" />
+            </div>
+            <div class="cap-panel-body">
+              <h3>CRAH &amp; Airflow</h3>
+              <p>Detect recirculation hot spots, over-cooling conditions and fan inefficiencies across computer room air handlers. Ranked recommendations on supply temperature and airflow balance.</p>
+              <span class="cap-tag">Cooling stack</span>
+            </div>
+          </div>
+
+          <div class="cap-panel" data-panel="2">
+            <div class="cap-panel-img">
+              <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=900&h=420&q=80" alt="Power infrastructure and energy monitoring" loading="lazy" />
+            </div>
+            <div class="cap-panel-body">
+              <h3>Power Draw &amp; PUE</h3>
+              <p>Continuous monitoring of IT load versus facility overhead. Identifies UPS inefficiency windows, PDU load imbalance and operational levers to improve PUE.</p>
+              <span class="cap-tag">Power</span>
+            </div>
+          </div>
+
+          <div class="cap-panel" data-panel="3">
+            <div class="cap-panel-img">
+              <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=900&h=420&q=80" alt="On-site energy assets" loading="lazy" />
+            </div>
+            <div class="cap-panel-body">
+              <h3>Energy Orchestration</h3>
+              <p>Data centers increasingly operate behind-the-meter assets: BESS, generators, solar and wind. Sono reads signals across these and grid consumption to surface dispatch recommendations, turning sunk capex into active flexibility.</p>
+              <span class="cap-tag">On-site assets</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">How it works</span>
+        <h2>Three phases of autonomy</h2>
+        <p>
+          We earn the right to act. Sono starts fully supervised and extends autonomy only as it proves value and builds operator trust.
+        </p>
+      </div>
+
+      <div class="steps reveal">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3>Read</h3>
+          <p>We connect to your historian or DCIM and ingest existing signals: chilled water temps, CRAH setpoints, power draw, compressed air pressure. No new sensors. No instrumentation project.</p>
+          <span class="phase-badge">Phase 1 — Supervised</span>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3>Understand</h3>
+          <p>Our ML pipeline detects patterns and anomalies across utility systems. The Utility Reasoning agent applies domain logic to generate hypotheses, ranked by confidence and potential impact.</p>
+          <span class="phase-badge">Phase 1 — Supervised</span>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3>Act</h3>
+          <p>Plain-language recommendations reach the operator with supporting evidence. Operators approve every action in Phase 1. Feedback trains the system. Trust is verified before autonomy is extended.</p>
+          <span class="phase-badge">Phases 1 &rarr; 3</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section id="team">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">Team</span>
+        <h2>Founding team</h2>
+        <p>Three co-founders combining ML, energy infrastructure and commercial execution.</p>
+      </div>
+
+      <div class="team-grid reveal">
+
+        <article class="team-card">
+          <div class="team-avatar">
+            <img src="./team/harit.jpg" alt="Harit Soni" loading="lazy" />
+          </div>
+          <a href="https://www.linkedin.com/in/harit-soni-b837a5/" target="_blank" rel="noopener"><h3>Harit Soni</h3></a>
+          <p class="team-role">Co-founder — Product &amp; Partnerships</p>
+          <p>15+ years building and scaling cleantech, IoT and AI ventures across Asia, Europe and North America. TEDx speaker and multi-award-winning founder recognized by MIT TR35, Ashden, UNFCCC and WWF.</p>
+        </article>
+
+        <article class="team-card">
+          <div class="team-avatar">
+            <img src="./team/johannes.jpg" alt="Johannes Parzonka" loading="lazy" />
+          </div>
+          <a href="https://www.linkedin.com/in/jparzonka/" target="_blank" rel="noopener"><h3>Johannes Parzonka</h3></a>
+          <p class="team-role">Co-founder — Commercial</p>
+          <p>Entrepreneurial leader with deep experience in renewables and carbon markets. Founded a green-gas venture and led M&amp;A and business growth across wind, PV and biomethane sectors.</p>
+        </article>
+
+        <article class="team-card">
+          <div class="team-avatar">
+            <img src="./team/caterina.jpg" alt="Caterina Giacomelli" loading="lazy" />
+          </div>
+          <a href="https://www.linkedin.com/in/catgi91/" target="_blank" rel="noopener"><h3>Caterina Giacomelli</h3></a>
+          <p class="team-role">Co-founder — Technology</p>
+          <p>Physicist and data scientist specialising in ML, signal processing and anomaly detection. Experienced in energy infrastructure and predictive modelling for data center operations.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-layout reveal">
+        <div class="contact-left">
+          <span class="label">Contact</span>
+          <h2>Work with us on an early pilot</h2>
+          <p>
+            We are working with data center operators on early pilots. If you are running a facility and curious
+            about what your historian data could tell you, reach out.
+          </p>
+
+
+        </div>
+
+        <div class="contact-form">
+          <form action="https://formspree.io/f/manaypzl" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input required type="text" id="name" name="name" autocomplete="name" placeholder="Jane Doe" />
+              </div>
+              <div class="form-group">
+                <label for="email">Work email</label>
+                <input required type="email" id="email" name="email" autocomplete="email" placeholder="name@company.com" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="company">Company</label>
+              <input type="text" id="company" name="company" autocomplete="organization" placeholder="e.g. Equinix, Aruba, Digital Realty" />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea required id="message" name="message" placeholder="Describe your facility, data availability, or what you'd like to explore"></textarea>
+            </div>
+            <div class="form-check">
+              <input id="gdpr" type="checkbox" required />
+              <label for="gdpr">I agree to be contacted about this request.</label>
+            </div>
+            <button type="submit" class="btn-primary" style="width:100%; padding:14px;">Send message</button>
+          </form>
+        </div>
+      </div>
+      <div class="contact-emails">
+        <a href="mailto:harit@sono.so">harit@sono.so</a>
+        <span class="dot">·</span>
+        <a href="mailto:johannes@sono.so">johannes@sono.so</a>
+        <span class="dot">·</span>
+        <a href="mailto:caterina@sono.so">caterina@sono.so</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Sono. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#" id="open-privacy">Privacy</a>
+        <a href="#" id="open-terms">Terms</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Privacy modal -->
+  <div class="modal-overlay" id="privacy-modal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button class="modal-close" id="close-privacy" aria-label="Close">&#x2715;</button>
+      <h2>Privacy Policy</h2>
+      <p>We collect only the information you submit voluntarily through our contact form. Your data is used solely to respond to inquiries and is not shared with third parties. By using this site, you agree to this data handling practice.</p>
+    </div>
+  </div>
+
+  <!-- Terms modal -->
+  <div class="modal-overlay" id="terms-modal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button class="modal-close" id="close-terms" aria-label="Close">&#x2715;</button>
+      <h2>Terms &amp; Conditions</h2>
+      <p>The content provided on this site is for informational purposes only and does not constitute a binding offer. Sono disclaims all liability for damages arising from the use of this site. By using this site, you agree to comply with applicable laws and regulations.</p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => io.observe(el));
+
+    // Capability tabs
+    document.querySelectorAll('.cap-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const idx = tab.dataset.tab;
+        document.querySelectorAll('.cap-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+        document.querySelectorAll('.cap-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected','true');
+        document.querySelector(`.cap-panel[data-panel="${idx}"]`).classList.add('active');
+      });
+    });
+
+    // Modals
+    function openModal(id) { document.getElementById(id).classList.add('open'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+    document.getElementById('open-privacy').addEventListener('click', e => { e.preventDefault(); openModal('privacy-modal'); });
+    document.getElementById('close-privacy').addEventListener('click', () => closeModal('privacy-modal'));
+    document.getElementById('open-terms').addEventListener('click', e => { e.preventDefault(); openModal('terms-modal'); });
+    document.getElementById('close-terms').addEventListener('click', () => closeModal('terms-modal'));
+
+    document.querySelectorAll('.modal-overlay').forEach(m => {
+      m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('open'));
+    });
+  </script>
+
+</body>
+</html>
