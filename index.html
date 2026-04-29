@@ -16,7 +16,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    /* ── Brand tokens ── */
     :root {
       --ink:        #242220;
       --paper:      #F7F3EE;
@@ -29,9 +28,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
       background: var(--paper);
       color: var(--ink);
@@ -41,13 +38,10 @@
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
     }
-
     h1, h2, h3, .stat-num, .nav-logo, .label {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
     }
-
-    /* ── Grain overlay ── */
     body::before {
       content: '';
       position: fixed;
@@ -57,10 +51,7 @@
       pointer-events: none;
       z-index: 9999;
     }
-
-    /* ── Utility ── */
     .container { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
-
     .label {
       font-size: 11px;
       letter-spacing: 0.12em;
@@ -69,7 +60,7 @@
       font-weight: 600;
     }
 
-    /* ── Header ── */
+    /* Header */
     header {
       position: sticky;
       top: 0;
@@ -88,10 +79,10 @@
       margin: 0 auto;
     }
     .nav-logo {
-      font-size: 20px;
+      font-size: 36px;
       color: var(--ink);
       text-decoration: none;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.02em;
     }
     nav { display: flex; align-items: center; gap: 36px; }
     nav a {
@@ -134,7 +125,7 @@
     }
     .btn-secondary:hover { border-color: var(--ink-60); background: var(--ink-08); }
 
-    /* ── Hero ── */
+    /* Hero */
     #hero {
       position: relative;
       overflow: hidden;
@@ -149,7 +140,6 @@
       background-position: center;
       opacity: 0.22;
     }
-    /* Warm vignette overlay */
     .hero-vignette {
       position: absolute;
       inset: 0;
@@ -210,7 +200,6 @@
       gap: 12px;
       animation: fadeUp 0.7s 0.3s ease both;
     }
-    /* Stats bar */
     .hero-stats {
       position: relative;
       z-index: 2;
@@ -243,14 +232,12 @@
       font-weight: 500;
     }
 
-    /* ── Capabilities ── */
+    /* Capabilities */
     #capabilities {
       padding: 96px 0;
       border-bottom: 1px solid var(--ink-15);
     }
-    .section-header {
-      margin-bottom: 56px;
-    }
+    .section-header { margin-bottom: 56px; }
     .section-header h2 {
       font-size: clamp(28px, 4vw, 40px);
       letter-spacing: -0.025em;
@@ -263,8 +250,6 @@
       color: var(--ink-60);
       max-width: 560px;
     }
-
-    /* ── Capabilities tabs ── */
     .cap-tabs {
       border: 1px solid var(--ink-15);
       border-radius: 16px;
@@ -297,16 +282,10 @@
     }
     .cap-tab:hover { color: var(--ink); }
     .cap-tab.active { color: var(--ink); border-bottom-color: var(--terracotta); }
-
     .cap-panels { position: relative; }
     .cap-panel { display: none; }
     .cap-panel.active { display: block; }
-
-    .cap-panel-img {
-      width: 100%;
-      height: 320px;
-      overflow: hidden;
-    }
+    .cap-panel-img { width: 100%; height: 320px; overflow: hidden; }
     .cap-panel-img img {
       width: 100%;
       height: 100%;
@@ -315,10 +294,7 @@
       transition: transform 0.5s ease;
     }
     .cap-panel.active .cap-panel-img img { transform: scale(1.01); }
-
-    .cap-panel-body {
-      padding: 32px 36px 36px;
-    }
+    .cap-panel-body { padding: 32px 36px 36px; }
     .cap-panel-body h3 {
       font-size: 22px;
       letter-spacing: -0.02em;
@@ -341,7 +317,7 @@
       color: var(--sage);
     }
 
-    /* ── How it works ── */
+    /* How it works */
     #how {
       padding: 96px 0;
       border-bottom: 1px solid var(--ink-15);
@@ -356,10 +332,7 @@
       border-radius: 16px;
       overflow: hidden;
     }
-    .step {
-      background: var(--paper);
-      padding: 36px;
-    }
+    .step { background: var(--paper); padding: 36px; }
     .step-num {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
@@ -375,8 +348,6 @@
       margin-bottom: 10px;
     }
     .step p { font-size: 14px; color: var(--ink-60); line-height: 1.65; }
-
-    /* Phase badge */
     .phase-badge {
       display: inline-block;
       margin-top: 16px;
@@ -391,7 +362,7 @@
       border-radius: 100px;
     }
 
-    /* ── Team ── */
+    /* Team */
     #team {
       padding: 96px 0;
       border-bottom: 1px solid var(--ink-15);
@@ -416,15 +387,8 @@
       background: var(--ink-08);
       margin-bottom: 20px;
     }
-    .team-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .team-card h3 {
-      font-size: 18px;
-      letter-spacing: -0.02em;
-    }
+    .team-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .team-card h3 { font-size: 18px; letter-spacing: -0.02em; }
     .team-role {
       font-size: 13px;
       color: var(--terracotta);
@@ -432,30 +396,13 @@
       margin-top: 2px;
       margin-bottom: 12px;
     }
-    .team-card p {
-      font-size: 14px;
-      color: var(--ink-60);
-      line-height: 1.65;
-    }
-    .team-linkedin {
-      display: inline-block;
-      margin-top: 14px;
-      font-size: 12px;
-      font-weight: 600;
-      font-family: 'Space Grotesk', sans-serif;
-      color: var(--ink-60);
-      text-decoration: none;
-      letter-spacing: 0.04em;
-      border-bottom: 1px solid var(--ink-15);
-      padding-bottom: 1px;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .team-linkedin:hover { color: var(--ink); border-color: var(--ink-60); }
+    .team-card p { font-size: 14px; color: var(--ink-60); line-height: 1.65; }
+    .team-card a { text-decoration: none; }
+    .team-card a h3 { transition: color 0.2s; }
+    .team-card a:hover h3 { color: var(--terracotta); }
 
-    /* ── Contact ── */
-    #contact {
-      padding: 96px 0;
-    }
+    /* Contact */
+    #contact { padding: 96px 0; }
     .contact-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -496,15 +443,6 @@
       color: var(--ink-15);
       font-size: 12px;
     }
-
-    /* Team name as LinkedIn link */
-    .team-card a { text-decoration: none; }
-    .team-card a h3 {
-      transition: color 0.2s;
-    }
-    .team-card a:hover h3 { color: var(--terracotta); }
-
-    /* Form */
     .contact-form {
       background: white;
       border: 1px solid var(--ink-15);
@@ -568,7 +506,7 @@
       font-weight: 400;
     }
 
-    /* ── Footer ── */
+    /* Footer */
     footer {
       border-top: 1px solid var(--ink-15);
       padding: 28px 0;
@@ -580,15 +518,12 @@
       flex-wrap: wrap;
       gap: 12px;
     }
-    footer p, footer a {
-      font-size: 13px;
-      color: var(--ink-60);
-    }
+    footer p, footer a { font-size: 13px; color: var(--ink-60); }
     footer a { text-decoration: none; }
     footer a:hover { color: var(--ink); }
     .footer-links { display: flex; gap: 24px; }
 
-    /* ── Modals ── */
+    /* Modals */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -628,14 +563,10 @@
       padding: 4px;
     }
     .modal-close:hover { color: var(--ink); }
-    .modal-box h2 {
-      font-size: 22px;
-      letter-spacing: -0.02em;
-      margin-bottom: 14px;
-    }
+    .modal-box h2 { font-size: 22px; letter-spacing: -0.02em; margin-bottom: 14px; }
     .modal-box p { font-size: 14px; color: var(--ink-60); line-height: 1.7; }
 
-    /* ── Animation ── */
+    /* Animation */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(14px); }
       to   { opacity: 1; transform: none; }
@@ -643,7 +574,7 @@
     .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.55s ease, transform 0.55s ease; }
     .reveal.visible { opacity: 1; transform: none; }
 
-    /* ── Responsive ── */
+    /* Responsive */
     @media (max-width: 768px) {
       .steps { grid-template-columns: 1fr; }
       .team-grid { grid-template-columns: 1fr; }
@@ -724,17 +655,13 @@
       </div>
 
       <div class="cap-tabs reveal">
-        <!-- Tab nav -->
         <div class="cap-tab-nav" role="tablist">
           <button class="cap-tab active" role="tab" aria-selected="true" data-tab="0">Chilled Water</button>
           <button class="cap-tab" role="tab" aria-selected="false" data-tab="1">CRAH &amp; Airflow</button>
           <button class="cap-tab" role="tab" aria-selected="false" data-tab="2">Power &amp; PUE</button>
           <button class="cap-tab" role="tab" aria-selected="false" data-tab="3">Energy Orchestration</button>
         </div>
-
-        <!-- Tab panels -->
         <div class="cap-panels">
-
           <div class="cap-panel active" data-panel="0">
             <div class="cap-panel-img">
               <img src="https://images.unsplash.com/photo-1527738697320-513f6648bc26?auto=format&fit=crop&w=900&h=420&q=80" alt="Chilled water cooling plant" loading="lazy" />
@@ -745,7 +672,6 @@
               <span class="cap-tag">Primary pilot entry point</span>
             </div>
           </div>
-
           <div class="cap-panel" data-panel="1">
             <div class="cap-panel-img">
               <img src="https://images.unsplash.com/photo-1762163516269-3c143e04175c?auto=format&fit=crop&w=900&h=420&q=80" alt="Data center CRAH units and airflow" loading="lazy" />
@@ -756,7 +682,6 @@
               <span class="cap-tag">Cooling stack</span>
             </div>
           </div>
-
           <div class="cap-panel" data-panel="2">
             <div class="cap-panel-img">
               <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=900&h=420&q=80" alt="Power infrastructure and energy monitoring" loading="lazy" />
@@ -767,7 +692,6 @@
               <span class="cap-tag">Power</span>
             </div>
           </div>
-
           <div class="cap-panel" data-panel="3">
             <div class="cap-panel-img">
               <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=900&h=420&q=80" alt="On-site energy assets" loading="lazy" />
@@ -778,7 +702,6 @@
               <span class="cap-tag">On-site assets</span>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -794,7 +717,6 @@
           We earn the right to act. Sono starts fully supervised and extends autonomy only as it proves value and builds operator trust.
         </p>
       </div>
-
       <div class="steps reveal">
         <div class="step">
           <div class="step-num">01</div>
@@ -826,9 +748,7 @@
         <h2>Founding team</h2>
         <p>Three co-founders combining ML, energy infrastructure and commercial execution.</p>
       </div>
-
       <div class="team-grid reveal">
-
         <article class="team-card">
           <div class="team-avatar">
             <img src="./team/harit.jpg" alt="Harit Soni" loading="lazy" />
@@ -837,7 +757,6 @@
           <p class="team-role">Co-founder — Product &amp; Partnerships</p>
           <p>15+ years building and scaling cleantech, IoT and AI ventures across Asia, Europe and North America. TEDx speaker and multi-award-winning founder recognized by MIT TR35, Ashden, UNFCCC and WWF.</p>
         </article>
-
         <article class="team-card">
           <div class="team-avatar">
             <img src="./team/johannes.jpg" alt="Johannes Parzonka" loading="lazy" />
@@ -846,7 +765,6 @@
           <p class="team-role">Co-founder — Commercial</p>
           <p>Entrepreneurial leader with deep experience in renewables and carbon markets. Founded a green-gas venture and led M&amp;A and business growth across wind, PV and biomethane sectors.</p>
         </article>
-
         <article class="team-card">
           <div class="team-avatar">
             <img src="./team/caterina.jpg" alt="Caterina Giacomelli" loading="lazy" />
@@ -855,7 +773,6 @@
           <p class="team-role">Co-founder — Technology</p>
           <p>Physicist and data scientist specialising in ML, signal processing and anomaly detection. Experienced in energy infrastructure and predictive modelling for data center operations.</p>
         </article>
-
       </div>
     </div>
   </section>
@@ -871,10 +788,7 @@
             We are working with data center operators on early pilots. If you are running a facility and curious
             about what your historian data could tell you, reach out.
           </p>
-
-
         </div>
-
         <div class="contact-form">
           <form action="https://formspree.io/f/manaypzl" method="POST">
             <div class="form-row">
@@ -946,14 +860,12 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
     }, { threshold: 0.12 });
     reveals.forEach(el => io.observe(el));
 
-    // Capability tabs
     document.querySelectorAll('.cap-tab').forEach(tab => {
       tab.addEventListener('click', () => {
         const idx = tab.dataset.tab;
@@ -965,7 +877,6 @@
       });
     });
 
-    // Modals
     function openModal(id) { document.getElementById(id).classList.add('open'); }
     function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 
