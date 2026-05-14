@@ -1,0 +1,202 @@
+/* sono · legal/legal.css
+   Shared styles for standalone legal pages (impressum, datenschutz, terms).
+   Modal styles live in the main index.html <style> block. */
+
+:root {
+  --ink:        #242220;
+  --paper:      #F7F3EE;
+  --terracotta: #C87A4F;
+  --sage:       #6A9470;
+  --ink-60:     rgba(36,34,32,0.6);
+  --ink-15:     rgba(36,34,32,0.15);
+  --ink-08:     rgba(36,34,32,0.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ──────────────────────────────────────────────────── */
+.legal-header {
+  border-bottom: 1px solid var(--ink-15);
+  padding: 16px 28px;
+  position: sticky;
+  top: 0;
+  background: var(--paper);
+  z-index: 10;
+}
+
+.legal-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  transition: color 0.2s;
+}
+.legal-back:hover { color: var(--terracotta); }
+.legal-back svg { color: var(--ink-60); flex-shrink: 0; margin-bottom: 1px; }
+
+/* ── Main content ─────────────────────────────────────────────── */
+.legal-page {
+  flex: 1;
+  padding: 56px 28px 80px;
+  max-width: 760px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ── Typography ───────────────────────────────────────────────── */
+.legal-content h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 4vw, 38px);
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin-bottom: 28px;
+  color: var(--ink);
+}
+
+.legal-content h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  margin-top: 36px;
+  margin-bottom: 10px;
+  color: var(--ink);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--ink-15);
+}
+
+.legal-content h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  margin-top: 20px;
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+
+.legal-content p {
+  font-size: 14px;
+  color: var(--ink-60);
+  line-height: 1.75;
+  margin-bottom: 12px;
+}
+
+.legal-content ul {
+  font-size: 14px;
+  color: var(--ink-60);
+  line-height: 1.75;
+  padding-left: 20px;
+  margin-bottom: 12px;
+}
+.legal-content ul li { margin-bottom: 6px; }
+
+.legal-content a {
+  color: var(--ink-60);
+  word-break: break-word;
+  transition: color 0.2s;
+}
+.legal-content a:hover { color: var(--ink); }
+.legal-content strong { color: var(--ink); font-weight: 600; }
+
+.legal-date {
+  font-size: 13px;
+  color: var(--ink-60);
+  margin-bottom: 28px !important;
+}
+
+/* ── Table of contents ────────────────────────────────────────── */
+.legal-toc { margin-bottom: 8px; }
+
+.legal-content .index {
+  list-style: none;
+  padding: 16px 20px !important;
+  background: var(--ink-08);
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+.legal-content .index li { margin-bottom: 4px; }
+.legal-content .index-link {
+  color: var(--terracotta);
+  text-decoration: none;
+  font-size: 13px;
+  transition: opacity 0.2s;
+}
+.legal-content .index-link:hover { opacity: 0.75; text-decoration: underline; }
+
+/* ── Impressum address blocks ─────────────────────────────────── */
+.impressum-block {
+  background: var(--ink-08);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin-bottom: 16px;
+}
+.impressum-block .imp-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+  display: block;
+  margin-bottom: 8px;
+}
+.impressum-block p {
+  font-size: 14px;
+  color: var(--ink);
+  margin-bottom: 0 !important;
+  line-height: 1.65;
+}
+.impressum-block a { color: var(--ink); }
+
+/* ── Attribution seal ─────────────────────────────────────────── */
+.legal-seal {
+  font-size: 11px;
+  color: var(--ink-60);
+  margin-top: 36px;
+  padding-top: 16px;
+  border-top: 1px solid var(--ink-15);
+}
+.legal-seal a { color: var(--ink-60); font-size: 11px; }
+
+/* ── Footer ───────────────────────────────────────────────────── */
+.legal-footer {
+  border-top: 1px solid var(--ink-15);
+  padding: 20px 28px;
+}
+.legal-footer p {
+  font-size: 13px;
+  color: var(--ink-60);
+}
+.legal-footer a {
+  font-size: 13px;
+  color: var(--ink-60);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.legal-footer a:hover { color: var(--ink); }
+
+/* ── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .legal-page { padding: 36px 20px 60px; }
+  .legal-header { padding: 14px 20px; }
+}
