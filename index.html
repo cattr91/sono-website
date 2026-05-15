@@ -707,38 +707,97 @@
       font-size: 52px; letter-spacing: -0.04em; color: var(--ink); line-height: 1;
     }
     .traction-num-label { margin-top: 8px; font-size: 13px; color: var(--ink-60); line-height: 1.5; }
-    /* ── Advisors section ─────────────────────────────── */
-    #advisors { padding: 96px 0; border-bottom: 1px solid var(--ink-15); }
-    .advisor-grid {
-      margin-top: 48px;
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
-    }
-    .advisor-card {
-      background: white; border: 1px solid var(--ink-15);
-      border-radius: 12px; padding: 22px;
-    }
-    .advisor-role {
-      font-family: 'Space Grotesk', sans-serif; font-weight: 600;
-      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--terracotta); margin-bottom: 10px;
-    }
-    .advisor-card p { font-size: 12px; color: var(--ink-60); line-height: 1.6; }
-    .advisor-card.advisor-summary {
-      background: var(--ink); border-color: var(--ink);
-      display: flex; flex-direction: column; justify-content: center;
-    }
-    .advisor-summary-num {
-      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
-      font-size: 48px; letter-spacing: -0.04em; color: var(--paper); line-height: 1;
-    }
-    .advisor-summary-text { font-size: 13px; color: rgba(247,243,238,0.5); margin-top: 6px; line-height: 1.5; }
-
     /* ── LinkedIn footer ──────────────────────────────── */
     .footer-linkedin { display: inline-flex; align-items: center; gap: 6px; }
 
-    @media (max-width: 900px) {
-      .advisor-grid { grid-template-columns: repeat(2, 1fr); }
+    /* ── Pricing section ──────────────────────────────── */
+    #pricing {
+      padding: 96px 0;
+      border-bottom: 1px solid var(--ink-15);
+      background: var(--ink);
     }
+    #pricing .label { color: rgba(247,243,238,0.4); }
+    #pricing .section-header h2 { color: var(--paper); }
+    #pricing .section-header p { color: rgba(247,243,238,0.55); max-width: 560px; }
+    .pricing-grid {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: rgba(247,243,238,0.08);
+      border: 1px solid rgba(247,243,238,0.08);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .pricing-card {
+      background: rgba(36,34,32,0.95);
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+    }
+    .pricing-card.highlighted {
+      background: rgba(200,122,79,0.1);
+      border: 1px solid rgba(200,122,79,0.25);
+      margin: -1px;
+      z-index: 1;
+    }
+    .pricing-tag {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+      margin-bottom: 20px;
+    }
+    .pricing-card.highlighted .pricing-tag { color: var(--terracotta); }
+    .pricing-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+      color: var(--paper);
+      margin-bottom: 12px;
+    }
+    .pricing-amount {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 40px;
+      letter-spacing: -0.04em;
+      color: var(--paper);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .pricing-amount-sub {
+      font-size: 13px;
+      color: rgba(247,243,238,0.4);
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+    .pricing-divider {
+      height: 1px;
+      background: rgba(247,243,238,0.08);
+      margin-bottom: 20px;
+    }
+    .pricing-card.highlighted .pricing-divider { background: rgba(200,122,79,0.2); }
+    .pricing-desc {
+      font-size: 14px;
+      color: rgba(247,243,238,0.55);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .pricing-note {
+      margin-top: 32px;
+      padding: 20px 24px;
+      background: rgba(106,148,112,0.1);
+      border: 1px solid rgba(106,148,112,0.2);
+      border-radius: 10px;
+      font-size: 13px;
+      color: rgba(247,243,238,0.55);
+      line-height: 1.6;
+    }
+    .pricing-note strong { color: var(--sage); }
+
     @media (max-width: 768px) {
       .steps { grid-template-columns: 1fr; }
       .team-grid { grid-template-columns: 1fr; }
@@ -750,12 +809,11 @@
       nav .btn-secondary { display: none; }
       .modal-wide .modal-box { padding: 28px 24px; }
       .product-layout { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
       .traction-numbers { grid-template-columns: 1fr; }
-      .advisor-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 600px) {
       nav a:not(:last-child) { display: none; }
-      .advisor-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -769,6 +827,7 @@
       <nav>
         <a href="#capabilities">Capabilities</a>
         <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
         <a href="#traction">Traction</a>
         <a href="#team">Team</a>
         <a href="#contact" class="btn-secondary">Get in touch</a>
@@ -985,47 +1044,42 @@
     </div>
   </section>
 
-  <!-- Advisors -->
-  <section id="advisors">
+  <!-- Pricing -->
+  <section id="pricing">
     <div class="container">
       <div class="section-header reveal">
-        <span class="label">Advisors</span>
-        <h2>A brains trust.</h2>
-        <p>Seven advisors with direct experience in data centre engineering, energy efficiency and operations at scale.</p>
+        <span class="label">Pricing</span>
+        <h2>Three streams. Aligned interests.</h2>
+        <p>Licence covers access. Deployment covers integration. The success fee is where we earn our keep — if we don't save you money, we don't make money.</p>
       </div>
-      <div class="advisor-grid reveal">
-        <div class="advisor-card">
-          <div class="advisor-role">Executive Director &middot; Global DC Operations</div>
-          <p>Senior engineering &amp; operations leader across 340+ global data centre sites.</p>
+      <div class="pricing-grid reveal">
+        <div class="pricing-card">
+          <div class="pricing-tag">01 &middot; Recurring</div>
+          <div class="pricing-name">Platform licence</div>
+          <div class="pricing-amount">&euro;18k</div>
+          <div class="pricing-amount-sub">per MW &middot; per year</div>
+          <div class="pricing-divider"></div>
+          <div class="pricing-desc">Per-megawatt access to the agentic intelligence layer. Scales with the facility, not the team. Covers continuous monitoring, anomaly detection, and ranked recommendations across all connected utility systems.</div>
         </div>
-        <div class="advisor-card">
-          <div class="advisor-role">CPO &middot; Mission-Critical Infrastructure</div>
-          <p>Modular data centres for hyperscale, AI and HPC. Engineering and procurement at scale.</p>
+        <div class="pricing-card highlighted">
+          <div class="pricing-tag">02 &middot; One-time</div>
+          <div class="pricing-name">Deployment fee</div>
+          <div class="pricing-amount">Custom</div>
+          <div class="pricing-amount-sub">per site &middot; scoped to the facility</div>
+          <div class="pricing-divider"></div>
+          <div class="pricing-desc">Integration, signal mapping and commissioning. Priced to the building, not a list — a 10 MW colocaion site and a 100 MW hyperscale campus have very different integration requirements.</div>
         </div>
-        <div class="advisor-card">
-          <div class="advisor-role">Senior Advisor &middot; Building Automation</div>
-          <p>Energy efficiency &amp; building automation (CEM, LEED). Cooling and carbon reduction.</p>
+        <div class="pricing-card">
+          <div class="pricing-tag">03 &middot; Aligned</div>
+          <div class="pricing-name">Success fee</div>
+          <div class="pricing-amount">12%</div>
+          <div class="pricing-amount-sub">of verified energy savings</div>
+          <div class="pricing-divider"></div>
+          <div class="pricing-desc">Measured to IPMVP standards against a calibrated baseline. If Sono does not reduce your energy spend, we do not charge a success fee. Our incentive is exactly the same as yours.</div>
         </div>
-        <div class="advisor-card">
-          <div class="advisor-role">Chartered Engineer &middot; Energy Transition</div>
-          <p>20 years in energy transition. Waste-heat recovery and grid integration.</p>
-        </div>
-        <div class="advisor-card">
-          <div class="advisor-role">Founder &middot; DC Airflow Optimisation</div>
-          <p>Data centre airflow optimisation. CFD modelling for heat rejection and PUE improvement.</p>
-        </div>
-        <div class="advisor-card">
-          <div class="advisor-role">Plant Engineer &middot; Energy Optimisation</div>
-          <p>20+ years plant engineering. Energy optimisation and IoT monitoring at facility scale.</p>
-        </div>
-        <div class="advisor-card">
-          <div class="advisor-role">Scientist &middot; Process Automation</div>
-          <p>Data-driven process automation. Sensor ingestion and ML-ready data pipelines.</p>
-        </div>
-        <div class="advisor-card advisor-summary">
-          <div class="advisor-summary-num">150+</div>
-          <div class="advisor-summary-text">Combined years across DC engineering, energy and operations.</div>
-        </div>
+      </div>
+      <div class="pricing-note reveal">
+        <strong>Verification standard:</strong> All savings are measured to IPMVP (International Performance Measurement and Verification Protocol) standards against a calibrated facility baseline. Every recommendation, acceptance and outcome is logged in a full audit trail.
       </div>
     </div>
   </section>
