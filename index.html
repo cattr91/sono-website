@@ -5,10 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>sono · Infrastructure that knows itself.</title>
   <meta name="description" content="sono uses AI and operational data to detect inefficiencies in data center cooling and power systems and surface ranked recommendations to operators." />
+  <!-- Open Graph — controls how the link looks when shared on LinkedIn, Slack, email, etc. -->
   <meta property="og:title" content="sono · Infrastructure that knows itself.">
-  <meta property="og:description" content="We use AI and operational data to reduce energy waste in data center cooling, power and compressed air. Starting with chilled water setpoint optimisation.">
+  <meta property="og:description" content="Agentic intelligence for data centre operations. Physics-constrained ML that reads your existing infrastructure, finds waste, and acts on it. No new hardware. Starting with chilled water.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sono.so">
+  <meta property="og:image" content="https://sono.so/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="sono">
+  <!-- Twitter / X card -->
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="sono · Infrastructure that knows itself.">
+  <meta name="twitter:description" content="Agentic intelligence for data centre operations. Physics-constrained ML. No new hardware.">
+  <meta name="twitter:image" content="https://sono.so/og-image.png">
+
+  <link rel="canonical" href="https://sono.so">
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -604,6 +616,129 @@
     .reveal.visible { opacity: 1; transform: none; }
 
     /* ── Responsive ─────────────────────────────────────────── */
+    /* ── Product preview section ──────────────────────── */
+    #product { padding: 96px 0; border-bottom: 1px solid var(--ink-15); }
+    .product-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+    }
+    .product-left h2 { font-size: clamp(28px,4vw,40px); letter-spacing: -0.025em; line-height: 1.1; margin-top: 12px; }
+    .product-left p  { margin-top: 16px; font-size: 16px; color: var(--ink-60); line-height: 1.65; }
+    .product-cta { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .product-mockup {
+      border: 1px solid var(--ink-15); border-radius: 16px;
+      overflow: hidden; background: var(--ink);
+    }
+    .mockup-topbar {
+      display: flex; align-items: center; gap: 6px;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(247,243,238,0.08);
+      background: rgba(247,243,238,0.03);
+    }
+    .mockup-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .mockup-dot.red   { background: #ff5f57; }
+    .mockup-dot.amber { background: #ffbd2e; }
+    .mockup-dot.green { background: #28c940; }
+    .mockup-title-bar {
+      margin-left: 8px;
+      font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+      font-size: 11px; letter-spacing: 0.06em;
+      color: rgba(247,243,238,0.25);
+    }
+    .mockup-body { padding: 20px; }
+    .mockup-alert {
+      background: rgba(200,122,79,0.12);
+      border: 1px solid rgba(200,122,79,0.3);
+      border-radius: 8px; padding: 12px 14px;
+      margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
+    }
+    .mockup-alert-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--terracotta); flex-shrink: 0;
+      animation: alertpulse 1.8s infinite;
+    }
+    @keyframes alertpulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .mockup-alert-text {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+      font-size: 12px; color: var(--terracotta);
+    }
+    .mockup-rec {
+      background: rgba(247,243,238,0.04);
+      border: 1px solid rgba(247,243,238,0.1);
+      border-radius: 10px; padding: 16px 18px; margin-bottom: 10px;
+    }
+    .mockup-rec-label {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--sage); margin-bottom: 6px;
+    }
+    .mockup-rec-title {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      font-size: 14px; color: var(--paper); margin-bottom: 5px;
+    }
+    .mockup-rec-body { font-size: 11px; color: rgba(247,243,238,0.45); line-height: 1.55; margin-bottom: 12px; }
+    .mockup-meta { display: flex; gap: 12px; margin-bottom: 12px; }
+    .mockup-meta-item {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+      font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(247,243,238,0.3);
+    }
+    .mockup-meta-item span { color: var(--terracotta); }
+    .mockup-btns { display: flex; gap: 6px; }
+    .mockup-btn {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+      font-size: 11px; padding: 6px 12px; border-radius: 5px; border: none;
+    }
+    .mockup-btn.approve { background: var(--sage); color: white; }
+    .mockup-btn.defer   { background: rgba(247,243,238,0.08); color: rgba(247,243,238,0.45); }
+    .mockup-btn.dismiss { background: transparent; color: rgba(247,243,238,0.25); border: 1px solid rgba(247,243,238,0.1); }
+
+    /* ── Traction section ─────────────────────────────── */
+    #traction { padding: 96px 0; border-bottom: 1px solid var(--ink-15); background: var(--ink-08); }
+    .traction-numbers {
+      margin-top: 48px; margin-bottom: 48px;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; background: var(--ink-15);
+      border: 1px solid var(--ink-15); border-radius: 16px; overflow: hidden;
+    }
+    .traction-num-cell { background: var(--paper); padding: 36px 32px; text-align: center; }
+    .traction-big-num {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      font-size: 52px; letter-spacing: -0.04em; color: var(--ink); line-height: 1;
+    }
+    .traction-num-label { margin-top: 8px; font-size: 13px; color: var(--ink-60); line-height: 1.5; }
+    /* ── Advisors section ─────────────────────────────── */
+    #advisors { padding: 96px 0; border-bottom: 1px solid var(--ink-15); }
+    .advisor-grid {
+      margin-top: 48px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    }
+    .advisor-card {
+      background: white; border: 1px solid var(--ink-15);
+      border-radius: 12px; padding: 22px;
+    }
+    .advisor-role {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--terracotta); margin-bottom: 10px;
+    }
+    .advisor-card p { font-size: 12px; color: var(--ink-60); line-height: 1.6; }
+    .advisor-card.advisor-summary {
+      background: var(--ink); border-color: var(--ink);
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .advisor-summary-num {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      font-size: 48px; letter-spacing: -0.04em; color: var(--paper); line-height: 1;
+    }
+    .advisor-summary-text { font-size: 13px; color: rgba(247,243,238,0.5); margin-top: 6px; line-height: 1.5; }
+
+    /* ── LinkedIn footer ──────────────────────────────── */
+    .footer-linkedin { display: inline-flex; align-items: center; gap: 6px; }
+
+    @media (max-width: 900px) {
+      .advisor-grid { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 768px) {
       .steps { grid-template-columns: 1fr; }
       .team-grid { grid-template-columns: 1fr; }
@@ -614,9 +749,13 @@
       .stat:last-child { border-bottom: none; }
       nav .btn-secondary { display: none; }
       .modal-wide .modal-box { padding: 28px 24px; }
+      .product-layout { grid-template-columns: 1fr; }
+      .traction-numbers { grid-template-columns: 1fr; }
+      .advisor-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 600px) {
       nav a:not(:last-child) { display: none; }
+      .advisor-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -630,6 +769,7 @@
       <nav>
         <a href="#capabilities">Capabilities</a>
         <a href="#how">How it works</a>
+        <a href="#traction">Traction</a>
         <a href="#team">Team</a>
         <a href="#contact" class="btn-secondary">Get in touch</a>
       </nav>
@@ -769,6 +909,127 @@
     </div>
   </section>
 
+  <!-- Product preview -->
+  <section id="product">
+    <div class="container">
+      <div class="product-layout reveal">
+        <div class="product-left">
+          <span class="label">The product</span>
+          <h2>From anomaly to action in fourteen minutes.</h2>
+          <p>
+            Sono reads your existing historian, detects anomalies before alarms fire, traces root cause to specific equipment, and surfaces a plain-language recommendation with a confidence score. Fully supervised in Phase 1 — one click closes the loop.
+          </p>
+          <p style="margin-top:12px; font-size:15px; color:var(--ink-60);">
+            No new hardware. No integration project. Historian-native. Physics-constrained so no physically impossible setpoint can ever be suggested.
+          </p>
+          <div class="product-cta">
+            <a href="#contact" class="btn-primary">Request a demo</a>
+          </div>
+        </div>
+        <!-- Inline mockup of the operator recommendation card -->
+        <div class="product-mockup">
+          <div class="mockup-topbar">
+            <span class="mockup-dot red"></span>
+            <span class="mockup-dot amber"></span>
+            <span class="mockup-dot green"></span>
+            <span class="mockup-title-bar">sono &middot; Facility view &middot; 06:04</span>
+          </div>
+          <div class="mockup-body">
+            <div class="mockup-alert">
+              <span class="mockup-alert-dot"></span>
+              <span class="mockup-alert-text">Anomaly detected &middot; Chiller 1 &middot; 06:00</span>
+            </div>
+            <div class="mockup-rec">
+              <div class="mockup-rec-label">Recommendation &middot; 94% confidence</div>
+              <div class="mockup-rec-title">Raise Chiller 1 setpoint: 6.0&deg;C &rarr; 8.5&deg;C</div>
+              <div class="mockup-rec-body">Valve response lag detected. Current setpoint is below thermal floor given ambient conditions and IT load. Adjustment remains within safe operating envelope. Estimated compressor load reduction: 3.2% on this circuit.</div>
+              <div class="mockup-meta">
+                <div class="mockup-meta-item">Confidence <span>94%</span></div>
+                <div class="mockup-meta-item">Est. saving <span>3.2%</span></div>
+                <div class="mockup-meta-item">Reversible <span>Yes</span></div>
+              </div>
+              <div class="mockup-btns">
+                <button class="mockup-btn approve">Approve</button>
+                <button class="mockup-btn defer">Defer 1h</button>
+                <button class="mockup-btn dismiss">Dismiss</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Traction -->
+  <section id="traction">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">Traction</span>
+        <h2>Validated demand.</h2>
+        <p>Market validation across operators, OEMs, MEP consultants and engineering firms in Europe.</p>
+      </div>
+      <div class="traction-numbers reveal">
+        <div class="traction-num-cell">
+          <div class="traction-big-num">173</div>
+          <div class="traction-num-label">Discovery conversations with operators, OEMs and consultants</div>
+        </div>
+        <div class="traction-num-cell">
+          <div class="traction-big-num">5</div>
+          <div class="traction-num-label">Ongoing technical and commercial co-creation partnerships</div>
+        </div>
+        <div class="traction-num-cell">
+          <div class="traction-big-num">4</div>
+          <div class="traction-num-label">Active pilot discussions with colocation operators</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Advisors -->
+  <section id="advisors">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">Advisors</span>
+        <h2>A brains trust.</h2>
+        <p>Seven advisors with direct experience in data centre engineering, energy efficiency and operations at scale.</p>
+      </div>
+      <div class="advisor-grid reveal">
+        <div class="advisor-card">
+          <div class="advisor-role">Executive Director &middot; Global DC Operations</div>
+          <p>Senior engineering &amp; operations leader across 340+ global data centre sites.</p>
+        </div>
+        <div class="advisor-card">
+          <div class="advisor-role">CPO &middot; Mission-Critical Infrastructure</div>
+          <p>Modular data centres for hyperscale, AI and HPC. Engineering and procurement at scale.</p>
+        </div>
+        <div class="advisor-card">
+          <div class="advisor-role">Senior Advisor &middot; Building Automation</div>
+          <p>Energy efficiency &amp; building automation (CEM, LEED). Cooling and carbon reduction.</p>
+        </div>
+        <div class="advisor-card">
+          <div class="advisor-role">Chartered Engineer &middot; Energy Transition</div>
+          <p>20 years in energy transition. Waste-heat recovery and grid integration.</p>
+        </div>
+        <div class="advisor-card">
+          <div class="advisor-role">Founder &middot; DC Airflow Optimisation</div>
+          <p>Data centre airflow optimisation. CFD modelling for heat rejection and PUE improvement.</p>
+        </div>
+        <div class="advisor-card">
+          <div class="advisor-role">Plant Engineer &middot; Energy Optimisation</div>
+          <p>20+ years plant engineering. Energy optimisation and IoT monitoring at facility scale.</p>
+        </div>
+        <div class="advisor-card">
+          <div class="advisor-role">Scientist &middot; Process Automation</div>
+          <p>Data-driven process automation. Sensor ingestion and ML-ready data pipelines.</p>
+        </div>
+        <div class="advisor-card advisor-summary">
+          <div class="advisor-summary-num">150+</div>
+          <div class="advisor-summary-text">Combined years across DC engineering, energy and operations.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Team -->
   <section id="team">
     <div class="container">
@@ -854,7 +1115,13 @@
   <!-- Footer -->
   <footer>
     <div class="container footer-inner">
-      <p>&copy; <span id="year"></span> sono. All rights reserved.</p>
+      <div style="display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
+        <p>&copy; <span id="year"></span> sono. All rights reserved.</p>
+        <a href="https://www.linkedin.com/company/sonoenergy/" target="_blank" rel="noopener noreferrer" class="footer-linkedin" style="font-size:13px; color:var(--ink-60); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink-60)'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-label="LinkedIn"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+      </div>
       <div class="footer-links">
         <a href="legal/impressum.html"   id="link-impressum">Impressum</a>
         <a href="legal/datenschutz.html" id="link-datenschutz">Datenschutz</a>
@@ -867,9 +1134,125 @@
   <!-- Mount point for legal modals — populated by legal.js -->
   <div id="legal-modals"></div>
 
-  <!-- Scripts -->
-  <script src="js/main.js"></script>
-  <script src="js/legal.js"></script>
+  <script>
+    // ── Footer year ──────────────────────────────────────────
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // ── Scroll reveal ────────────────────────────────────────
+    // Runs immediately so elements are visible even without scroll
+    function revealAll() {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    }
+
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+      // Safety fallback: if page is opened as file://, reveal everything after 300ms
+      if (window.location.protocol === 'file:') {
+        setTimeout(revealAll, 300);
+      }
+    } else {
+      // No IntersectionObserver support — show everything immediately
+      revealAll();
+    }
+
+    // ── Capability tabs ──────────────────────────────────────
+    document.querySelectorAll('.cap-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const idx = tab.dataset.tab;
+        document.querySelectorAll('.cap-tab').forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        document.querySelectorAll('.cap-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        document.querySelector(`.cap-panel[data-panel="${idx}"]`).classList.add('active');
+      });
+    });
+
+    // ── Legal modals ─────────────────────────────────────────
+    // Fetches legal/modals.html and injects it. Falls back gracefully
+    // on file:// (footer links simply navigate to the standalone pages).
+    const MODALS_PATH = 'legal/modals.html';
+    const LINK_MAP = {
+      'link-impressum':   'modal-impressum',
+      'link-datenschutz': 'modal-datenschutz',
+      'link-terms':       'modal-terms',
+    };
+
+    function openModal(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      const closeBtn = el.querySelector('.modal-close');
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function wireModals() {
+      document.querySelectorAll('.modal-close').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const m = btn.closest('.modal-overlay');
+          if (m) closeModal(m.id);
+        });
+      });
+      document.querySelectorAll('.modal-overlay').forEach(m => {
+        m.addEventListener('click', e => { if (e.target === m) closeModal(m.id); });
+      });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+          document.querySelectorAll('.modal-overlay.open').forEach(m => {
+            m.classList.remove('open');
+          });
+          document.body.style.overflow = '';
+        }
+      });
+      document.querySelectorAll('.legal-content a[href^="#"]').forEach(link => {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          const target = document.getElementById(link.getAttribute('href').slice(1));
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+      Object.entries(LINK_MAP).forEach(([linkId, modalId]) => {
+        const link = document.getElementById(linkId);
+        if (!link) return;
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          openModal(modalId);
+        });
+      });
+    }
+
+    if (window.location.protocol !== 'file:') {
+      fetch(MODALS_PATH)
+        .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+        .then(html => {
+          const container = document.getElementById('legal-modals');
+          if (container) { container.innerHTML = html; wireModals(); }
+        })
+        .catch(() => {
+          // Fetch failed — footer links stay as plain <a> navigation, which is fine
+        });
+    }
+    // On file:// the footer links href="legal/impressum.html" etc. work as-is
+  </script>
 
 </body>
 </html>
