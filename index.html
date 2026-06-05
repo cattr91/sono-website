@@ -519,12 +519,13 @@
       object-fit: contain;
       object-position: center;
     }
-    .funder-eu     { height: 48px; width: auto; }
-    .funder-berlin { height: 48px; width: auto; }
-    .funder-asl    { height: 90px; width: auto; }
+    .funder-eu     { height: 48px; width: auto; vertical-align: middle; }
+    .funder-berlin { height: 48px; width: auto; vertical-align: middle; }
+    .funder-asl    { height: 48px; width: auto; vertical-align: middle; }
     .funder-logo-link {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       opacity: 1;
       transition: opacity 0.2s;
     }
@@ -1228,18 +1229,34 @@
       <div class="funders-logos">
 
         <!-- EU co-financing flag (horizontal) -->
-        <img
-          src="./logos/EU-Fahne-Kofinanziert_horizontal.PNG"
-          alt="Kofinanziert von der Europäischen Union"
-          class="funder-logo funder-eu"
-        />
+        <a
+          href="https://european-union.europa.eu/index_en"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="funder-logo-link"
+          aria-label="European Union"
+        >
+          <img
+            src="./logos/EU-Fahne-Kofinanziert_horizontal.PNG"
+            alt="Kofinanziert von der Europäischen Union"
+            class="funder-logo funder-eu"
+          />
+        </a>
 
         <!-- Berlin Senate Department for Economics, Energy and Public Enterprises -->
-        <img
-          src="./logos/B_SEN_WiEnBe_Logo_kurz.png"
-          alt="Senatsverwaltung für Wirtschaft, Energie und Betriebe Berlin"
-          class="funder-logo funder-berlin"
-        />
+        <a
+          href="https://www.berlin.de/en/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="funder-logo-link"
+          aria-label="Senatsverwaltung für Wirtschaft, Energie und Betriebe Berlin"
+        >
+          <img
+            src="./logos/B_SEN_WiEnBe_Logo_kurz.png"
+            alt="Senatsverwaltung für Wirtschaft, Energie und Betriebe Berlin"
+            class="funder-logo funder-berlin"
+          />
+        </a>
 
         <!-- Adlershof Startup Lab -->
         <a
