@@ -487,6 +487,60 @@
       font-weight: 400;
     }
 
+    /* ── Funders bar ─────────────────────────────────────────── */
+    .funders-bar {
+      border-top: 1px solid var(--ink-15);
+      border-bottom: 1px solid var(--ink-15);
+      padding: 32px 0;
+      background: var(--paper);
+    }
+    .funders-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .funders-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .funders-logos {
+      display: contents;
+    }
+    .funder-logo {
+      display: block;
+      object-fit: contain;
+      object-position: center;
+    }
+    .funder-eu     { height: 48px; width: auto; }
+    .funder-berlin { height: 48px; width: auto; }
+    .funder-asl    { height: 90px; width: auto; }
+    .funder-logo-link {
+      display: inline-flex;
+      align-items: center;
+      opacity: 1;
+      transition: opacity 0.2s;
+    }
+    .funder-logo-link:hover { opacity: 0.7; }
+
+    @media (max-width: 768px) {
+      .funders-logos { justify-content: flex-start; gap: 28px; }
+      .funder-eu, .funder-berlin { height: 36px; }
+      .funder-asl { height: 60px; }
+    }
+    @media (max-width: 600px) {
+      .funders-inner { gap: 20px; }
+      .funder-eu, .funder-berlin { height: 30px; }
+      .funder-asl { height: 50px; }
+    }
+
     /* ── Footer ─────────────────────────────────────────────── */
     footer {
       border-top: 1px solid var(--ink-15);
@@ -1165,6 +1219,45 @@
       </div>
     </div>
   </section>
+
+  <!-- Funders bar -->
+  <div class="funders-bar">
+    <div class="container funders-inner">
+      <span class="funders-label">Supported by</span>
+      <div class="funders-logos">
+
+        <!-- EU co-financing flag (horizontal) -->
+        <img
+          src="./logos/EU-Fahne-Kofinanziert_horizontal.PNG"
+          alt="Kofinanziert von der Europäischen Union"
+          class="funder-logo funder-eu"
+        />
+
+        <!-- Berlin Senate Department for Economics, Energy and Public Enterprises -->
+        <img
+          src="./logos/B_SEN_WiEnBe_Logo_kurz.png"
+          alt="Senatsverwaltung für Wirtschaft, Energie und Betriebe Berlin"
+          class="funder-logo funder-berlin"
+        />
+
+        <!-- Adlershof Startup Lab -->
+        <a
+          href="https://www.adlershof.de/en/startuplab"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="funder-logo-link"
+          aria-label="Adlershof Startup Lab — from concept to company"
+        >
+          <img
+            src="./logos/Adlershof_Startup_Lab.png"
+            alt="Adlershof Startup Lab — from concept to company"
+            class="funder-logo funder-asl"
+          />
+        </a>
+
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer>
