@@ -3,25 +3,21 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>sono · Infrastructure that knows itself.</title>
-  <meta name="description" content="sono uses AI and operational data to detect inefficiencies in data center cooling and power systems and surface ranked recommendations to operators." />
-  <!-- Open Graph — controls how the link looks when shared on LinkedIn, Slack, email, etc. -->
-  <meta property="og:title" content="sono · Infrastructure that knows itself.">
-  <meta property="og:description" content="Agentic intelligence for data centre operations. Physics-constrained ML that reads your existing infrastructure, finds waste, and acts on it. No new hardware. Starting with chilled water.">
+  <title>sono · Resilience intelligence for data centres.</title>
+  <meta name="description" content="Sono gives data centre owners and operators a single platform to track and manage asset resilience across power, climate, compliance, infrastructure, and adaptability." />
+  <meta property="og:title" content="sono · Resilience intelligence for data centres.">
+  <meta property="og:description" content="A single platform for full-lifecycle data centre resilience. Site intelligence, continuous monitoring, and operational optimisation starting with what your data already knows.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://sono.so">
   <meta property="og:image" content="https://sono.so/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:site_name" content="sono">
-  <!-- Twitter / X card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="sono · Infrastructure that knows itself.">
-  <meta name="twitter:description" content="Agentic intelligence for data centre operations. Physics-constrained ML. No new hardware.">
+  <meta name="twitter:title" content="sono · Resilience intelligence for data centres.">
+  <meta name="twitter:description" content="Full-lifecycle resilience for data centre assets. No new hardware. Start with what your data already knows.">
   <meta name="twitter:image" content="https://sono.so/og-image.png">
-
   <link rel="canonical" href="https://sono.so">
-
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,6 +66,7 @@
       text-transform: uppercase;
       color: var(--ink-60);
       font-weight: 600;
+      font-family: 'Space Grotesk', sans-serif;
     }
 
     /* ── Header ─────────────────────────────────────────────── */
@@ -185,7 +182,7 @@
       line-height: 1.05;
       letter-spacing: -0.03em;
       color: var(--paper);
-      max-width: 700px;
+      max-width: 760px;
       animation: fadeUp 0.7s 0.1s ease both;
     }
     .hero-sub {
@@ -193,7 +190,7 @@
       font-size: 18px;
       line-height: 1.6;
       color: rgba(247,243,238,0.72);
-      max-width: 540px;
+      max-width: 560px;
       animation: fadeUp 0.7s 0.2s ease both;
     }
     .hero-actions {
@@ -203,40 +200,48 @@
       gap: 12px;
       animation: fadeUp 0.7s 0.3s ease both;
     }
-    .hero-stats {
+
+    /* ── Five dimensions strip ─────────────────────────────── */
+    .hero-dimensions {
       position: relative;
       z-index: 2;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0;
       border-top: 1px solid rgba(247,243,238,0.1);
       max-width: 1120px;
       margin: 0 auto;
       padding: 0 28px;
+      display: flex;
+      flex-wrap: wrap;
       animation: fadeUp 0.7s 0.45s ease both;
     }
-    .stat {
+    .dimension {
       flex: 1;
-      min-width: 160px;
-      padding: 24px 28px 32px;
+      min-width: 140px;
+      padding: 20px 24px 28px;
       border-right: 1px solid rgba(247,243,238,0.1);
     }
-    .stat:last-child { border-right: none; }
-    .stat-num {
-      font-size: 36px;
-      color: var(--paper);
-      letter-spacing: -0.03em;
-      line-height: 1;
+    .dimension:last-child { border-right: none; }
+    .dim-icon {
+      width: 28px;
+      height: 28px;
+      margin-bottom: 10px;
+      opacity: 0.7;
     }
-    .stat-label {
-      margin-top: 6px;
+    .dim-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
       font-size: 13px;
-      color: rgba(247,243,238,0.5);
-      font-weight: 500;
+      color: var(--paper);
+      letter-spacing: -0.01em;
+    }
+    .dim-desc {
+      margin-top: 4px;
+      font-size: 12px;
+      color: rgba(247,243,238,0.45);
+      line-height: 1.5;
     }
 
-    /* ── Capabilities ───────────────────────────────────────── */
-    #capabilities {
+    /* ── Phases ─────────────────────────────────────────────── */
+    #phases {
       padding: 96px 0;
       border-bottom: 1px solid var(--ink-15);
     }
@@ -253,24 +258,22 @@
       color: var(--ink-60);
       max-width: 560px;
     }
-    .cap-tabs {
+
+    /* Phase tabs */
+    .phase-tabs {
       border: 1px solid var(--ink-15);
       border-radius: 16px;
       overflow: hidden;
       background: white;
     }
-    .cap-tab-nav {
+    .phase-tab-nav {
       display: flex;
       border-bottom: 1px solid var(--ink-15);
       background: var(--paper);
-      overflow-x: auto;
-      scrollbar-width: none;
     }
-    .cap-tab-nav::-webkit-scrollbar { display: none; }
-    .cap-tab {
+    .phase-tab {
       flex: 1;
-      min-width: 130px;
-      padding: 14px 20px;
+      padding: 16px 20px;
       background: none;
       border: none;
       border-bottom: 2px solid transparent;
@@ -282,88 +285,280 @@
       white-space: nowrap;
       transition: color 0.2s, border-color 0.2s;
       margin-bottom: -1px;
+      text-align: left;
     }
-    .cap-tab:hover { color: var(--ink); }
-    .cap-tab.active { color: var(--ink); border-bottom-color: var(--terracotta); }
-    .cap-panels { position: relative; }
-    .cap-panel { display: none; }
-    .cap-panel.active { display: block; }
-    .cap-panel-img { width: 100%; height: 320px; overflow: hidden; }
-    .cap-panel-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .phase-tab:hover { color: var(--ink); }
+    .phase-tab.active { color: var(--ink); border-bottom-color: var(--terracotta); }
+    .phase-tab-num {
       display: block;
-      transition: transform 0.5s ease;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--terracotta);
+      margin-bottom: 2px;
     }
-    .cap-panel.active .cap-panel-img img { transform: scale(1.01); }
-    .cap-panel-body { padding: 32px 36px 36px; }
-    .cap-panel-body h3 {
+    .phase-panel { display: none; }
+    .phase-panel.active { display: grid; grid-template-columns: 1fr 1fr; min-height: 460px; }
+
+    /* Phase panel left (text) */
+    .phase-left {
+      padding: 40px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: 1px solid var(--ink-15);
+    }
+    .phase-left h3 {
       font-size: 22px;
       letter-spacing: -0.02em;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
-    .cap-panel-body p {
+    .phase-left p {
       font-size: 15px;
       color: var(--ink-60);
       line-height: 1.65;
-      max-width: 620px;
     }
-    .cap-tag {
-      display: inline-block;
-      margin-top: 16px;
+    .phase-status { display: none; }
+
+    /* Phase panel right (visual) */
+    .phase-right {
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ── Site map mockup (Phase 1) ───────────────────────────── */
+    .sitemap-mockup {
+      padding: 24px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .sm-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .sm-title {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 600;
       font-size: 11px;
+      letter-spacing: 0.08em;
+      color: rgba(247,243,238,0.35);
+    }
+    .sm-badge {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 9px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--sage);
+      background: rgba(106,148,112,0.15);
+      border: 1px solid rgba(106,148,112,0.3);
+      padding: 3px 8px;
+      border-radius: 100px;
     }
-
-    /* ── How it works ───────────────────────────────────────── */
-    #how {
-      padding: 96px 0;
-      border-bottom: 1px solid var(--ink-15);
-    }
-    .steps {
-      margin-top: 56px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      background: var(--ink-15);
-      border: 1px solid var(--ink-15);
-      border-radius: 16px;
+    /* Map grid */
+    .sm-map {
+      flex: 1;
+      position: relative;
+      border: 1px solid rgba(247,243,238,0.08);
+      border-radius: 10px;
       overflow: hidden;
+      background: #1a1916;
     }
-    .step { background: var(--paper); padding: 36px; }
-    .step-num {
+    .sm-map svg { width: 100%; height: 100%; }
+
+    /* Score panel at bottom */
+    .sm-scores {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 4px;
+    }
+    .sm-score-cell {
+      background: rgba(247,243,238,0.04);
+      border: 1px solid rgba(247,243,238,0.08);
+      border-radius: 6px;
+      padding: 8px 6px;
+      text-align: center;
+    }
+    .sm-score-val {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
-      font-size: 48px;
-      color: var(--ink-15);
+      font-size: 16px;
       line-height: 1;
-      letter-spacing: -0.04em;
+      color: var(--paper);
     }
-    .step h3 {
-      font-size: 18px;
-      letter-spacing: -0.02em;
-      margin-top: 16px;
-      margin-bottom: 10px;
+    .sm-score-val.high { color: var(--sage); }
+    .sm-score-val.mid  { color: #d4a847; }
+    .sm-score-val.low  { color: var(--terracotta); }
+    .sm-score-name {
+      font-size: 9px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(247,243,238,0.3);
+      margin-top: 4px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
     }
-    .step p { font-size: 14px; color: var(--ink-60); line-height: 1.65; }
-    .phase-badge {
-      display: inline-block;
-      margin-top: 16px;
-      background: var(--ink-08);
-      color: var(--ink-60);
+
+    /* ── Continuous mockup (Phase 2) ────────────────────────── */
+    .cont-mockup {
+      padding: 24px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .cont-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .cont-title {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 600;
       font-size: 11px;
+      letter-spacing: 0.08em;
+      color: rgba(247,243,238,0.35);
+    }
+    .pulse-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--sage);
+      animation: alertpulse 2s infinite;
+    }
+    .cont-metric {
+      background: rgba(247,243,238,0.04);
+      border: 1px solid rgba(247,243,238,0.08);
+      border-radius: 8px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .cont-metric-left { display: flex; flex-direction: column; gap: 2px; }
+    .cont-metric-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 10px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 100px;
+      color: rgba(247,243,238,0.35);
     }
+    .cont-metric-val {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--paper);
+      letter-spacing: -0.02em;
+    }
+    .cont-metric-sub { font-size: 11px; color: rgba(247,243,238,0.4); }
+    .cont-bar-wrap { width: 100px; }
+    .cont-bar-bg { height: 4px; background: rgba(247,243,238,0.08); border-radius: 2px; }
+    .cont-bar-fill { height: 4px; border-radius: 2px; }
+    .cont-bar-fill.green { background: var(--sage); }
+    .cont-bar-fill.amber { background: #d4a847; }
+    .cont-bar-fill.red   { background: var(--terracotta); }
+    .cont-alert {
+      background: rgba(200,122,79,0.1);
+      border: 1px solid rgba(200,122,79,0.25);
+      border-radius: 8px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .cont-alert-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--terracotta); flex-shrink: 0;
+      margin-top: 4px;
+      animation: alertpulse 1.8s infinite;
+    }
+    .cont-alert-text {
+      font-size: 12px;
+      color: rgba(247,243,238,0.6);
+      line-height: 1.5;
+    }
+    .cont-alert-text strong { color: var(--terracotta); font-weight: 600; }
+
+    /* ── Operator mockup (Phase 3) ───────────────────────────── */
+    .mockup-topbar {
+      display: flex; align-items: center; gap: 6px;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(247,243,238,0.08);
+      background: rgba(247,243,238,0.03);
+    }
+    .mockup-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .mockup-dot.red   { background: #ff5f57; }
+    .mockup-dot.amber { background: #ffbd2e; }
+    .mockup-dot.green { background: #28c940; }
+    .mockup-title-bar {
+      margin-left: 8px;
+      font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+      font-size: 11px; letter-spacing: 0.06em;
+      color: rgba(247,243,238,0.25);
+    }
+    .mockup-body { padding: 20px; }
+    .mockup-alert {
+      background: rgba(200,122,79,0.12);
+      border: 1px solid rgba(200,122,79,0.3);
+      border-radius: 8px; padding: 12px 14px;
+      margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
+    }
+    .mockup-alert-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--terracotta); flex-shrink: 0;
+      animation: alertpulse 1.8s infinite;
+    }
+    .mockup-alert-text {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+      font-size: 12px; color: var(--terracotta);
+    }
+    .mockup-rec {
+      background: rgba(247,243,238,0.04);
+      border: 1px solid rgba(247,243,238,0.1);
+      border-radius: 10px; padding: 16px 18px;
+    }
+    .mockup-rec-label {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--sage); margin-bottom: 6px;
+    }
+    .mockup-rec-title {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      font-size: 14px; color: var(--paper); margin-bottom: 5px;
+    }
+    .mockup-rec-body { font-size: 11px; color: rgba(247,243,238,0.45); line-height: 1.55; margin-bottom: 12px; }
+    .mockup-meta { display: flex; gap: 12px; margin-bottom: 12px; }
+    .mockup-meta-item {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+      font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(247,243,238,0.3);
+    }
+    .mockup-meta-item span { color: var(--terracotta); }
+    .mockup-btns { display: flex; gap: 6px; }
+    .mockup-btn {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+      font-size: 11px; padding: 6px 12px; border-radius: 5px; border: none; cursor: default;
+    }
+    .mockup-btn.approve { background: var(--sage); color: white; }
+    .mockup-btn.defer   { background: rgba(247,243,238,0.08); color: rgba(247,243,238,0.45); }
+    .mockup-btn.dismiss { background: transparent; color: rgba(247,243,238,0.25); border: 1px solid rgba(247,243,238,0.1); }
+
+    /* ── Traction ────────────────────────────────────────────── */
+    #traction { padding: 96px 0; border-bottom: 1px solid var(--ink-15); background: var(--ink-08); }
+    .traction-numbers {
+      margin-top: 48px; margin-bottom: 48px;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; background: var(--ink-15);
+      border: 1px solid var(--ink-15); border-radius: 16px; overflow: hidden;
+    }
+    .traction-num-cell { background: var(--paper); padding: 36px 32px; text-align: center; }
+    .traction-big-num {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      font-size: 52px; letter-spacing: -0.04em; color: var(--ink); line-height: 1;
+    }
+    .traction-num-label { margin-top: 8px; font-size: 13px; color: var(--ink-60); line-height: 1.5; }
 
     /* ── Team ───────────────────────────────────────────────── */
     #team {
@@ -402,7 +597,7 @@
     .team-card p { font-size: 14px; color: var(--ink-60); line-height: 1.65; }
     .team-card a { text-decoration: none; }
     .team-card a h3 { transition: color 0.2s; color: var(--sage); }
-    .team-card a:hover h3 { color: var(--sage); opacity: 0.8; }
+    .team-card a:hover h3 { opacity: 0.8; }
 
     /* ── Contact ────────────────────────────────────────────── */
     #contact { padding: 96px 0; }
@@ -511,9 +706,6 @@
       white-space: nowrap;
       flex-shrink: 0;
     }
-    .funders-logos {
-      display: contents;
-    }
     .funder-logo {
       display: block;
       object-fit: contain;
@@ -531,17 +723,6 @@
     }
     .funder-logo-link:hover { opacity: 0.7; }
 
-    @media (max-width: 768px) {
-      .funders-logos { justify-content: flex-start; gap: 28px; }
-      .funder-eu, .funder-berlin { height: 36px; }
-      .funder-asl { height: 60px; }
-    }
-    @media (max-width: 600px) {
-      .funders-inner { gap: 20px; }
-      .funder-eu, .funder-berlin { height: 30px; }
-      .funder-asl { height: 50px; }
-    }
-
     /* ── Footer ─────────────────────────────────────────────── */
     footer {
       border-top: 1px solid var(--ink-15);
@@ -558,317 +739,80 @@
     footer a { text-decoration: none; }
     footer a:hover { color: var(--ink); }
     .footer-links { display: flex; gap: 24px; }
+    .footer-linkedin { display: inline-flex; align-items: center; gap: 6px; }
 
-    /* ── Modal base styles (populated by legal.js) ──────────── */
+    /* ── Modal styles ───────────────────────────────────────── */
     .modal-overlay {
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background: rgba(36,34,32,0.6);
-      z-index: 999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      z-index: 999; display: flex;
+      align-items: center; justify-content: center;
       padding: 24px;
-      opacity: 0;
-      pointer-events: none;
+      opacity: 0; pointer-events: none;
       transition: opacity 0.25s;
     }
     .modal-overlay.open { opacity: 1; pointer-events: all; }
     .modal-box {
       background: var(--paper);
       border: 1px solid var(--ink-15);
-      border-radius: 16px;
-      padding: 40px;
-      max-width: 520px;
-      width: 100%;
+      border-radius: 16px; padding: 40px;
+      max-width: 520px; width: 100%;
       position: relative;
       transform: translateY(10px);
       transition: transform 0.25s;
     }
     .modal-overlay.open .modal-box { transform: none; }
     .modal-close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--ink-60);
-      font-size: 20px;
-      line-height: 1;
-      padding: 4px;
-      z-index: 10;
+      position: absolute; top: 16px; right: 16px;
+      background: none; border: none; cursor: pointer;
+      color: var(--ink-60); font-size: 20px; line-height: 1; padding: 4px; z-index: 10;
     }
     .modal-close:hover { color: var(--ink); }
-    .modal-box h2 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 22px;
-      letter-spacing: -0.02em;
-      margin-bottom: 14px;
-    }
-    .modal-box p { font-size: 14px; color: var(--ink-60); line-height: 1.7; }
-
-    /* Wide scrollable modal */
     .modal-wide .modal-box {
-      max-width: 740px;
-      max-height: 88vh;
-      overflow-y: auto;
+      max-width: 740px; max-height: 88vh; overflow-y: auto;
       padding: 44px 48px 40px;
-      scrollbar-width: thin;
-      scrollbar-color: var(--ink-15) transparent;
     }
-    .modal-wide .modal-box::-webkit-scrollbar { width: 5px; }
-    .modal-wide .modal-box::-webkit-scrollbar-thumb { background: var(--ink-15); border-radius: 4px; }
-
-    /* Legal content inside modals */
-    .legal-content h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 26px;
-      letter-spacing: -0.025em;
-      margin-bottom: 24px;
-      color: var(--ink);
-      padding-right: 32px;
-    }
-    .legal-content h2 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 15px;
-      letter-spacing: -0.01em;
-      margin-top: 28px;
-      margin-bottom: 8px;
-      color: var(--ink);
-      padding-bottom: 6px;
-      border-bottom: 1px solid var(--ink-15);
-    }
+    .legal-content h1 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 26px; letter-spacing: -0.025em; margin-bottom: 24px; color: var(--ink); padding-right: 32px; }
+    .legal-content h2 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; margin-top: 28px; margin-bottom: 8px; color: var(--ink); padding-bottom: 6px; border-bottom: 1px solid var(--ink-15); }
     .legal-content p { font-size: 13px; color: var(--ink-60); line-height: 1.75; margin-bottom: 10px; }
     .legal-content ul { font-size: 13px; color: var(--ink-60); line-height: 1.75; padding-left: 18px; margin-bottom: 10px; }
-    .legal-content ul li { margin-bottom: 5px; }
-    .legal-content a { color: var(--ink-60); word-break: break-word; transition: color 0.2s; }
-    .legal-content a:hover { color: var(--ink); }
-    .legal-content strong { color: var(--ink); font-weight: 600; }
-
-    .legal-content .index { list-style: none; padding: 16px 20px !important; background: var(--ink-08); border-radius: 10px; margin-bottom: 4px; }
-    .legal-content .index li { margin-bottom: 3px; }
-    .legal-content .index-link { color: var(--terracotta); text-decoration: none; font-size: 13px; }
-    .legal-content .index-link:hover { text-decoration: underline; }
-
+    .legal-content a { color: var(--ink-60); word-break: break-word; }
     .impressum-block { background: var(--ink-08); border-radius: 10px; padding: 18px 22px; margin-bottom: 16px; }
     .impressum-block .imp-label { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-60); display: block; margin-bottom: 8px; }
     .impressum-block p { font-size: 14px; color: var(--ink); margin-bottom: 0 !important; }
-    .impressum-block a { color: var(--ink); }
-
-    .legal-seal { font-size: 11px; color: var(--ink-60); margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--ink-15); }
-    .legal-seal a { color: var(--ink-60); font-size: 11px; }
 
     /* ── Animation ──────────────────────────────────────────── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(14px); }
       to   { opacity: 1; transform: none; }
     }
+    @keyframes alertpulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
     .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.55s ease, transform 0.55s ease; }
     .reveal.visible { opacity: 1; transform: none; }
 
     /* ── Responsive ─────────────────────────────────────────── */
-    /* ── Product preview section ──────────────────────── */
-    #product { padding: 96px 0; border-bottom: 1px solid var(--ink-15); }
-    .product-layout {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 64px; align-items: center;
+    @media (max-width: 900px) {
+      .phase-panel.active { grid-template-columns: 1fr; }
+      .phase-right { min-height: 340px; }
+      .phase-left { border-right: none; border-bottom: 1px solid var(--ink-15); }
     }
-    .product-left h2 { font-size: clamp(28px,4vw,40px); letter-spacing: -0.025em; line-height: 1.1; margin-top: 12px; }
-    .product-left p  { margin-top: 16px; font-size: 16px; color: var(--ink-60); line-height: 1.65; }
-    .product-cta { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
-    .product-mockup {
-      border: 1px solid var(--ink-15); border-radius: 16px;
-      overflow: hidden; background: var(--ink);
-    }
-    .mockup-topbar {
-      display: flex; align-items: center; gap: 6px;
-      padding: 12px 16px;
-      border-bottom: 1px solid rgba(247,243,238,0.08);
-      background: rgba(247,243,238,0.03);
-    }
-    .mockup-dot { width: 8px; height: 8px; border-radius: 50%; }
-    .mockup-dot.red   { background: #ff5f57; }
-    .mockup-dot.amber { background: #ffbd2e; }
-    .mockup-dot.green { background: #28c940; }
-    .mockup-title-bar {
-      margin-left: 8px;
-      font-family: 'Space Grotesk', sans-serif; font-weight: 600;
-      font-size: 11px; letter-spacing: 0.06em;
-      color: rgba(247,243,238,0.25);
-    }
-    .mockup-body { padding: 20px; }
-    .mockup-alert {
-      background: rgba(200,122,79,0.12);
-      border: 1px solid rgba(200,122,79,0.3);
-      border-radius: 8px; padding: 12px 14px;
-      margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
-    }
-    .mockup-alert-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--terracotta); flex-shrink: 0;
-      animation: alertpulse 1.8s infinite;
-    }
-    @keyframes alertpulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
-    .mockup-alert-text {
-      font-family: 'Space Grotesk', sans-serif; font-weight: 600;
-      font-size: 12px; color: var(--terracotta);
-    }
-    .mockup-rec {
-      background: rgba(247,243,238,0.04);
-      border: 1px solid rgba(247,243,238,0.1);
-      border-radius: 10px; padding: 16px 18px; margin-bottom: 10px;
-    }
-    .mockup-rec-label {
-      font-family: 'Space Grotesk', sans-serif; font-weight: 600;
-      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--sage); margin-bottom: 6px;
-    }
-    .mockup-rec-title {
-      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
-      font-size: 14px; color: var(--paper); margin-bottom: 5px;
-    }
-    .mockup-rec-body { font-size: 11px; color: rgba(247,243,238,0.45); line-height: 1.55; margin-bottom: 12px; }
-    .mockup-meta { display: flex; gap: 12px; margin-bottom: 12px; }
-    .mockup-meta-item {
-      font-family: 'Space Grotesk', sans-serif; font-weight: 600;
-      font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
-      color: rgba(247,243,238,0.3);
-    }
-    .mockup-meta-item span { color: var(--terracotta); }
-    .mockup-btns { display: flex; gap: 6px; }
-    .mockup-btn {
-      font-family: 'Space Grotesk', sans-serif; font-weight: 600;
-      font-size: 11px; padding: 6px 12px; border-radius: 5px; border: none;
-    }
-    .mockup-btn.approve { background: var(--sage); color: white; }
-    .mockup-btn.defer   { background: rgba(247,243,238,0.08); color: rgba(247,243,238,0.45); }
-    .mockup-btn.dismiss { background: transparent; color: rgba(247,243,238,0.25); border: 1px solid rgba(247,243,238,0.1); }
-
-    /* ── Traction section ─────────────────────────────── */
-    #traction { padding: 96px 0; border-bottom: 1px solid var(--ink-15); background: var(--ink-08); }
-    .traction-numbers {
-      margin-top: 48px; margin-bottom: 48px;
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 2px; background: var(--ink-15);
-      border: 1px solid var(--ink-15); border-radius: 16px; overflow: hidden;
-    }
-    .traction-num-cell { background: var(--paper); padding: 36px 32px; text-align: center; }
-    .traction-big-num {
-      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
-      font-size: 52px; letter-spacing: -0.04em; color: var(--ink); line-height: 1;
-    }
-    .traction-num-label { margin-top: 8px; font-size: 13px; color: var(--ink-60); line-height: 1.5; }
-    /* ── LinkedIn footer ──────────────────────────────── */
-    .footer-linkedin { display: inline-flex; align-items: center; gap: 6px; }
-
-    /* ── Pricing section ──────────────────────────────── */
-    #pricing {
-      padding: 96px 0;
-      border-bottom: 1px solid var(--ink-15);
-      background: var(--ink);
-    }
-    #pricing .label { color: rgba(247,243,238,0.4); }
-    #pricing .section-header h2 { color: var(--paper); }
-    #pricing .section-header p { color: rgba(247,243,238,0.55); max-width: 560px; }
-    .pricing-grid {
-      margin-top: 48px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      background: rgba(247,243,238,0.08);
-      border: 1px solid rgba(247,243,238,0.08);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-    .pricing-card {
-      background: rgba(36,34,32,0.95);
-      padding: 36px;
-      display: flex;
-      flex-direction: column;
-    }
-    .pricing-card.highlighted {
-      background: rgba(200,122,79,0.1);
-      border: 1px solid rgba(200,122,79,0.25);
-      margin: -1px;
-      z-index: 1;
-    }
-    .pricing-tag {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 600;
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ink-60);
-      margin-bottom: 20px;
-    }
-    .pricing-card.highlighted .pricing-tag { color: var(--terracotta); }
-    .pricing-name {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 20px;
-      letter-spacing: -0.02em;
-      color: var(--paper);
-      margin-bottom: 12px;
-    }
-    .pricing-amount {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 40px;
-      letter-spacing: -0.04em;
-      color: var(--paper);
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-    .pricing-amount-sub {
-      font-size: 13px;
-      color: rgba(247,243,238,0.4);
-      margin-bottom: 20px;
-      line-height: 1.4;
-    }
-    .pricing-divider {
-      height: 1px;
-      background: rgba(247,243,238,0.08);
-      margin-bottom: 20px;
-    }
-    .pricing-card.highlighted .pricing-divider { background: rgba(200,122,79,0.2); }
-    .pricing-desc {
-      font-size: 14px;
-      color: rgba(247,243,238,0.55);
-      line-height: 1.65;
-      flex: 1;
-    }
-    .pricing-note {
-      margin-top: 32px;
-      padding: 20px 24px;
-      background: rgba(106,148,112,0.1);
-      border: 1px solid rgba(106,148,112,0.2);
-      border-radius: 10px;
-      font-size: 13px;
-      color: rgba(247,243,238,0.55);
-      line-height: 1.6;
-    }
-    .pricing-note strong { color: var(--sage); }
-
     @media (max-width: 768px) {
-      .steps { grid-template-columns: 1fr; }
+      .lifecycle-inner { grid-template-columns: 1fr; }
       .team-grid { grid-template-columns: 1fr; }
       .contact-layout { grid-template-columns: 1fr; gap: 40px; }
       .form-row { grid-template-columns: 1fr; }
-      .hero-stats { flex-direction: column; }
-      .stat { border-right: none; border-bottom: 1px solid rgba(247,243,238,0.1); }
-      .stat:last-child { border-bottom: none; }
+      .hero-dimensions { flex-direction: column; }
+      .dimension { border-right: none; border-bottom: 1px solid rgba(247,243,238,0.1); }
+      .dimension:last-child { border-bottom: none; }
       nav .btn-secondary { display: none; }
-      .modal-wide .modal-box { padding: 28px 24px; }
-      .product-layout { grid-template-columns: 1fr; }
-      .pricing-grid { grid-template-columns: 1fr; }
       .traction-numbers { grid-template-columns: 1fr; }
+      .sm-scores { grid-template-columns: repeat(3, 1fr); }
+      .modal-wide .modal-box { padding: 28px 24px; }
     }
     @media (max-width: 600px) {
       nav a:not(:last-child) { display: none; }
+      .phase-tab-nav { overflow-x: auto; scrollbar-width: none; }
+      .phase-tab-nav::-webkit-scrollbar { display: none; }
     }
   </style>
 </head>
@@ -880,8 +824,8 @@
     <div class="header-inner">
       <a href="#hero" class="nav-logo">sono</a>
       <nav>
-        <a href="#capabilities">Capabilities</a>
-        <a href="#how">How it works</a>
+        <a href="#phases">Product</a>
+        <a href="#phases">Phases</a>
         <a href="#traction">Traction</a>
         <a href="#team">Team</a>
         <a href="#contact" class="btn-secondary">Get in touch</a>
@@ -895,181 +839,509 @@
     <div class="hero-vignette"></div>
     <div class="hero-inner container">
       <div class="hero-eyebrow">Developed within Carbon13 &middot; Cambridge University Venture Builder</div>
-      <h1>Utility intelligence for data centers</h1>
+      <h1>Resilience intelligence for data centres</h1>
       <p class="hero-sub">
-        The data to do better already exists, sitting in BMS systems and historians, largely unread.
-        Sono connects to your existing infrastructure, reads it, and acts on it. No new hardware. Start with chilled water.
+        Sono gives data centre owners and operators a single platform to track and manage asset resilience across the full lifecycle from site selection to daily operations.
       </p>
       <div class="hero-actions">
-        <a href="#capabilities" class="btn-primary">Explore capabilities</a>
+        <a href="#phases" class="btn-primary">See how it works</a>
         <a href="#contact" class="btn-secondary" style="color:var(--paper); border-color:rgba(247,243,238,0.25);">Request a pilot</a>
       </div>
     </div>
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-num">3&ndash;8%</div>
-        <div class="stat-label">Typical cooling energy reduction</div>
+
+    <!-- Five dimensions strip -->
+    <div class="hero-dimensions container">
+      <div class="dimension">
+        <svg class="dim-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 4L4 10v8l10 6 10-6v-8L14 4z" stroke="rgba(247,243,238,0.7)" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M4 10l10 6 10-6" stroke="rgba(247,243,238,0.7)" stroke-width="1.5"/>
+          <path d="M14 16v8" stroke="rgba(247,243,238,0.7)" stroke-width="1.5"/>
+        </svg>
+        <div class="dim-label">Power</div>
+        <div class="dim-desc">Grid capacity, reliability, carbon intensity</div>
       </div>
-      <div class="stat">
-        <div class="stat-num">Zero</div>
-        <div class="stat-label">New hardware required</div>
+      <div class="dimension">
+        <svg class="dim-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="14" r="8" stroke="rgba(247,243,238,0.7)" stroke-width="1.5"/>
+          <path d="M14 6V4M14 24v-2M6 14H4M24 14h-2" stroke="rgba(247,243,238,0.7)" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="14" cy="14" r="3" fill="rgba(247,243,238,0.7)"/>
+        </svg>
+        <div class="dim-label">Climate</div>
+        <div class="dim-desc">Free cooling hours, heat drift, water stress</div>
       </div>
-      <div class="stat">
-        <div class="stat-num">Days</div>
-        <div class="stat-label">To first signal, not months</div>
+      <div class="dimension">
+        <svg class="dim-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="5" y="7" width="18" height="14" rx="2" stroke="rgba(247,243,238,0.7)" stroke-width="1.5"/>
+          <path d="M9 12h10M9 16h6" stroke="rgba(247,243,238,0.7)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <div class="dim-label">Compliance</div>
+        <div class="dim-desc">EnEfG, regulatory drift, audit readiness</div>
       </div>
-      <div class="stat">
-        <div class="stat-num">Phase 1</div>
-        <div class="stat-label">Fully supervised. Operators approve every action</div>
+      <div class="dimension">
+        <svg class="dim-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="8" width="8" height="12" rx="1.5" stroke="rgba(247,243,238,0.7)" stroke-width="1.5"/>
+          <rect x="16" y="4" width="8" height="16" rx="1.5" stroke="rgba(247,243,238,0.7)" stroke-width="1.5"/>
+          <path d="M12 20h4" stroke="rgba(247,243,238,0.7)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <div class="dim-label">Infrastructure</div>
+        <div class="dim-desc">Equipment health, failure prediction, PUE</div>
+      </div>
+      <div class="dimension">
+        <svg class="dim-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 20l4-8 4 4 4-10" stroke="rgba(247,243,238,0.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="20" cy="6" r="2" fill="rgba(247,243,238,0.7)"/>
+        </svg>
+        <div class="dim-label">Adaptability</div>
+        <div class="dim-desc">Stranded-asset exposure, retrofit readiness</div>
       </div>
     </div>
   </section>
 
-  <!-- Capabilities -->
-  <section id="capabilities">
+  <!-- Phases -->
+  <section id="phases">
     <div class="container">
       <div class="section-header reveal">
-        <span class="label">Capabilities</span>
-        <h2>Where we listen</h2>
-        <p>
-          We focus on the utility systems that drive energy waste in data centers: cooling, power and on-site energy assets.
-          We work with your existing operational data and historian signals.
-        </p>
+        <span class="label">Product</span>
+        <h2>Resilience is not a snapshot.</h2>
+        <p>Sono works before capital is committed, during operations, and as conditions change. Each phase adds a layer of intelligence.</p>
       </div>
-      <div class="cap-tabs reveal">
-        <div class="cap-tab-nav" role="tablist">
-          <button class="cap-tab active" role="tab" aria-selected="true" data-tab="0">Chilled Water</button>
-          <button class="cap-tab" role="tab" aria-selected="false" data-tab="1">CRAH &amp; Airflow</button>
-          <button class="cap-tab" role="tab" aria-selected="false" data-tab="2">Power &amp; PUE</button>
-          <button class="cap-tab" role="tab" aria-selected="false" data-tab="3">Energy Orchestration</button>
+      <div class="phase-tabs reveal">
+        <div class="phase-tab-nav" role="tablist">
+          <button class="phase-tab active" role="tab" aria-selected="true" data-tab="0">
+            Site Intelligence
+          </button>
+          <button class="phase-tab" role="tab" aria-selected="false" data-tab="1">
+            Continuous Intelligence
+          </button>
+          <button class="phase-tab" role="tab" aria-selected="false" data-tab="2">
+            Operational Intelligence
+          </button>
         </div>
-        <div class="cap-panels">
-          <div class="cap-panel active" data-panel="0">
-            <div class="cap-panel-img">
-              <img src="https://images.unsplash.com/photo-1527738697320-513f6648bc26?auto=format&fit=crop&w=900&h=420&q=80" alt="Chilled water cooling plant" loading="lazy" />
-            </div>
-            <div class="cap-panel-body">
-              <h3>Chilled Water Optimisation</h3>
-              <p>Setpoints fixed at commissioning and never revisited. Sono detects headroom and recommends safe upward adjustments, reducing compressor load without thermal risk.</p>
-              <span class="cap-tag">Primary pilot entry point</span>
-            </div>
-          </div>
-          <div class="cap-panel" data-panel="1">
-            <div class="cap-panel-img">
-              <img src="https://images.unsplash.com/photo-1762163516269-3c143e04175c?auto=format&fit=crop&w=900&h=420&q=80" alt="Data center CRAH units and airflow" loading="lazy" />
-            </div>
-            <div class="cap-panel-body">
-              <h3>CRAH &amp; Airflow</h3>
-              <p>Detect recirculation hot spots, over-cooling conditions and fan inefficiencies across computer room air handlers. Ranked recommendations on supply temperature and airflow balance.</p>
-              <span class="cap-tag">Cooling stack</span>
-            </div>
-          </div>
-          <div class="cap-panel" data-panel="2">
-            <div class="cap-panel-img">
-              <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=900&h=420&q=80" alt="Power infrastructure and energy monitoring" loading="lazy" />
-            </div>
-            <div class="cap-panel-body">
-              <h3>Power Draw &amp; PUE</h3>
-              <p>Continuous monitoring of IT load versus facility overhead. Identifies UPS inefficiency windows, PDU load imbalance and operational levers to improve PUE.</p>
-              <span class="cap-tag">Power</span>
-            </div>
-          </div>
-          <div class="cap-panel" data-panel="3">
-            <div class="cap-panel-img">
-              <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=900&h=420&q=80" alt="On-site energy assets" loading="lazy" />
-            </div>
-            <div class="cap-panel-body">
-              <h3>Energy Orchestration</h3>
-              <p>Data centers increasingly operate behind-the-meter assets: BESS, generators, solar and wind. Sono reads signals across these and grid consumption to surface dispatch recommendations, turning sunk capex into active flexibility.</p>
-              <span class="cap-tag">On-site assets</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- How it works -->
-  <section id="how">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="label">How it works</span>
-        <h2>Three phases of autonomy</h2>
-        <p>
-          We earn the right to act. Sono starts fully supervised and extends autonomy only as it proves value and builds operator trust.
-        </p>
-      </div>
-      <div class="steps reveal">
-        <div class="step">
-          <div class="step-num">01</div>
-          <h3>Read</h3>
-          <p>We connect to your existing BMS and historian infrastructure. No new hardware. No instrumentation project. Chilled water temps, CRAH setpoints, power draw: ingested from day one.</p>
-          <span class="phase-badge">Phase 1 &middot; Supervised</span>
-        </div>
-        <div class="step">
-          <div class="step-num">02</div>
-          <h3>Understand</h3>
-          <p>Sono continuously monitors facility conditions, detects anomalies before alarms fire, and explains what is happening and why. Every signal connected. Nothing left unread.</p>
-          <span class="phase-badge">Phase 1 &middot; Supervised</span>
-        </div>
-        <div class="step">
-          <div class="step-num">03</div>
-          <h3>Act</h3>
-          <p>Ranked recommendations reach operators with supporting evidence. Every decision (accepted, deferred, or dismissed) becomes training data. By month three, Sono knows your facility's risk tolerance, not just its physics.</p>
-          <span class="phase-badge">Phases 1 to 3</span>
-        </div>
-      </div>
-    </div>
-  </section>
+        <!-- Phase 1: Site Intelligence -->
+        <div class="phase-panel active" data-panel="0">
+          <div class="phase-left">
+            <div>
+              <h3>Site Intelligence</h3>
+              <p>The same plot can look very different depending on what grid capacity is actually available, whether the water basin is under stress, or how many competing facilities are already queued for permits nearby. Sono combines those signals into a single score, calibrated against a growing reference population of European sites, so you can compare candidates on a common basis before committing capital.</p>
+              <p style="margin-top: 14px; font-size: 15px; color: var(--ink-60);">No instrumentation required. Relevant for site selection, acquisition due diligence, and portfolio reviews.</p>
+            </div>
+            <div style="margin-top: 32px;">
+              <a href="#contact" class="btn-primary">Request a demo</a>
+            </div>
+          </div>
+          <div class="phase-right" style="display:flex; flex-direction:column;">
+            <div style="flex:1; display:flex; min-height:0;">
 
-  <!-- Product preview -->
-  <section id="product">
-    <div class="container">
-      <div class="product-layout reveal">
-        <div class="product-left">
-          <span class="label">The product</span>
-          <h2>From anomaly to action in fourteen minutes.</h2>
-          <p>
-            Sono reads your existing historian, detects anomalies before alarms fire, traces root cause to specific equipment, and surfaces a plain-language recommendation with a confidence score. Fully supervised in Phase 1 — one click closes the loop.
-          </p>
-          <p style="margin-top:12px; font-size:15px; color:var(--ink-60);">
-            No new hardware. No integration project. Historian-native. Physics-constrained so no physically impossible setpoint can ever be suggested.
-          </p>
-          <div class="product-cta">
-            <a href="#contact" class="btn-primary">Request a demo</a>
+              <!-- Left sidebar: layers + stats -->
+              <div style="width:130px; flex-shrink:0; background:#0d0e0f; border-right:1px solid rgba(255,255,255,0.07); display:flex; flex-direction:column; padding:10px; font-family:'Space Grotesk',sans-serif; overflow:hidden;">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-bottom:9px;">
+                  <div style="background:rgba(255,255,255,0.04); border-radius:5px; padding:5px 6px;">
+                    <div style="font-size:7.5px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:2px;">Existing DCs</div>
+                    <div style="font-size:17px; font-weight:700; color:rgba(255,255,255,0.85); letter-spacing:-0.03em; line-height:1;">5</div>
+                    <div style="font-size:7px; color:rgba(255,255,255,0.25); margin-top:1px;">monitored</div>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.04); border-radius:5px; padding:5px 6px;">
+                    <div style="font-size:7.5px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:2px;">Candidates</div>
+                    <div style="font-size:17px; font-weight:700; color:rgba(255,255,255,0.85); letter-spacing:-0.03em; line-height:1;">3</div>
+                    <div style="font-size:7px; color:rgba(255,255,255,0.25); margin-top:1px;">under eval.</div>
+                  </div>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-bottom:11px;">
+                  <div style="background:rgba(255,255,255,0.04); border-radius:5px; padding:5px 6px;">
+                    <div style="font-size:7.5px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:2px;">Avg score</div>
+                    <div style="font-size:17px; font-weight:700; color:#6A9470; letter-spacing:-0.03em; line-height:1;">74</div>
+                    <div style="font-size:7px; color:rgba(255,255,255,0.25); margin-top:1px;">sono</div>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.04); border-radius:5px; padding:5px 6px;">
+                    <div style="font-size:7.5px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:2px;">Layers</div>
+                    <div style="font-size:17px; font-weight:700; color:rgba(255,255,255,0.85); letter-spacing:-0.03em; line-height:1;">9</div>
+                    <div style="font-size:7px; color:rgba(255,255,255,0.25); margin-top:1px;">active</div>
+                  </div>
+                </div>
+                <div style="font-size:7.5px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.25); margin-bottom:7px;">Data Layers</div>
+                <div style="font-size:7px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:rgba(255,255,255,0.18); margin-bottom:5px;">Your DCs</div>
+                <div style="display:flex; flex-direction:column; gap:4px; margin-bottom:8px;">
+                  <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <div style="display:flex; align-items:center; gap:5px;"><div style="width:7px; height:7px; border-radius:50%; background:#ff6b35; flex-shrink:0;"></div><span style="font-size:8px; color:rgba(255,255,255,0.55);">Existing DCs</span></div>
+                    <span style="font-size:7.5px; color:rgba(255,255,255,0.25);">5</span>
+                  </div>
+                  <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <div style="display:flex; align-items:center; gap:5px;"><div style="width:7px; height:7px; border-radius:50%; border:1.5px solid #a78bfa; flex-shrink:0;"></div><span style="font-size:8px; color:rgba(255,255,255,0.55);">Candidates</span></div>
+                    <span style="font-size:7.5px; color:rgba(255,255,255,0.25);">3</span>
+                  </div>
+                  <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <div style="display:flex; align-items:center; gap:5px;"><div style="width:7px; height:7px; border-radius:50%; background:rgba(220,50,50,0.6); flex-shrink:0;"></div><span style="font-size:8px; color:rgba(255,255,255,0.55);">Heat island</span></div>
+                    <span style="font-size:7.5px; color:rgba(255,255,255,0.25);">est.</span>
+                  </div>
+                  <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <div style="display:flex; align-items:center; gap:5px;"><div style="width:7px; height:7px; border-radius:2px; background:#f59e0b; flex-shrink:0;"></div><span style="font-size:8px; color:rgba(255,255,255,0.55);">IX points</span></div>
+                    <span style="font-size:7.5px; color:rgba(255,255,255,0.25);"></span>
+                  </div>
+                </div>
+                <div style="font-size:7px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:rgba(255,255,255,0.18); margin-bottom:5px;">Environment</div>
+                <div style="display:flex; flex-direction:column; gap:4px; margin-bottom:10px;">
+                  <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <div style="display:flex; align-items:center; gap:5px;"><div style="width:8px; height:3px; background:#06b6d4; border-radius:1px; flex-shrink:0;"></div><span style="font-size:8px; color:rgba(255,255,255,0.55);">Rivers</span></div>
+                    <span style="font-size:7.5px; color:rgba(255,255,255,0.25);">1240</span>
+                  </div>
+                  <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <div style="display:flex; align-items:center; gap:5px;"><div style="width:7px; height:7px; border-radius:50%; background:rgba(14,116,144,0.7); flex-shrink:0;"></div><span style="font-size:8px; color:rgba(255,255,255,0.55);">Reservoirs</span></div>
+                    <span style="font-size:7.5px; color:rgba(255,255,255,0.25);">44</span>
+                  </div>
+                  <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <div style="display:flex; align-items:center; gap:5px;"><div style="width:7px; height:7px; border-radius:2px; background:#4ade80; opacity:0.7; flex-shrink:0;"></div><span style="font-size:8px; color:rgba(255,255,255,0.55);">Power plants</span></div>
+                    <span style="font-size:7.5px; color:rgba(255,255,255,0.25);">62</span>
+                  </div>
+                  <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <div style="display:flex; align-items:center; gap:5px;"><div style="width:7px; height:7px; border-radius:50%; border:1.5px solid #facc15; flex-shrink:0;"></div><span style="font-size:8px; color:rgba(255,255,255,0.55);">Grid substations</span></div>
+                    <span style="font-size:7.5px; color:rgba(255,255,255,0.25);">187</span>
+                  </div>
+                  <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <div style="display:flex; align-items:center; gap:5px;"><div style="width:8px; height:2px; background:#6366f1; flex-shrink:0; border-radius:1px;"></div><span style="font-size:8px; color:rgba(255,255,255,0.55);">HV power lines</span></div>
+                    <span style="font-size:7.5px; color:rgba(255,255,255,0.25);">341</span>
+                  </div>
+                </div>
+                <div style="border-top:1px solid rgba(255,255,255,0.07); padding-top:8px;">
+                  <div style="font-size:7px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.2); margin-bottom:5px;">Selected site</div>
+                  <div style="font-size:9px; font-weight:700; color:rgba(255,255,255,0.75); margin-bottom:2px;">FRA-North-03</div>
+                  <div style="font-size:7.5px; color:rgba(255,255,255,0.3); line-height:1.4;">Score 87 &middot; High<br>Eschborn, Hesse</div>
+                </div>
+              </div><!-- /left sidebar -->
+
+              <!-- Map canvas: Frankfurt Rhine-Main region -->
+              <div style="flex:1; position:relative; overflow:hidden; background:#0b0c0d;">
+                <svg viewBox="0 0 300 370" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;" preserveAspectRatio="xMidYMid slice">
+                  <defs>
+                    <radialGradient id="heatGrad2" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stop-color="#dc2626" stop-opacity="0.5"/>
+                      <stop offset="45%" stop-color="#ef4444" stop-opacity="0.2"/>
+                      <stop offset="100%" stop-color="#dc2626" stop-opacity="0"/>
+                    </radialGradient>
+                    <filter id="riverGlow2" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="1.2" result="blur"/>
+                      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                    <filter id="hvGlow2" x="-10%" y="-10%" width="120%" height="120%">
+                      <feGaussianBlur stdDeviation="0.7" result="blur"/>
+                      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                    <filter id="siteGlow2" x="-80%" y="-80%" width="260%" height="260%">
+                      <feGaussianBlur stdDeviation="5" result="blur"/>
+                      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                  </defs>
+
+                  <!-- Base -->
+                  <rect width="300" height="370" fill="#0f1012"/>
+
+                  <!-- Terrain relief -->
+                  <ellipse cx="260" cy="80" rx="55" ry="40" fill="#131415" opacity="0.7"/>
+                  <ellipse cx="30" cy="60" rx="40" ry="30" fill="#131415" opacity="0.5"/>
+                  <ellipse cx="270" cy="300" rx="45" ry="35" fill="#131415" opacity="0.5"/>
+
+                  <!-- Frankfurt urban mass -->
+                  <ellipse cx="155" cy="195" rx="65" ry="50" fill="#151617" opacity="0.9"/>
+                  <ellipse cx="155" cy="195" rx="38" ry="28" fill="#191a1c" opacity="0.9"/>
+
+                  <!-- Heat island: Frankfurt -->
+                  <ellipse cx="155" cy="200" rx="55" ry="42" fill="url(#heatGrad2)" opacity="0.85"/>
+
+                  <!-- HV power lines (indigo) -->
+                  <!-- Main east-west 380kV -->
+                  <path d="M0,155 Q50,150 100,152 Q150,154 200,153 Q250,152 300,150" stroke="#6366f1" stroke-width="1.5" fill="none" opacity="0.6" filter="url(#hvGlow2)"/>
+                  <!-- North-south trunk -->
+                  <path d="M148,0 Q150,50 152,100 Q153,150 154,200 Q155,250 156,300 Q157,335 158,370" stroke="#6366f1" stroke-width="1.2" fill="none" opacity="0.5" filter="url(#hvGlow2)"/>
+                  <!-- NW diagonal -->
+                  <path d="M0,100 Q40,120 75,140 Q110,160 140,180 Q160,194 175,210 Q200,235 225,260 Q255,290 280,315 Q290,328 300,340" stroke="#6366f1" stroke-width="1" fill="none" opacity="0.4"/>
+                  <!-- NE branch -->
+                  <path d="M175,145 Q210,120 245,100 Q265,88 300,75" stroke="#6366f1" stroke-width="1" fill="none" opacity="0.35"/>
+                  <!-- SW branch -->
+                  <path d="M120,240 Q80,255 45,265 Q20,272 0,275" stroke="#6366f1" stroke-width="1" fill="none" opacity="0.35"/>
+
+                  <!-- Rivers: Rhine, Main, Lahn, Nidda -->
+                  <!-- Rhine (far left, north-south, wide) -->
+                  <path d="M18,0 Q20,30 22,60 Q23,90 24,120 Q25,150 26,180 Q27,210 28,240 Q30,270 32,300 Q34,330 36,370" stroke="#06b6d4" stroke-width="3" fill="none" opacity="0.75" filter="url(#riverGlow2)"/>
+                  <!-- Rhine shimmer -->
+                  <path d="M22,0 Q24,30 26,60 Q27,90 28,120 Q29,150 30,180 Q31,210 32,240 Q34,270 36,300 Q38,330 40,370" stroke="#06b6d4" stroke-width="1" fill="none" opacity="0.3"/>
+                  <!-- Main river (west-east, major) -->
+                  <path d="M28,220 Q55,215 90,210 Q120,205 150,202 Q180,200 210,202 Q240,205 270,210 Q285,213 300,216" stroke="#06b6d4" stroke-width="2.5" fill="none" opacity="0.7" filter="url(#riverGlow2)"/>
+                  <!-- Main upstream (bends north then east, Hanau direction) -->
+                  <path d="M270,210 Q285,205 300,200" stroke="#06b6d4" stroke-width="1.8" fill="none" opacity="0.55"/>
+                  <!-- Nidda (tributary from north into Main at Frankfurt) -->
+                  <path d="M140,0 Q142,30 143,60 Q144,90 145,120 Q146,150 147,175 Q148,195 150,202" stroke="#06b6d4" stroke-width="1.4" fill="none" opacity="0.5" filter="url(#riverGlow2)"/>
+                  <!-- Lahn (northwest, joins Rhine) -->
+                  <path d="M0,170 Q30,168 55,165 Q75,163 90,160 Q105,157 115,152 Q125,148 130,140 Q138,128 140,115 Q142,100 142,85" stroke="#06b6d4" stroke-width="1.3" fill="none" opacity="0.45"/>
+                  <!-- Kinzig (east of Frankfurt) -->
+                  <path d="M300,130 Q270,145 250,158 Q235,168 225,178 Q215,188 210,202" stroke="#06b6d4" stroke-width="1.1" fill="none" opacity="0.4"/>
+                  <!-- Gersprenz (south) -->
+                  <path d="M210,370 Q208,340 206,310 Q205,285 205,260 Q205,240 207,225 Q208,214 210,202" stroke="#06b6d4" stroke-width="1" fill="none" opacity="0.35"/>
+
+                  <!-- Grid substations (yellow) -->
+                  <circle cx="55" cy="152" r="3" fill="none" stroke="#facc15" stroke-width="1.1" opacity="0.7"/>
+                  <circle cx="55" cy="152" r="1" fill="#facc15" opacity="0.6"/>
+                  <circle cx="118" cy="148" r="3" fill="none" stroke="#facc15" stroke-width="1.1" opacity="0.65"/>
+                  <circle cx="118" cy="148" r="1" fill="#facc15" opacity="0.55"/>
+                  <circle cx="210" cy="150" r="3" fill="none" stroke="#facc15" stroke-width="1.1" opacity="0.65"/>
+                  <circle cx="210" cy="150" r="1" fill="#facc15" opacity="0.55"/>
+                  <circle cx="268" cy="155" r="2.5" fill="none" stroke="#facc15" stroke-width="1" opacity="0.5"/>
+                  <circle cx="268" cy="155" r="1" fill="#facc15" opacity="0.4"/>
+                  <circle cx="48" cy="258" r="2.5" fill="none" stroke="#facc15" stroke-width="1" opacity="0.5"/>
+                  <circle cx="48" cy="258" r="1" fill="#facc15" opacity="0.4"/>
+                  <circle cx="240" cy="248" r="2.5" fill="none" stroke="#facc15" stroke-width="1" opacity="0.45"/>
+
+                  <!-- Internet exchange: Frankfurt DE-CIX (largest in world) -->
+                  <rect x="148" y="188" width="9" height="9" rx="1.5" fill="#f59e0b" opacity="0.8"/>
+                  <rect x="148" y="188" width="9" height="9" rx="1.5" fill="none" stroke="#fbbf24" stroke-width="0.8" opacity="0.65"/>
+
+                  <!-- Existing DCs (orange) -->
+                  <circle cx="158" cy="192" r="5" fill="#ff6b35" opacity="0.85"/>
+                  <circle cx="158" cy="192" r="8" fill="none" stroke="#ff6b35" stroke-width="1" opacity="0.35"/>
+                  <circle cx="172" cy="183" r="4" fill="#ff6b35" opacity="0.7"/>
+                  <circle cx="165" cy="208" r="3.5" fill="#ff6b35" opacity="0.65"/>
+                  <circle cx="142" cy="200" r="3.5" fill="#ff6b35" opacity="0.65"/>
+                  <circle cx="178" cy="200" r="3" fill="#ff6b35" opacity="0.55"/>
+
+                  <!-- CANDIDATE SITE PINS -->
+
+                  <!-- FRA-North-03: selected, score 87, Eschborn/Taunus foothills -->
+                  <circle cx="128" cy="162" r="28" fill="rgba(220,38,38,0.07)"/>
+                  <circle cx="128" cy="162" r="18" fill="rgba(220,38,38,0.11)"/>
+                  <line x1="128" y1="142" x2="128" y2="182" stroke="#ef4444" stroke-width="0.9" opacity="0.55" stroke-dasharray="2 2"/>
+                  <line x1="108" y1="162" x2="148" y2="162" stroke="#ef4444" stroke-width="0.9" opacity="0.55" stroke-dasharray="2 2"/>
+                  <circle cx="128" cy="162" r="13" fill="#1a0f0f" stroke="#ef4444" stroke-width="2" filter="url(#siteGlow2)"/>
+                  <circle cx="128" cy="162" r="13" fill="#1a0f0f" stroke="#ef4444" stroke-width="2"/>
+                  <text x="128" y="166" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="10" fill="#f87171">87</text>
+                  <rect x="96" y="141" width="64" height="14" rx="3" fill="rgba(20,10,10,0.9)" stroke="rgba(239,68,68,0.4)" stroke-width="0.8"/>
+                  <text x="128" y="151" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="8" fill="rgba(255,255,255,0.88)">FRA-North-03</text>
+
+                  <!-- RHN-East-01: score 71, Rüsselsheim / Rhine corridor -->
+                  <circle cx="68" cy="235" r="12" fill="rgba(139,92,246,0.1)" stroke="#a78bfa" stroke-width="1.6"/>
+                  <circle cx="68" cy="235" r="12" fill="#100d1a" stroke="#a78bfa" stroke-width="1.6"/>
+                  <text x="68" y="239" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="10" fill="#c4b5fd">71</text>
+                  <rect x="36" y="215" width="64" height="13" rx="3" fill="rgba(16,13,26,0.9)" stroke="rgba(167,139,250,0.35)" stroke-width="0.8"/>
+                  <text x="68" y="225" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="7.5" fill="rgba(255,255,255,0.8)">RHN-East-01</text>
+
+                  <!-- HAN-West-06: score 58, south of Hanau -->
+                  <circle cx="242" cy="218" r="11" fill="rgba(139,92,246,0.08)" stroke="#a78bfa" stroke-width="1.4"/>
+                  <circle cx="242" cy="218" r="11" fill="#0e0c18" stroke="#a78bfa" stroke-width="1.4"/>
+                  <text x="242" y="222" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="10" fill="#c4b5fd">58</text>
+                  <rect x="210" y="199" width="64" height="13" rx="3" fill="rgba(14,12,24,0.9)" stroke="rgba(167,139,250,0.3)" stroke-width="0.8"/>
+                  <text x="242" y="209" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="7.5" fill="rgba(255,255,255,0.75)">HAN-West-06</text>
+
+                  <!-- Topbar overlay -->
+                  <rect x="0" y="0" width="300" height="20" fill="rgba(10,10,12,0.78)"/>
+                  <text x="7" y="13" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="10" fill="rgba(255,255,255,0.85)" letter-spacing="-0.01em">sono.</text>
+                  <text x="42" y="13" font-family="Space Grotesk,sans-serif" font-weight="600" font-size="8.5" fill="rgba(255,255,255,0.3)">Frankfurt Rhine-Main</text>
+                  <!-- Zoom controls -->
+                  <rect x="270" y="26" width="16" height="16" rx="3" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+                  <text x="278" y="38" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="11" fill="rgba(255,255,255,0.5)">+</text>
+                  <rect x="270" y="44" width="16" height="16" rx="3" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+                  <text x="278" y="56" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="11" fill="rgba(255,255,255,0.5)">-</text>
+
+                  <!-- Scale bar -->
+                  <line x1="190" y1="358" x2="260" y2="358" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+                  <line x1="190" y1="354" x2="190" y2="362" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+                  <line x1="260" y1="354" x2="260" y2="362" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+                  <text x="225" y="352" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="7" fill="rgba(255,255,255,0.28)">15 km</text>
+
+                </svg>
+              </div><!-- /map canvas -->
+
+              <!-- Right scoring panel -->
+              <div style="width:132px; flex-shrink:0; border-left:1px solid rgba(255,255,255,0.07); background:#0d0e0f; display:flex; flex-direction:column; padding:12px 10px; gap:0; font-family:'Space Grotesk',sans-serif; overflow-y:auto;">
+
+                <div style="margin-bottom:8px;">
+                  <div style="font-size:10px; font-weight:700; color:rgba(255,255,255,0.85); letter-spacing:-0.01em;">FRA-North-03</div>
+                  <div style="font-size:8px; color:rgba(255,255,255,0.35); line-height:1.4; margin-top:2px;">Eschborn, Hesse<br>50.14&deg;N, 8.56&deg;E &middot; 6.8 ha</div>
+                </div>
+
+                <!-- Overall score -->
+                <div style="background:rgba(106,148,112,0.12); border:1px solid rgba(106,148,112,0.28); border-radius:7px; padding:9px; text-align:center; margin-bottom:12px;">
+                  <div style="font-size:26px; font-weight:700; color:#6A9470; line-height:1; letter-spacing:-0.03em;">87</div>
+                  <div style="font-size:8px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-top:3px;">Resilience score</div>
+                </div>
+
+                <!-- Dimension bars -->
+                <div style="display:flex; flex-direction:column; gap:9px;">
+
+                  <div>
+                    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:3px;">
+                      <span style="font-size:8px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.35);">Power</span>
+                      <span style="font-size:10px; font-weight:700; color:#6A9470;">91</span>
+                    </div>
+                    <div style="height:3px; background:rgba(255,255,255,0.07); border-radius:2px;">
+                      <div style="width:91%; height:3px; background:#6A9470; border-radius:2px;"></div>
+                    </div>
+                    <div style="font-size:8px; color:rgba(255,255,255,0.28); margin-top:3px; line-height:1.3;">380kV line 0.9km &middot; dual feed</div>
+                  </div>
+
+                  <div>
+                    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:3px;">
+                      <span style="font-size:8px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.35);">Climate</span>
+                      <span style="font-size:10px; font-weight:700; color:#6A9470;">82</span>
+                    </div>
+                    <div style="height:3px; background:rgba(255,255,255,0.07); border-radius:2px;">
+                      <div style="width:82%; height:3px; background:#6A9470; border-radius:2px;"></div>
+                    </div>
+                    <div style="font-size:8px; color:rgba(255,255,255,0.28); margin-top:3px; line-height:1.3;">3,540 free cooling hrs/yr</div>
+                  </div>
+
+                  <div>
+                    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:3px;">
+                      <span style="font-size:8px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.35);">Compliance</span>
+                      <span style="font-size:10px; font-weight:700; color:#d4a847;">78</span>
+                    </div>
+                    <div style="height:3px; background:rgba(255,255,255,0.07); border-radius:2px;">
+                      <div style="width:78%; height:3px; background:#d4a847; border-radius:2px;"></div>
+                    </div>
+                    <div style="font-size:8px; color:rgba(255,255,255,0.28); margin-top:3px; line-height:1.3;">EnEfG compliant &middot; 1 open item</div>
+                  </div>
+
+                  <div>
+                    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:3px;">
+                      <span style="font-size:8px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.35);">Infra</span>
+                      <span style="font-size:10px; font-weight:700; color:#6A9470;">90</span>
+                    </div>
+                    <div style="height:3px; background:rgba(255,255,255,0.07); border-radius:2px;">
+                      <div style="width:90%; height:3px; background:#6A9470; border-radius:2px;"></div>
+                    </div>
+                    <div style="font-size:8px; color:rgba(255,255,255,0.28); margin-top:3px; line-height:1.3;">Low seismic &middot; no flood zone</div>
+                  </div>
+
+                  <div>
+                    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:3px;">
+                      <span style="font-size:8px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.35);">Adaptability</span>
+                      <span style="font-size:10px; font-weight:700; color:#d4a847;">71</span>
+                    </div>
+                    <div style="height:3px; background:rgba(255,255,255,0.07); border-radius:2px;">
+                      <div style="width:71%; height:3px; background:#d4a847; border-radius:2px;"></div>
+                    </div>
+                    <div style="font-size:8px; color:rgba(255,255,255,0.28); margin-top:3px; line-height:1.3;">Liquid cooling ready &middot; partial</div>
+                  </div>
+
+                </div>
+
+                <!-- Flag -->
+                <div style="margin-top:12px; background:rgba(106,148,112,0.08); border:1px solid rgba(106,148,112,0.2); border-radius:6px; padding:8px;">
+                  <div style="font-size:7.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#6A9470; margin-bottom:4px;">Top ranked</div>
+                  <div style="font-size:8px; color:rgba(255,255,255,0.4); line-height:1.45;">Best grid access in portfolio. Taunus foothills reduce UHI exposure. Minor EnEfG gap addressable pre-build.</div>
+                </div>
+
+              </div><!-- /right scoring panel -->
+
+            </div><!-- /three-column row -->
           </div>
         </div>
-        <!-- Inline mockup of the operator recommendation card -->
-        <div class="product-mockup">
-          <div class="mockup-topbar">
-            <span class="mockup-dot red"></span>
-            <span class="mockup-dot amber"></span>
-            <span class="mockup-dot green"></span>
-            <span class="mockup-title-bar">sono &middot; Facility view &middot; 06:04</span>
-          </div>
-          <div class="mockup-body">
-            <div class="mockup-alert">
-              <span class="mockup-alert-dot"></span>
-              <span class="mockup-alert-text">Anomaly detected &middot; Chiller 1 &middot; 06:00</span>
+
+
+        <!-- Phase 2: Continuous Intelligence -->
+        <div class="phase-panel" data-panel="1">
+          <div class="phase-left">
+            <div>
+              <h3>Continuous Intelligence</h3>
+              <p>A facility built for 2018 climate assumptions is not the same facility in 2025. Free cooling hours shrink. Grid carbon intensity shifts. EnEfG deadlines approach. Sono tracks the gap between what an asset was designed for and what it is actually operating in, and translates that gap into a cost that appears on no balance sheet today.</p>
+              <p style="margin-top: 14px; font-size: 15px; color: var(--ink-60);">Portfolio-level. No site visits. Relevant for asset managers, fund operators, and ESG teams who need to know where exposure is building before it becomes a write-down.</p>
             </div>
-            <div class="mockup-rec">
-              <div class="mockup-rec-label">Recommendation &middot; 94% confidence</div>
-              <div class="mockup-rec-title">Raise Chiller 1 setpoint: 6.0&deg;C &rarr; 8.5&deg;C</div>
-              <div class="mockup-rec-body">Valve response lag detected. Current setpoint is below thermal floor given ambient conditions and IT load. Adjustment remains within safe operating envelope. Estimated compressor load reduction: 3.2% on this circuit.</div>
-              <div class="mockup-meta">
-                <div class="mockup-meta-item">Confidence <span>94%</span></div>
-                <div class="mockup-meta-item">Est. saving <span>3.2%</span></div>
-                <div class="mockup-meta-item">Reversible <span>Yes</span></div>
+            <div style="margin-top: 32px;">
+              <a href="#contact" class="btn-primary">Request a demo</a>
+            </div>
+          </div>
+          <div class="phase-right">
+            <div class="cont-mockup">
+              <div class="cont-topbar">
+                <span class="cont-title">sono &middot; Continuous Intelligence &middot; FRA-North-03</span>
+                <span class="pulse-dot"></span>
               </div>
-              <div class="mockup-btns">
-                <button class="mockup-btn approve">Approve</button>
-                <button class="mockup-btn defer">Defer 1h</button>
-                <button class="mockup-btn dismiss">Dismiss</button>
+
+              <!-- Interpretation card -->
+              <div style="background:rgba(200,122,79,0.1); border:1px solid rgba(200,122,79,0.28); border-radius:10px; padding:14px 16px; margin-bottom:10px;">
+                <div style="font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--terracotta); margin-bottom:7px;">Stranded-asset signal</div>
+                <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:13px; color:rgba(247,243,238,0.92); line-height:1.35; margin-bottom:8px;">Free cooling hours down 18% since design baseline. Cost of gap: &euro;214k/yr at current energy prices.</div>
+                <div style="font-size:11px; color:rgba(247,243,238,0.45); line-height:1.55;">Summer ambient has exceeded the 2017 design assumption of 32&deg;C on 61 days this year, vs. 14 days in the baseline period. At current PUE trajectory, the facility will miss the 2027 EnEfG target without active intervention.</div>
+              </div>
+
+              <!-- Supporting signals -->
+              <div style="display:flex; flex-direction:column; gap:6px;">
+                <div class="cont-metric" style="padding:10px 14px;">
+                  <div class="cont-metric-left">
+                    <span class="cont-metric-label">Climate drift vs. design</span>
+                    <span class="cont-metric-val" style="font-size:16px;">+2.4&deg;C</span>
+                    <span class="cont-metric-sub">avg summer ambient above 2017 baseline</span>
+                  </div>
+                  <div class="cont-bar-wrap">
+                    <div class="cont-bar-bg"><div class="cont-bar-fill red" style="width:78%"></div></div>
+                  </div>
+                </div>
+                <div class="cont-metric" style="padding:10px 14px;">
+                  <div class="cont-metric-left">
+                    <span class="cont-metric-label">EnEfG compliance gap</span>
+                    <span class="cont-metric-val" style="font-size:16px;">PUE 1.43</span>
+                    <span class="cont-metric-sub">target 1.30 by Jan 2027 &middot; 26 months</span>
+                  </div>
+                  <div class="cont-bar-wrap">
+                    <div class="cont-bar-bg"><div class="cont-bar-fill amber" style="width:52%"></div></div>
+                  </div>
+                </div>
+                <div class="cont-metric" style="padding:10px 14px;">
+                  <div class="cont-metric-left">
+                    <span class="cont-metric-label">Grid carbon intensity</span>
+                    <span class="cont-metric-val" style="font-size:16px;">118 g/kWh</span>
+                    <span class="cont-metric-sub">&darr; 14% vs. last month &middot; renewable share rising</span>
+                  </div>
+                  <div class="cont-bar-wrap">
+                    <div class="cont-bar-bg"><div class="cont-bar-fill green" style="width:82%"></div></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+
+        <!-- Phase 3: Operational Intelligence -->
+        <div class="phase-panel" data-panel="2">
+          <div class="phase-left">
+            <div>
+              <h3>Operational Intelligence</h3>
+              <p>Predictive maintenance, anomaly detection, and setpoint optimisation delivered to operations teams in plain language. Sono reads your existing historian, detects failure modes before alarms fire, traces root cause to specific equipment, and surfaces ranked recommendations with a confidence score.</p>
+              <p style="margin-top: 14px; font-size: 15px; color: var(--ink-60);">No new hardware. No integration project. Historian-native. Physics-constrained so no physically impossible setpoint can ever be suggested.</p>
+            </div>
+            <div style="margin-top: 32px;">
+              <a href="#contact" class="btn-primary">Request a demo</a>
+            </div>
+          </div>
+          <div class="phase-right">
+            <div class="mockup-topbar">
+              <span class="mockup-dot red"></span>
+              <span class="mockup-dot amber"></span>
+              <span class="mockup-dot green"></span>
+              <span class="mockup-title-bar">sono · MXP-Edge-07 · 06:04</span>
+            </div>
+            <div class="mockup-body">
+              <div class="mockup-alert">
+                <span class="mockup-alert-dot"></span>
+                <span class="mockup-alert-text">Anomaly detected &middot; Chiller 1 &middot; 06:00</span>
+              </div>
+              <div class="mockup-rec">
+                <div class="mockup-rec-label">Recommendation &middot; 94% confidence</div>
+                <div class="mockup-rec-title">Raise Chiller 1 setpoint: 6.0&deg;C &rarr; 8.5&deg;C</div>
+                <div class="mockup-rec-body">Valve response lag detected. Current setpoint is below thermal floor given ambient conditions and IT load. Adjustment remains within safe operating envelope. Estimated compressor load reduction: 3.2% on this circuit.</div>
+                <div class="mockup-meta">
+                  <div class="mockup-meta-item">Confidence <span>94%</span></div>
+                  <div class="mockup-meta-item">Est. saving <span>3.2%</span></div>
+                  <div class="mockup-meta-item">Reversible <span>Yes</span></div>
+                </div>
+                <div class="mockup-btns">
+                  <button class="mockup-btn approve">Approve</button>
+                  <button class="mockup-btn defer">Defer 1h</button>
+                  <button class="mockup-btn dismiss">Dismiss</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /phase-tabs -->
     </div>
   </section>
 
@@ -1083,7 +1355,7 @@
       </div>
       <div class="traction-numbers reveal">
         <div class="traction-num-cell">
-          <div class="traction-big-num">173</div>
+          <div class="traction-big-num">215</div>
           <div class="traction-num-label">Discovery conversations with operators, OEMs and consultants</div>
         </div>
         <div class="traction-num-cell">
@@ -1097,48 +1369,6 @@
       </div>
     </div>
   </section>
-
-  <!-- Pricing — commented out for early pilot phase; uncomment when ready to publish pricing
-  <section id="pricing">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="label">Pricing</span>
-        <h2>Three streams. Aligned interests.</h2>
-        <p>Licence covers access. Deployment covers integration. The success fee is where we earn our keep — if we don't save you money, we don't make money.</p>
-      </div>
-      <div class="pricing-grid reveal">
-        <div class="pricing-card">
-          <div class="pricing-tag">01 &middot; Recurring</div>
-          <div class="pricing-name">Platform licence</div>
-          <div class="pricing-amount">&euro;18k</div>
-          <div class="pricing-amount-sub">per MW &middot; per year</div>
-          <div class="pricing-divider"></div>
-          <div class="pricing-desc">Per-megawatt access to the agentic intelligence layer. Scales with the facility, not the team. Covers continuous monitoring, anomaly detection, and ranked recommendations across all connected utility systems.</div>
-        </div>
-        <div class="pricing-card highlighted">
-          <div class="pricing-tag">02 &middot; One-time</div>
-          <div class="pricing-name">Deployment fee</div>
-          <div class="pricing-amount">Custom</div>
-          <div class="pricing-amount-sub">per site &middot; scoped to the facility</div>
-          <div class="pricing-divider"></div>
-          <div class="pricing-desc">Integration, signal mapping and commissioning. Priced to the building, not a list — a 10 MW colocaion site and a 100 MW hyperscale campus have very different integration requirements.</div>
-        </div>
-        <div class="pricing-card">
-          <div class="pricing-tag">03 &middot; Aligned</div>
-          <div class="pricing-name">Success fee</div>
-          <div class="pricing-amount">12%</div>
-          <div class="pricing-amount-sub">of verified energy savings</div>
-          <div class="pricing-divider"></div>
-          <div class="pricing-desc">Measured to IPMVP standards against a calibrated baseline. If Sono does not reduce your energy spend, we do not charge a success fee. Our incentive is exactly the same as yours.</div>
-        </div>
-      </div>
-      <div class="pricing-note reveal">
-        <strong>Verification standard:</strong> All savings are measured to IPMVP (International Performance Measurement and Verification Protocol) standards against a calibrated facility baseline. Every recommendation, acceptance and outcome is logged in a full audit trail.
-      </div>
-    </div>
-  </section>
-
-  end of pricing section -->
 
   <!-- Team -->
   <section id="team">
@@ -1154,8 +1384,8 @@
             <img src="./team/harit.jpg" alt="Harit Soni" loading="lazy" />
           </div>
           <a href="https://www.linkedin.com/in/harit-soni-b837a5/" target="_blank" rel="noopener"><h3>Harit Soni</h3></a>
-          <p class="team-role">Co-founder, Product &amp; Partnerships</p>
-          <p>15+ years building and scaling cleantech, IoT and AI ventures across Asia, Europe and North America. TEDx speaker and multi-award-winning founder recognized by MIT TR35, Ashden, UNFCCC and WWF.</p>
+          <p class="team-role">Co-founder, Product Strategy</p>
+          <p>Two-time founder. Raised $22M. 15+ years building and scaling cleantech, IoT and AI across Asia, the UK and North America.</p>
         </article>
         <article class="team-card">
           <div class="team-avatar">
@@ -1163,7 +1393,7 @@
           </div>
           <a href="https://www.linkedin.com/in/jparzonka/" target="_blank" rel="noopener"><h3>Johannes Parzonka</h3></a>
           <p class="team-role">Co-founder, Commercial</p>
-          <p>Entrepreneurial leader with deep experience in renewables and carbon markets. Founded a green-gas venture and led M&amp;A and business growth across wind, PV and biomethane sectors.</p>
+          <p>12+ years commercial leader. Former CEO of a green-gas spin-off. Led M&amp;A across wind, PV and biomethane.</p>
         </article>
         <article class="team-card">
           <div class="team-avatar">
@@ -1171,7 +1401,7 @@
           </div>
           <a href="https://www.linkedin.com/in/catgi91/" target="_blank" rel="noopener"><h3>Caterina Giacomelli</h3></a>
           <p class="team-role">Co-founder, Technology</p>
-          <p>Physicist and data scientist specialising in ML, signal processing and anomaly detection. Experienced in energy infrastructure and predictive modelling for data center operations.</p>
+          <p>Physicist and Data Scientist. 10+ years experienced in signal processing &amp; ML, IoT monitoring and industrial processes.</p>
         </article>
       </div>
     </div>
@@ -1185,10 +1415,10 @@
           <span class="label">Contact</span>
           <h2>Work with us on an early pilot</h2>
           <p>
-            Data centres are running on fixed setpoints, reactive alarms, and shift handovers that rely on institutional memory. The data to do better already exists. Sono reads it.
+            Data centres carry risk across five dimensions simultaneously. The data to track most of it already exists. Sono reads it, structures it, and gives your team something to act on.
           </p>
-          <p>
-            We work with colocation operators, investors, and OEM partners across Europe.
+          <p style="margin-top: 12px;">
+            We work with colocation operators, infrastructure fund managers, and OEM partners across Europe.
           </p>
         </div>
         <div class="contact-form">
@@ -1209,7 +1439,7 @@
             </div>
             <div class="form-group">
               <label for="message">Message</label>
-              <textarea required id="message" name="message" placeholder="Describe your facility, data availability, or what you'd like to explore"></textarea>
+              <textarea required id="message" name="message" placeholder="Describe your facility, portfolio, or what you'd like to explore"></textarea>
             </div>
             <div class="form-check">
               <input id="gdpr" type="checkbox" required />
@@ -1226,54 +1456,15 @@
   <div class="funders-bar">
     <div class="container funders-inner">
       <span class="funders-label">Supported by</span>
-      <div class="funders-logos">
-
-        <!-- EU co-financing flag (horizontal) -->
-        <a
-          href="https://european-union.europa.eu/index_en"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="funder-logo-link"
-          aria-label="European Union"
-        >
-          <img
-            src="./logos/EU-Fahne-Kofinanziert_horizontal.PNG"
-            alt="Kofinanziert von der Europäischen Union"
-            class="funder-logo funder-eu"
-          />
-        </a>
-
-        <!-- Berlin Senate Department for Economics, Energy and Public Enterprises -->
-        <a
-          href="https://www.berlin.de/en/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="funder-logo-link"
-          aria-label="Senatsverwaltung für Wirtschaft, Energie und Betriebe Berlin"
-        >
-          <img
-            src="./logos/B_SEN_WiEnBe_Logo_kurz.png"
-            alt="Senatsverwaltung für Wirtschaft, Energie und Betriebe Berlin"
-            class="funder-logo funder-berlin"
-          />
-        </a>
-
-        <!-- Adlershof Startup Lab -->
-        <a
-          href="https://www.adlershof.de/en/startuplab"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="funder-logo-link"
-          aria-label="Adlershof Startup Lab — from concept to company"
-        >
-          <img
-            src="./logos/Adlershof_Startup_Lab.png"
-            alt="Adlershof Startup Lab — from concept to company"
-            class="funder-logo funder-asl"
-          />
-        </a>
-
-      </div>
+      <a href="https://european-union.europa.eu/index_en" target="_blank" rel="noopener noreferrer" class="funder-logo-link" aria-label="European Union">
+        <img src="./logos/EU-Fahne-Kofinanziert_horizontal.PNG" alt="Kofinanziert von der Europäischen Union" class="funder-logo funder-eu" />
+      </a>
+      <a href="https://www.berlin.de/en/" target="_blank" rel="noopener noreferrer" class="funder-logo-link" aria-label="Senatsverwaltung für Wirtschaft, Energie und Betriebe Berlin">
+        <img src="./logos/B_SEN_WiEnBe_Logo_kurz.png" alt="Senatsverwaltung für Wirtschaft, Energie und Betriebe Berlin" class="funder-logo funder-berlin" />
+      </a>
+      <a href="https://www.adlershof.de/en/startuplab" target="_blank" rel="noopener noreferrer" class="funder-logo-link" aria-label="Adlershof Startup Lab">
+        <img src="./logos/Adlershof_Startup_Lab.png" alt="Adlershof Startup Lab from concept to company" class="funder-logo funder-asl" />
+      </a>
     </div>
   </div>
 
@@ -1288,72 +1479,59 @@
         </a>
       </div>
       <div class="footer-links">
-        <a href="legal/impressum.html"   id="link-impressum">Impressum</a>
+        <a href="legal/impressum.html" id="link-impressum">Impressum</a>
         <a href="legal/datenschutz.html" id="link-datenschutz">Datenschutz</a>
-        <a href="legal/terms.html"       id="link-terms">Terms</a>
+        <a href="legal/terms.html" id="link-terms">Terms</a>
         <a href="#contact">Contact</a>
       </div>
     </div>
   </footer>
 
-  <!-- Mount point for legal modals — populated by legal.js -->
   <div id="legal-modals"></div>
 
   <script>
-    // ── Footer year ──────────────────────────────────────────
+    // Footer year
     const yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-    // ── Scroll reveal ────────────────────────────────────────
-    // Runs immediately so elements are visible even without scroll
+    // Scroll reveal
     function revealAll() {
       document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
     }
-
     if ('IntersectionObserver' in window) {
       const io = new IntersectionObserver((entries) => {
         entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            io.unobserve(e.target);
-          }
+          if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
         });
       }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
       document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-      // Safety fallback: if page is opened as file://, reveal everything after 300ms
-      if (window.location.protocol === 'file:') {
-        setTimeout(revealAll, 300);
-      }
+      if (window.location.protocol === 'file:') setTimeout(revealAll, 300);
     } else {
-      // No IntersectionObserver support — show everything immediately
       revealAll();
     }
 
-    // ── Capability tabs ──────────────────────────────────────
-    document.querySelectorAll('.cap-tab').forEach(tab => {
+    // Phase tabs
+    document.querySelectorAll('.phase-tab').forEach(tab => {
       tab.addEventListener('click', () => {
         const idx = tab.dataset.tab;
-        document.querySelectorAll('.cap-tab').forEach(t => {
+        document.querySelectorAll('.phase-tab').forEach(t => {
           t.classList.remove('active');
           t.setAttribute('aria-selected', 'false');
         });
-        document.querySelectorAll('.cap-panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.phase-panel').forEach(p => p.classList.remove('active'));
         tab.classList.add('active');
         tab.setAttribute('aria-selected', 'true');
-        document.querySelector(`.cap-panel[data-panel="${idx}"]`).classList.add('active');
+        document.querySelector(`.phase-panel[data-panel="${idx}"]`).classList.add('active');
       });
     });
 
-    // ── Legal modals ─────────────────────────────────────────
-    // Fetches legal/modals.html and injects it. Falls back gracefully
-    // on file:// (footer links simply navigate to the standalone pages).
+    // Legal modals
     const MODALS_PATH = 'legal/modals.html';
     const LINK_MAP = {
       'link-impressum':   'modal-impressum',
       'link-datenschutz': 'modal-datenschutz',
       'link-terms':       'modal-terms',
     };
-
     function openModal(id) {
       const el = document.getElementById(id);
       if (!el) return;
@@ -1362,14 +1540,12 @@
       const closeBtn = el.querySelector('.modal-close');
       if (closeBtn) closeBtn.focus();
     }
-
     function closeModal(id) {
       const el = document.getElementById(id);
       if (!el) return;
       el.classList.remove('open');
       document.body.style.overflow = '';
     }
-
     function wireModals() {
       document.querySelectorAll('.modal-close').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -1382,29 +1558,16 @@
       });
       document.addEventListener('keydown', e => {
         if (e.key === 'Escape') {
-          document.querySelectorAll('.modal-overlay.open').forEach(m => {
-            m.classList.remove('open');
-          });
+          document.querySelectorAll('.modal-overlay.open').forEach(m => m.classList.remove('open'));
           document.body.style.overflow = '';
         }
-      });
-      document.querySelectorAll('.legal-content a[href^="#"]').forEach(link => {
-        link.addEventListener('click', e => {
-          e.preventDefault();
-          const target = document.getElementById(link.getAttribute('href').slice(1));
-          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
       });
       Object.entries(LINK_MAP).forEach(([linkId, modalId]) => {
         const link = document.getElementById(linkId);
         if (!link) return;
-        link.addEventListener('click', e => {
-          e.preventDefault();
-          openModal(modalId);
-        });
+        link.addEventListener('click', e => { e.preventDefault(); openModal(modalId); });
       });
     }
-
     if (window.location.protocol !== 'file:') {
       fetch(MODALS_PATH)
         .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
@@ -1412,11 +1575,8 @@
           const container = document.getElementById('legal-modals');
           if (container) { container.innerHTML = html; wireModals(); }
         })
-        .catch(() => {
-          // Fetch failed — footer links stay as plain <a> navigation, which is fine
-        });
+        .catch(() => {});
     }
-    // On file:// the footer links href="legal/impressum.html" etc. work as-is
   </script>
 
 </body>
