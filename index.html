@@ -297,7 +297,40 @@
       margin-bottom: 2px;
     }
     .phase-panel { display: none; }
-    .phase-panel.active { display: grid; grid-template-columns: 1fr 1fr; min-height: 460px; }
+    .phase-panel.active { display: block; }
+
+    /* Sub-tabs (used inside the Operational Intelligence panel) */
+    .subtab-nav {
+      display: flex;
+      gap: 8px;
+      padding: 16px 20px 0;
+      background: var(--paper);
+    }
+    .subtab {
+      padding: 9px 16px;
+      background: white;
+      border: 1px solid var(--ink-15);
+      border-radius: 100px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 12.5px;
+      color: var(--ink-60);
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .subtab:hover { color: var(--ink); border-color: var(--ink-60); }
+    .subtab.active { color: var(--paper); background: var(--ink); border-color: var(--ink); }
+    .subpanel-wrap { padding-top: 4px; }
+    .subpanel { display: none; grid-template-columns: 1fr 1fr; min-height: 460px; }
+    .subpanel.active { display: grid; }
+
+    .op-intro {
+      padding: 24px 20px 4px;
+      font-size: 15px;
+      color: var(--ink-60);
+      max-width: 640px;
+      line-height: 1.65;
+    }
 
     /* Phase panel left (text) */
     .phase-left {
@@ -306,7 +339,9 @@
       flex-direction: column;
       justify-content: space-between;
       border-right: 1px solid var(--ink-15);
+      border-top: 1px solid var(--ink-15);
     }
+    .phase-panel[data-panel="0"] .phase-left { border-top: none; }
     .phase-left h3 {
       font-size: 22px;
       letter-spacing: -0.02em;
@@ -324,7 +359,9 @@
       background: var(--ink);
       position: relative;
       overflow: hidden;
+      border-top: 1px solid var(--ink-15);
     }
+    .phase-panel[data-panel="0"] .phase-right { border-top: none; }
 
     /* ── Site map mockup (Phase 1) ───────────────────────────── */
     .sitemap-mockup {
@@ -402,7 +439,7 @@
       font-weight: 600;
     }
 
-    /* ── Continuous mockup (Phase 2) ────────────────────────── */
+    /* ── Continuous mockup ────────────────────────── */
     .cont-mockup {
       padding: 24px;
       height: 100%;
@@ -481,7 +518,7 @@
     }
     .cont-alert-text strong { color: var(--terracotta); font-weight: 600; }
 
-    /* ── Operator mockup (Phase 3) ───────────────────────────── */
+    /* ── Operator mockup (Operational Efficiency) ───────────────────────────── */
     .mockup-topbar {
       display: flex; align-items: center; gap: 6px;
       padding: 12px 16px;
@@ -792,7 +829,7 @@
 
     /* ── Responsive ─────────────────────────────────────────── */
     @media (max-width: 900px) {
-      .phase-panel.active { grid-template-columns: 1fr; }
+      .subpanel.active { grid-template-columns: 1fr; }
       .phase-right { min-height: 340px; }
       .phase-left { border-right: none; border-bottom: 1px solid var(--ink-15); }
     }
@@ -813,6 +850,8 @@
       nav a:not(:last-child) { display: none; }
       .phase-tab-nav { overflow-x: auto; scrollbar-width: none; }
       .phase-tab-nav::-webkit-scrollbar { display: none; }
+      .subtab-nav { overflow-x: auto; scrollbar-width: none; }
+      .subtab-nav::-webkit-scrollbar { display: none; }
     }
   </style>
 
@@ -829,7 +868,7 @@
       <a href="#hero" class="nav-logo">sono</a>
       <nav>
         <a href="#phases">Product</a>
-        <a href="#phases">Phases</a>
+        <a href="#phases">Layers</a>
         <a href="#traction">Traction</a>
         <a href="#team">Team</a>
         <a href="#contact" class="btn-secondary">Get in touch</a>
@@ -907,7 +946,7 @@
       <div class="section-header reveal">
         <span class="label">Product</span>
         <h2>Resilience is not a snapshot.</h2>
-        <p>Sono works before capital is committed, during operations, and as conditions change. Each phase adds a layer of intelligence.</p>
+        <p>Sono works in two layers: before capital is committed, and once an asset is operating. Each layer adds a different kind of intelligence.</p>
       </div>
       <div class="phase-tabs reveal">
         <div class="phase-tab-nav" role="tablist">
@@ -915,14 +954,11 @@
             Site Intelligence
           </button>
           <button class="phase-tab" role="tab" aria-selected="false" data-tab="1">
-            Continuous Intelligence
-          </button>
-          <button class="phase-tab" role="tab" aria-selected="false" data-tab="2">
             Operational Intelligence
           </button>
         </div>
 
-        <!-- Phase 1: Site Intelligence -->
+        <!-- Layer 1: Site Intelligence -->
         <div class="phase-panel active" data-panel="0">
           <div class="phase-left">
             <div>
@@ -1239,110 +1275,122 @@
         </div>
 
 
-        <!-- Phase 2: Continuous Intelligence -->
+        <!-- Layer 2: Operational Intelligence -->
         <div class="phase-panel" data-panel="1">
-          <div class="phase-left">
-            <div>
-              <h3>Continuous Intelligence</h3>
-              <p>A facility built for 2018 climate assumptions is not the same facility in 2025. Free cooling hours shrink. Grid carbon intensity shifts. EnEfG deadlines approach. Sono tracks the gap between what an asset was designed for and what it is actually operating in, and translates that gap into a cost that appears on no balance sheet today.</p>
-              <p style="margin-top: 14px; font-size: 15px; color: var(--ink-60);">Portfolio-level. No site visits. Relevant for asset managers, fund operators, and ESG teams who need to know where exposure is building before it becomes a write-down.</p>
-            </div>
-            <div style="margin-top: 32px;">
-              <a href="#contact" class="btn-primary">Request a demo</a>
-            </div>
-          </div>
-          <div class="phase-right">
-            <div class="cont-mockup">
-              <div class="cont-topbar">
-                <span class="cont-title">sono &middot; Continuous Intelligence &middot; FRA-North-03</span>
-                <span class="pulse-dot"></span>
-              </div>
+          <p class="op-intro">Once an asset is operating, Sono tracks two things at once: how conditions are drifting from what the facility was designed for, and where day-to-day inefficiencies are costing money right now.</p>
 
-              <!-- Interpretation card -->
-              <div style="background:rgba(200,122,79,0.1); border:1px solid rgba(200,122,79,0.28); border-radius:10px; padding:14px 16px; margin-bottom:10px;">
-                <div style="font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--terracotta); margin-bottom:7px;">Stranded-asset signal</div>
-                <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:13px; color:rgba(247,243,238,0.92); line-height:1.35; margin-bottom:8px;">Free cooling hours down 18% since design baseline. Cost of gap: &euro;214k/yr at current energy prices.</div>
-                <div style="font-size:11px; color:rgba(247,243,238,0.45); line-height:1.55;">Summer ambient has exceeded the 2017 design assumption of 32&deg;C on 61 days this year, vs. 14 days in the baseline period. At current PUE trajectory, the facility will miss the 2027 EnEfG target without active intervention.</div>
-              </div>
+          <div class="subtab-nav" role="tablist">
+            <button class="subtab active" role="tab" aria-selected="true" data-subtab="0">Continuous Monitoring</button>
+            <button class="subtab" role="tab" aria-selected="false" data-subtab="1">Operational Efficiency</button>
+          </div>
 
-              <!-- Supporting signals -->
-              <div style="display:flex; flex-direction:column; gap:6px;">
-                <div class="cont-metric" style="padding:10px 14px;">
-                  <div class="cont-metric-left">
-                    <span class="cont-metric-label">Climate drift vs. design</span>
-                    <span class="cont-metric-val" style="font-size:16px;">+2.4&deg;C</span>
-                    <span class="cont-metric-sub">avg summer ambient above 2017 baseline</span>
-                  </div>
-                  <div class="cont-bar-wrap">
-                    <div class="cont-bar-bg"><div class="cont-bar-fill red" style="width:78%"></div></div>
-                  </div>
+          <div class="subpanel-wrap">
+            <!-- Sub-layer: Continuous Monitoring -->
+            <div class="subpanel active" data-subpanel="0">
+              <div class="phase-left">
+                <div>
+                  <h3>Continuous Monitoring</h3>
+                  <p>A facility built for 2018 climate assumptions is not the same facility in 2025. Free cooling hours shrink. Grid carbon intensity shifts. EnEfG deadlines approach. Sono tracks the gap between what an asset was designed for and what it is actually operating in, and translates that gap into a cost that appears on no balance sheet today.</p>
+                  <p style="margin-top: 14px; font-size: 15px; color: var(--ink-60);">Portfolio-level. No site visits. Relevant for asset managers, fund operators, and ESG teams who need to know where exposure is building before it becomes a write-down.</p>
                 </div>
-                <div class="cont-metric" style="padding:10px 14px;">
-                  <div class="cont-metric-left">
-                    <span class="cont-metric-label">EnEfG compliance gap</span>
-                    <span class="cont-metric-val" style="font-size:16px;">PUE 1.43</span>
-                    <span class="cont-metric-sub">target 1.30 by Jan 2027 &middot; 26 months</span>
-                  </div>
-                  <div class="cont-bar-wrap">
-                    <div class="cont-bar-bg"><div class="cont-bar-fill amber" style="width:52%"></div></div>
-                  </div>
-                </div>
-                <div class="cont-metric" style="padding:10px 14px;">
-                  <div class="cont-metric-left">
-                    <span class="cont-metric-label">Grid carbon intensity</span>
-                    <span class="cont-metric-val" style="font-size:16px;">118 g/kWh</span>
-                    <span class="cont-metric-sub">&darr; 14% vs. last month &middot; renewable share rising</span>
-                  </div>
-                  <div class="cont-bar-wrap">
-                    <div class="cont-bar-bg"><div class="cont-bar-fill green" style="width:82%"></div></div>
-                  </div>
+                <div style="margin-top: 32px;">
+                  <a href="#contact" class="btn-primary">Request a demo</a>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
+              <div class="phase-right">
+                <div class="cont-mockup">
+                  <div class="cont-topbar">
+                    <span class="cont-title">sono &middot; Continuous Monitoring &middot; FRA-North-03</span>
+                    <span class="pulse-dot"></span>
+                  </div>
 
-        <!-- Phase 3: Operational Intelligence -->
-        <div class="phase-panel" data-panel="2">
-          <div class="phase-left">
-            <div>
-              <h3>Operational Intelligence</h3>
-              <p>Predictive maintenance, anomaly detection, and setpoint optimisation delivered to operations teams in plain language. Sono reads your existing historian, detects failure modes before alarms fire, traces root cause to specific equipment, and surfaces ranked recommendations with a confidence score.</p>
-              <p style="margin-top: 14px; font-size: 15px; color: var(--ink-60);">No new hardware. No integration project. Historian-native. Physics-constrained so no physically impossible setpoint can ever be suggested.</p>
-            </div>
-            <div style="margin-top: 32px;">
-              <a href="#contact" class="btn-primary">Request a demo</a>
-            </div>
-          </div>
-          <div class="phase-right">
-            <div class="mockup-topbar">
-              <span class="mockup-dot red"></span>
-              <span class="mockup-dot amber"></span>
-              <span class="mockup-dot green"></span>
-              <span class="mockup-title-bar">sono · MXP-Edge-07 · 06:04</span>
-            </div>
-            <div class="mockup-body">
-              <div class="mockup-alert">
-                <span class="mockup-alert-dot"></span>
-                <span class="mockup-alert-text">Anomaly detected &middot; Chiller 1 &middot; 06:00</span>
-              </div>
-              <div class="mockup-rec">
-                <div class="mockup-rec-label">Recommendation &middot; 94% confidence</div>
-                <div class="mockup-rec-title">Raise Chiller 1 setpoint: 6.0&deg;C &rarr; 8.5&deg;C</div>
-                <div class="mockup-rec-body">Valve response lag detected. Current setpoint is below thermal floor given ambient conditions and IT load. Adjustment remains within safe operating envelope. Estimated compressor load reduction: 3.2% on this circuit.</div>
-                <div class="mockup-meta">
-                  <div class="mockup-meta-item">Confidence <span>94%</span></div>
-                  <div class="mockup-meta-item">Est. saving <span>3.2%</span></div>
-                  <div class="mockup-meta-item">Reversible <span>Yes</span></div>
+                  <!-- Interpretation card -->
+                  <div style="background:rgba(200,122,79,0.1); border:1px solid rgba(200,122,79,0.28); border-radius:10px; padding:14px 16px; margin-bottom:10px;">
+                    <div style="font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--terracotta); margin-bottom:7px;">Stranded-asset signal</div>
+                    <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:13px; color:rgba(247,243,238,0.92); line-height:1.35; margin-bottom:8px;">Free cooling hours down 18% since design baseline. Cost of gap: &euro;214k/yr at current energy prices.</div>
+                    <div style="font-size:11px; color:rgba(247,243,238,0.45); line-height:1.55;">Summer ambient has exceeded the 2017 design assumption of 32&deg;C on 61 days this year, vs. 14 days in the baseline period. At current PUE trajectory, the facility will miss the 2027 EnEfG target without active intervention.</div>
+                  </div>
+
+                  <!-- Supporting signals -->
+                  <div style="display:flex; flex-direction:column; gap:6px;">
+                    <div class="cont-metric" style="padding:10px 14px;">
+                      <div class="cont-metric-left">
+                        <span class="cont-metric-label">Climate drift vs. design</span>
+                        <span class="cont-metric-val" style="font-size:16px;">+2.4&deg;C</span>
+                        <span class="cont-metric-sub">avg summer ambient above 2017 baseline</span>
+                      </div>
+                      <div class="cont-bar-wrap">
+                        <div class="cont-bar-bg"><div class="cont-bar-fill red" style="width:78%"></div></div>
+                      </div>
+                    </div>
+                    <div class="cont-metric" style="padding:10px 14px;">
+                      <div class="cont-metric-left">
+                        <span class="cont-metric-label">EnEfG compliance gap</span>
+                        <span class="cont-metric-val" style="font-size:16px;">PUE 1.43</span>
+                        <span class="cont-metric-sub">target 1.30 by Jan 2027 &middot; 26 months</span>
+                      </div>
+                      <div class="cont-bar-wrap">
+                        <div class="cont-bar-bg"><div class="cont-bar-fill amber" style="width:52%"></div></div>
+                      </div>
+                    </div>
+                    <div class="cont-metric" style="padding:10px 14px;">
+                      <div class="cont-metric-left">
+                        <span class="cont-metric-label">Grid carbon intensity</span>
+                        <span class="cont-metric-val" style="font-size:16px;">118 g/kWh</span>
+                        <span class="cont-metric-sub">&darr; 14% vs. last month &middot; renewable share rising</span>
+                      </div>
+                      <div class="cont-bar-wrap">
+                        <div class="cont-bar-bg"><div class="cont-bar-fill green" style="width:82%"></div></div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="mockup-btns">
-                  <button class="mockup-btn approve">Approve</button>
-                  <button class="mockup-btn defer">Defer 1h</button>
-                  <button class="mockup-btn dismiss">Dismiss</button>
+              </div>
+            </div>
+
+            <!-- Sub-layer: Operational Efficiency -->
+            <div class="subpanel" data-subpanel="1">
+              <div class="phase-left">
+                <div>
+                  <h3>Operational Efficiency</h3>
+                  <p>Predictive maintenance, anomaly detection, and setpoint optimisation delivered to operations teams in plain language. Sono reads your existing historian, detects failure modes before alarms fire, traces root cause to specific equipment, and surfaces ranked recommendations with a confidence score.</p>
+                  <p style="margin-top: 14px; font-size: 15px; color: var(--ink-60);">No new hardware. No integration project. Historian-native. Physics-constrained so no physically impossible setpoint can ever be suggested.</p>
+                </div>
+                <div style="margin-top: 32px;">
+                  <a href="#contact" class="btn-primary">Request a demo</a>
+                </div>
+              </div>
+              <div class="phase-right">
+                <div class="mockup-topbar">
+                  <span class="mockup-dot red"></span>
+                  <span class="mockup-dot amber"></span>
+                  <span class="mockup-dot green"></span>
+                  <span class="mockup-title-bar">sono · MXP-Edge-07 · 06:04</span>
+                </div>
+                <div class="mockup-body">
+                  <div class="mockup-alert">
+                    <span class="mockup-alert-dot"></span>
+                    <span class="mockup-alert-text">Anomaly detected &middot; Chiller 1 &middot; 06:00</span>
+                  </div>
+                  <div class="mockup-rec">
+                    <div class="mockup-rec-label">Recommendation &middot; 94% confidence</div>
+                    <div class="mockup-rec-title">Raise Chiller 1 setpoint: 6.0&deg;C &rarr; 8.5&deg;C</div>
+                    <div class="mockup-rec-body">Valve response lag detected. Current setpoint is below thermal floor given ambient conditions and IT load. Adjustment remains within safe operating envelope. Estimated compressor load reduction: 3.2% on this circuit.</div>
+                    <div class="mockup-meta">
+                      <div class="mockup-meta-item">Confidence <span>94%</span></div>
+                      <div class="mockup-meta-item">Est. saving <span>3.2%</span></div>
+                      <div class="mockup-meta-item">Reversible <span>Yes</span></div>
+                    </div>
+                    <div class="mockup-btns">
+                      <button class="mockup-btn approve">Approve</button>
+                      <button class="mockup-btn defer">Defer 1h</button>
+                      <button class="mockup-btn dismiss">Dismiss</button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </div><!-- /subpanel-wrap -->
         </div>
 
       </div><!-- /phase-tabs -->
@@ -1514,7 +1562,7 @@
       revealAll();
     }
 
-    // Phase tabs
+    // Top-level layer tabs (Site Intelligence / Operational Intelligence)
     document.querySelectorAll('.phase-tab').forEach(tab => {
       tab.addEventListener('click', () => {
         const idx = tab.dataset.tab;
@@ -1526,6 +1574,21 @@
         tab.classList.add('active');
         tab.setAttribute('aria-selected', 'true');
         document.querySelector(`.phase-panel[data-panel="${idx}"]`).classList.add('active');
+      });
+    });
+
+    // Sub-tabs inside Operational Intelligence (Continuous Monitoring / Operational Efficiency)
+    document.querySelectorAll('.subtab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const idx = tab.dataset.subtab;
+        document.querySelectorAll('.subtab').forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        document.querySelectorAll('.subpanel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        document.querySelector(`.subpanel[data-subpanel="${idx}"]`).classList.add('active');
       });
     });
 
