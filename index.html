@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>sono · Resilience intelligence for data centres.</title>
-  <meta name="description" content="Sono gives data centre owners and operators a single platform to track and manage asset resilience across power, climate, compliance, infrastructure, and adaptability." />
-  <meta property="og:title" content="sono · Resilience intelligence for data centres.">
-  <meta property="og:description" content="A single platform for full-lifecycle data centre resilience. Site intelligence, continuous monitoring, and operational optimisation starting with what your data already knows.">
+  <title>sono · Infrastructure that knows itself.</title>
+  <meta name="description" content="Sono continuously scores data centre risk across revenue, capex, opex, compliance, insurance and site selection — so exposure is priced the day it moves, not the year it's discovered." />
+  <meta property="og:title" content="sono · Infrastructure that knows itself.">
+  <meta property="og:description" content="Risk moves continuously. Assessment doesn't. Sono keeps a live, agent-read score on every data centre asset you hold and every site you're evaluating.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://sono.so">
   <meta property="og:image" content="https://sono.so/og-image.png">
@@ -14,8 +14,8 @@
   <meta property="og:image:height" content="630">
   <meta property="og:site_name" content="sono">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="sono · Resilience intelligence for data centres.">
-  <meta name="twitter:description" content="Full-lifecycle resilience for data centre assets. No new hardware. Start with what your data already knows.">
+  <meta name="twitter:title" content="sono · Infrastructure that knows itself.">
+  <meta name="twitter:description" content="Risk moves continuously. Assessment doesn't. Sono keeps a live score on every data centre asset you hold and every site you're evaluating.">
   <meta name="twitter:image" content="https://sono.so/og-image.png">
   <link rel="canonical" href="https://sono.so">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -239,6 +239,46 @@
       color: rgba(247,243,238,0.45);
       line-height: 1.5;
     }
+
+    /* ── The Gap ────────────────────────────────────────────── */
+    #gap { padding: 96px 0; border-bottom: 1px solid var(--ink-15); }
+    .gap-grid {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .gap-card {
+      border: 1px solid var(--ink-15);
+      border-radius: 14px;
+      padding: 24px;
+      background: white;
+    }
+    .gap-card h3 { font-size: 15px; letter-spacing: -0.01em; margin-bottom: 8px; }
+    .gap-card p { font-size: 13.5px; color: var(--ink-60); line-height: 1.6; }
+
+    /* ── Cost of the gap ────────────────────────────────────── */
+    #cost { padding: 96px 0; border-bottom: 1px solid var(--ink-15); background: var(--ink-08); }
+    .cost-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .cost-left h2 {
+      font-size: clamp(26px, 3.6vw, 36px);
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      margin-top: 12px;
+    }
+    .cost-left p { margin-top: 16px; font-size: 15px; color: var(--ink-60); line-height: 1.65; }
+    .cost-stats { display: flex; flex-direction: column; gap: 20px; }
+    .cost-stat { background: var(--paper); border: 1px solid var(--ink-15); border-radius: 16px; padding: 32px; }
+    .cost-stat-num {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      font-size: 46px; letter-spacing: -0.03em; color: var(--terracotta); line-height: 1;
+    }
+    .cost-stat-label { margin-top: 10px; font-size: 13.5px; color: var(--ink-60); line-height: 1.55; }
 
     /* ── Phases ─────────────────────────────────────────────── */
     #phases {
@@ -582,6 +622,67 @@
     .mockup-btn.defer   { background: rgba(247,243,238,0.08); color: rgba(247,243,238,0.45); }
     .mockup-btn.dismiss { background: transparent; color: rgba(247,243,238,0.25); border: 1px solid rgba(247,243,238,0.1); }
 
+    /* ── Value created ──────────────────────────────────────── */
+    #value { padding: 96px 0; border-bottom: 1px solid var(--ink-15); }
+    .value-grid {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--ink-15);
+      border: 1px solid var(--ink-15);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .value-cell { background: var(--paper); padding: 32px 26px; }
+    .value-num {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      font-size: 38px; letter-spacing: -0.03em; color: var(--sage); line-height: 1;
+    }
+    .value-title { margin-top: 10px; font-size: 13px; font-weight: 600; color: var(--ink); font-family: 'Space Grotesk', sans-serif; }
+    .value-desc { margin-top: 6px; font-size: 13px; color: var(--ink-60); line-height: 1.55; }
+
+    /* ── Coverage ───────────────────────────────────────────── */
+    #coverage { padding: 96px 0; border-bottom: 1px solid var(--ink-15); background: var(--ink-08); }
+    .coverage-grid {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .coverage-card {
+      background: var(--paper);
+      border: 1px solid var(--ink-15);
+      border-radius: 14px;
+      padding: 24px;
+    }
+    .coverage-card-top { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
+    .coverage-card h3 { font-size: 14px; letter-spacing: -0.005em; }
+    .coverage-count { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px; color: var(--terracotta); }
+    .coverage-card p { font-size: 13px; color: var(--ink-60); line-height: 1.55; }
+    .coverage-model { margin-top: 10px; font-size: 11px; color: var(--ink-60); font-weight: 500; }
+
+    /* ── Competitive landscape ──────────────────────────────── */
+    #competitive { padding: 96px 0; border-bottom: 1px solid var(--ink-15); }
+    .quadrant-wrap {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .quadrant-chart {
+      background: white;
+      border: 1px solid var(--ink-15);
+      border-radius: 16px;
+      padding: 28px 28px 36px;
+    }
+    .quadrant-legend { display: flex; flex-direction: column; gap: 20px; }
+    .quadrant-legend-item { display: flex; gap: 12px; align-items: flex-start; }
+    .quadrant-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+    .quadrant-legend h4 { font-size: 14px; letter-spacing: -0.005em; margin-bottom: 3px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
+    .quadrant-legend p { font-size: 13px; color: var(--ink-60); line-height: 1.55; }
+
     /* ── Traction ────────────────────────────────────────────── */
     #traction { padding: 96px 0; border-bottom: 1px solid var(--ink-15); background: var(--ink-08); }
     .traction-numbers {
@@ -596,6 +697,32 @@
       font-size: 52px; letter-spacing: -0.04em; color: var(--ink); line-height: 1;
     }
     .traction-num-label { margin-top: 8px; font-size: 13px; color: var(--ink-60); line-height: 1.5; }
+
+    .partners-grid {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .partner-card {
+      background: var(--paper);
+      border: 1px solid var(--ink-15);
+      border-radius: 14px;
+      padding: 20px 22px;
+    }
+    .partner-card .label { display: block; margin-bottom: 8px; }
+    .partner-card h4 { font-size: 15px; letter-spacing: -0.01em; margin-bottom: 3px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
+    .partner-card p { font-size: 12.5px; color: var(--ink-60); }
+    .ecosystem-strip {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 28px;
+      align-items: baseline;
+      font-size: 13.5px;
+      color: var(--ink-60);
+    }
+    .ecosystem-strip strong { color: var(--ink); font-weight: 600; }
 
     /* ── Team ───────────────────────────────────────────────── */
     #team {
@@ -832,10 +959,16 @@
       .subpanel.active { grid-template-columns: 1fr; }
       .phase-right { min-height: 340px; }
       .phase-left { border-right: none; border-bottom: 1px solid var(--ink-15); }
+      .coverage-grid { grid-template-columns: 1fr 1fr; }
+      .quadrant-wrap { grid-template-columns: 1fr; gap: 32px; }
     }
     @media (max-width: 768px) {
       .lifecycle-inner { grid-template-columns: 1fr; }
       .team-grid { grid-template-columns: 1fr; }
+      .gap-grid { grid-template-columns: 1fr 1fr; }
+      .cost-layout { grid-template-columns: 1fr; gap: 32px; }
+      .value-grid { grid-template-columns: 1fr 1fr; }
+      .coverage-grid { grid-template-columns: 1fr; }
       .contact-layout { grid-template-columns: 1fr; gap: 40px; }
       .form-row { grid-template-columns: 1fr; }
       .hero-dimensions { flex-direction: column; }
@@ -843,11 +976,15 @@
       .dimension:last-child { border-bottom: none; }
       nav .btn-secondary { display: none; }
       .traction-numbers { grid-template-columns: 1fr; }
+      .partners-grid { grid-template-columns: 1fr; }
       .sm-scores { grid-template-columns: repeat(3, 1fr); }
       .modal-wide .modal-box { padding: 28px 24px; }
     }
     @media (max-width: 600px) {
       nav a:not(:last-child) { display: none; }
+      .gap-grid { grid-template-columns: 1fr; }
+      .value-grid { grid-template-columns: 1fr; }
+      .coverage-grid { grid-template-columns: 1fr; }
       .phase-tab-nav { overflow-x: auto; scrollbar-width: none; }
       .phase-tab-nav::-webkit-scrollbar { display: none; }
       .subtab-nav { overflow-x: auto; scrollbar-width: none; }
@@ -868,7 +1005,7 @@
       <a href="#hero" class="nav-logo">sono</a>
       <nav>
         <a href="#phases">Product</a>
-        <a href="#phases">Layers</a>
+        <a href="#coverage">Coverage</a>
         <a href="#traction">Traction</a>
         <a href="#team">Team</a>
         <a href="#contact" class="btn-secondary">Get in touch</a>
@@ -882,9 +1019,9 @@
     <div class="hero-vignette"></div>
     <div class="hero-inner container">
       <div class="hero-eyebrow">Developed within Carbon13 &middot; Cambridge University Venture Builder</div>
-      <h1>Resilience intelligence for data centres</h1>
+      <h1>Infrastructure that knows itself</h1>
       <p class="hero-sub">
-        Sono gives data centre owners and operators a single platform to track and manage asset resilience across the full lifecycle from site selection to daily operations.
+        A corporate bond is re-priced daily. A data centre portfolio is scored once, at construction, and again at acquisition. Sono keeps a live, agent-read score on every asset you hold and every site you're evaluating, so risk is priced the day it moves, not the year it's discovered.
       </p>
       <div class="hero-actions">
         <a href="#phases" class="btn-primary">See how it works</a>
@@ -892,33 +1029,14 @@
       </div>
     </div>
 
-    <!-- Five dimensions strip -->
+    <!-- Six domains strip -->
     <div class="hero-dimensions container">
       <div class="dimension">
         <svg class="dim-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14 4L4 10v8l10 6 10-6v-8L14 4z" stroke="rgba(247,243,238,0.7)" stroke-width="1.5" stroke-linejoin="round"/>
-          <path d="M4 10l10 6 10-6" stroke="rgba(247,243,238,0.7)" stroke-width="1.5"/>
-          <path d="M14 16v8" stroke="rgba(247,243,238,0.7)" stroke-width="1.5"/>
+          <path d="M5 21V13M12 21V8M19 21v-9M23 6l-6 6-4-4-8 8" stroke="rgba(247,243,238,0.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <div class="dim-label">Power</div>
-        <div class="dim-desc">Grid capacity, reliability, carbon intensity</div>
-      </div>
-      <div class="dimension">
-        <svg class="dim-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="14" cy="14" r="8" stroke="rgba(247,243,238,0.7)" stroke-width="1.5"/>
-          <path d="M14 6V4M14 24v-2M6 14H4M24 14h-2" stroke="rgba(247,243,238,0.7)" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="14" cy="14" r="3" fill="rgba(247,243,238,0.7)"/>
-        </svg>
-        <div class="dim-label">Climate</div>
-        <div class="dim-desc">Free cooling hours, heat drift, water stress</div>
-      </div>
-      <div class="dimension">
-        <svg class="dim-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="5" y="7" width="18" height="14" rx="2" stroke="rgba(247,243,238,0.7)" stroke-width="1.5"/>
-          <path d="M9 12h10M9 16h6" stroke="rgba(247,243,238,0.7)" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-        <div class="dim-label">Compliance</div>
-        <div class="dim-desc">EnEfG, regulatory drift, audit readiness</div>
+        <div class="dim-label">Revenue</div>
+        <div class="dim-desc">SLA breach avoidance, stranded capacity</div>
       </div>
       <div class="dimension">
         <svg class="dim-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -926,16 +1044,92 @@
           <rect x="16" y="4" width="8" height="16" rx="1.5" stroke="rgba(247,243,238,0.7)" stroke-width="1.5"/>
           <path d="M12 20h4" stroke="rgba(247,243,238,0.7)" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
-        <div class="dim-label">Infrastructure</div>
-        <div class="dim-desc">Equipment health, failure prediction, PUE</div>
+        <div class="dim-label">Capex cycles</div>
+        <div class="dim-desc">Equipment lifecycle, refresh timing</div>
       </div>
       <div class="dimension">
         <svg class="dim-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 20l4-8 4 4 4-10" stroke="rgba(247,243,238,0.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="20" cy="6" r="2" fill="rgba(247,243,238,0.7)"/>
+          <path d="M14 4L4 10v8l10 6 10-6v-8L14 4z" stroke="rgba(247,243,238,0.7)" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M4 10l10 6 10-6" stroke="rgba(247,243,238,0.7)" stroke-width="1.5"/>
+          <path d="M14 16v8" stroke="rgba(247,243,238,0.7)" stroke-width="1.5"/>
         </svg>
-        <div class="dim-label">Adaptability</div>
-        <div class="dim-desc">Stranded-asset exposure, retrofit readiness</div>
+        <div class="dim-label">Opex</div>
+        <div class="dim-desc">Energy, predictive maintenance, downtime</div>
+      </div>
+      <div class="dimension">
+        <svg class="dim-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="5" y="7" width="18" height="14" rx="2" stroke="rgba(247,243,238,0.7)" stroke-width="1.5"/>
+          <path d="M9 12h10M9 16h6" stroke="rgba(247,243,238,0.7)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <div class="dim-label">Compliance</div>
+        <div class="dim-desc">Regulatory and permit status, tracked live</div>
+      </div>
+      <div class="dimension">
+        <svg class="dim-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 4l9 4v6c0 6-4 9.5-9 10-5-0.5-9-4-9-10V8l9-4z" stroke="rgba(247,243,238,0.7)" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        <div class="dim-label">Insurance</div>
+        <div class="dim-desc">Fire, water and climate hazard exposure</div>
+      </div>
+      <div class="dimension">
+        <svg class="dim-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 24s8-7.2 8-13a8 8 0 10-16 0c0 5.8 8 13 8 13z" stroke="rgba(247,243,238,0.7)" stroke-width="1.5" stroke-linejoin="round"/>
+          <circle cx="14" cy="11" r="3" stroke="rgba(247,243,238,0.7)" stroke-width="1.5"/>
+        </svg>
+        <div class="dim-label">Site selection</div>
+        <div class="dim-desc">Grid access, permitting, climate zoning</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Gap -->
+  <section id="gap">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">The problem</span>
+        <h2>Risk moves continuously. Assessment doesn't.</h2>
+        <p>A corporate bond is re-priced daily. A &euro;5 billion data centre portfolio is scored once, at construction, and again at acquisition, by a consultant. Equipment wears down, contracts renew, insurance terms shift, climate and grid conditions move — the risk keeps moving, and nobody is looking.</p>
+      </div>
+      <div class="gap-grid reveal">
+        <div class="gap-card">
+          <h3>Investors</h3>
+          <p>Price assets on data that's already out of date by the time it reaches the investment committee.</p>
+        </div>
+        <div class="gap-card">
+          <h3>Operators</h3>
+          <p>Find out about failure risk after it happens, not before.</p>
+        </div>
+        <div class="gap-card">
+          <h3>Insurers</h3>
+          <p>Underwrite on a survey that's eleven months old, so exposure builds between renewals and prices at the wrong risk.</p>
+        </div>
+        <div class="gap-card">
+          <h3>Sustainability teams</h3>
+          <p>Unplanned failure is the more carbon-intensive outcome — emergency replacement instead of planned end-of-life.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cost of the gap -->
+  <section id="cost">
+    <div class="container">
+      <div class="cost-layout reveal">
+        <div class="cost-left">
+          <span class="label">The cost of the gap</span>
+          <h2>Undetected risk becomes a stranded asset</h2>
+          <p>The stranded-asset situation in Ireland wasn't a failure of ambition or capital. It was a failure to track one risk factor — grid capacity — continuously, before it became a binding constraint. When the grid operator froze new connections, projects that looked viable at acquisition had no path to power.</p>
+        </div>
+        <div class="cost-stats">
+          <div class="cost-stat">
+            <div class="cost-stat-num">&euro;176bn</div>
+            <div class="cost-stat-label">Committed to European data centres, 2026&ndash;31. None of it is continuously scored.</div>
+          </div>
+          <div class="cost-stat">
+            <div class="cost-stat-num">&euro;5.8bn</div>
+            <div class="cost-stat-label">Already stranded in Ireland alone &mdash; land bought and permitted, but no grid connection.</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -945,27 +1139,29 @@
     <div class="container">
       <div class="section-header reveal">
         <span class="label">Product</span>
-        <h2>Resilience is not a snapshot.</h2>
-        <p>Sono works in two layers: before capital is committed, and once an asset is operating. Each layer adds a different kind of intelligence.</p>
+        <h2>Two modules, one output.</h2>
+        <p>Sono runs a network of agents that read contract terms, insurance terms, manufacturer documentation and external conditions for every asset, continuously. Portfolio Management covers what you already hold; Portfolio Expansion covers what you're evaluating.</p>
       </div>
       <div class="phase-tabs reveal">
         <div class="phase-tab-nav" role="tablist">
           <button class="phase-tab active" role="tab" aria-selected="true" data-tab="0">
-            Site Intelligence
+            <span class="phase-tab-num">Module 2</span>
+            Portfolio Expansion
           </button>
           <button class="phase-tab" role="tab" aria-selected="false" data-tab="1">
-            Operational Intelligence
+            <span class="phase-tab-num">Module 1</span>
+            Portfolio Management
           </button>
         </div>
 
-        <!-- Layer 1: Site Intelligence -->
+        <!-- Module 2: Portfolio Expansion (site selection, pre-capital) -->
         <div class="phase-panel active" data-panel="0">
         <div class="subpanel active">
           <div class="phase-left">
             <div>
-              <h3>Site Intelligence</h3>
+              <h3>Portfolio Expansion</h3>
               <p>The same plot can look very different depending on what grid capacity is actually available, whether the water basin is under stress, or how many competing facilities are already queued for permits nearby. Sono combines those signals into a single score, calibrated against a growing reference population of European sites, so you can compare candidates on a common basis before committing capital.</p>
-              <p style="margin-top: 14px; font-size: 15px; color: var(--ink-60);">No instrumentation required. Relevant for site selection, acquisition due diligence, and portfolio reviews.</p>
+              <p style="margin-top: 14px; font-size: 15px; color: var(--ink-60);">No instrumentation required. One category — grid capacity, climate exposure, regulatory trajectory — because the question at this stage is narrow: should you commit capital here at all.</p>
             </div>
             <div style="margin-top: 32px;">
               <a href="#contact" class="btn-primary">Request a demo</a>
@@ -1277,23 +1473,23 @@
         </div>
 
 
-        <!-- Layer 2: Operational Intelligence -->
+        <!-- Module 1: Portfolio Management -->
         <div class="phase-panel" data-panel="1">
-          <p class="op-intro">Once an asset is operating, Sono tracks two things at once: how conditions are drifting from what the facility was designed for, and where day-to-day inefficiencies are costing money right now.</p>
+          <p class="op-intro">Management asks one question: what is happening to the assets we already hold. The agents cross-reference contract, insurance and manufacturer documentation against each asset's actual condition, continuously, not at review time.</p>
 
           <div class="subtab-nav" role="tablist">
-            <button class="subtab active" role="tab" aria-selected="true" data-subtab="0">Continuous Monitoring</button>
+            <button class="subtab active" role="tab" aria-selected="true" data-subtab="0">Live Risk Tracking</button>
             <button class="subtab" role="tab" aria-selected="false" data-subtab="1">Operational Efficiency</button>
           </div>
 
           <div class="subpanel-wrap">
-            <!-- Sub-layer: Continuous Monitoring -->
+            <!-- Sub-layer: Live Risk Tracking -->
             <div class="subpanel active" data-subpanel="0">
               <div class="phase-left">
                 <div>
-                  <h3>Continuous Monitoring</h3>
-                  <p>A facility built for 2018 climate assumptions is not the same facility in 2025. Free cooling hours shrink. Grid carbon intensity shifts. EnEfG deadlines approach. Sono tracks the gap between what an asset was designed for and what it is actually operating in, and translates that gap into a cost that appears on no balance sheet today.</p>
-                  <p style="margin-top: 14px; font-size: 15px; color: var(--ink-60);">Portfolio-level. No site visits. Relevant for asset managers, fund operators, and ESG teams who need to know where exposure is building before it becomes a write-down.</p>
+                  <h3>Live risk tracking</h3>
+                  <p>Five categories, one live state per asset: revenue, capex cycles, opex, compliance and insurance, each scored and updated as the inputs move. Financial impact is projected forward in euros today, and the year it crosses your action threshold.</p>
+                  <p style="margin-top: 14px; font-size: 15px; color: var(--ink-60);">Portfolio-level. No site visits. The agent states what it found, what it costs, and the next step to take.</p>
                 </div>
                 <div style="margin-top: 32px;">
                   <a href="#contact" class="btn-primary">Request a demo</a>
@@ -1302,47 +1498,67 @@
               <div class="phase-right">
                 <div class="cont-mockup">
                   <div class="cont-topbar">
-                    <span class="cont-title">sono &middot; Continuous Monitoring &middot; FRA-North-03</span>
+                    <span class="cont-title">sono &middot; Portfolio Management &middot; MXP-Edge-07</span>
                     <span class="pulse-dot"></span>
                   </div>
 
                   <!-- Interpretation card -->
                   <div style="background:rgba(200,122,79,0.1); border:1px solid rgba(200,122,79,0.28); border-radius:10px; padding:14px 16px; margin-bottom:10px;">
-                    <div style="font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--terracotta); margin-bottom:7px;">Stranded-asset signal</div>
-                    <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:13px; color:rgba(247,243,238,0.92); line-height:1.35; margin-bottom:8px;">Free cooling hours down 18% since design baseline. Cost of gap: &euro;214k/yr at current energy prices.</div>
-                    <div style="font-size:11px; color:rgba(247,243,238,0.45); line-height:1.55;">Summer ambient has exceeded the 2017 design assumption of 32&deg;C on 61 days this year, vs. 14 days in the baseline period. At current PUE trajectory, the facility will miss the 2027 EnEfG target without active intervention.</div>
+                    <div style="font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--terracotta); margin-bottom:7px;">Agent summary</div>
+                    <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:13px; color:rgba(247,243,238,0.92); line-height:1.35; margin-bottom:8px;">Two categories need attention this cycle: Capex cycles and Insurance.</div>
+                    <div style="font-size:11px; color:rgba(247,243,238,0.45); line-height:1.55;">Chiller 1 is past manufacturer end-of-life with no replacement scheduled. Current insurance terms leave a coverage gap on the climate-hazard rider renewed last quarter.</div>
                   </div>
 
-                  <!-- Supporting signals -->
+                  <!-- Five-category live state -->
                   <div style="display:flex; flex-direction:column; gap:6px;">
                     <div class="cont-metric" style="padding:10px 14px;">
                       <div class="cont-metric-left">
-                        <span class="cont-metric-label">Climate drift vs. design</span>
-                        <span class="cont-metric-val" style="font-size:16px;">+2.4&deg;C</span>
-                        <span class="cont-metric-sub">avg summer ambient above 2017 baseline</span>
+                        <span class="cont-metric-label">Revenue</span>
+                        <span class="cont-metric-val" style="font-size:16px;">Renewal 2027</span>
+                        <span class="cont-metric-sub">contract escalation clause reviewed</span>
                       </div>
                       <div class="cont-bar-wrap">
-                        <div class="cont-bar-bg"><div class="cont-bar-fill red" style="width:78%"></div></div>
+                        <div class="cont-bar-bg"><div class="cont-bar-fill green" style="width:86%"></div></div>
                       </div>
                     </div>
                     <div class="cont-metric" style="padding:10px 14px;">
                       <div class="cont-metric-left">
-                        <span class="cont-metric-label">EnEfG compliance gap</span>
-                        <span class="cont-metric-val" style="font-size:16px;">PUE 1.43</span>
-                        <span class="cont-metric-sub">target 1.30 by Jan 2027 &middot; 26 months</span>
+                        <span class="cont-metric-label">Capex cycles</span>
+                        <span class="cont-metric-val" style="font-size:16px;">Chiller at EOL</span>
+                        <span class="cont-metric-sub">flagged before failure, not after</span>
                       </div>
                       <div class="cont-bar-wrap">
-                        <div class="cont-bar-bg"><div class="cont-bar-fill amber" style="width:52%"></div></div>
+                        <div class="cont-bar-bg"><div class="cont-bar-fill red" style="width:24%"></div></div>
                       </div>
                     </div>
                     <div class="cont-metric" style="padding:10px 14px;">
                       <div class="cont-metric-left">
-                        <span class="cont-metric-label">Grid carbon intensity</span>
-                        <span class="cont-metric-val" style="font-size:16px;">118 g/kWh</span>
-                        <span class="cont-metric-sub">&darr; 14% vs. last month &middot; renewable share rising</span>
+                        <span class="cont-metric-label">Opex</span>
+                        <span class="cont-metric-val" style="font-size:16px;">+8% vs. plan</span>
+                        <span class="cont-metric-sub">tracked against actual spend</span>
                       </div>
                       <div class="cont-bar-wrap">
-                        <div class="cont-bar-bg"><div class="cont-bar-fill green" style="width:82%"></div></div>
+                        <div class="cont-bar-bg"><div class="cont-bar-fill amber" style="width:58%"></div></div>
+                      </div>
+                    </div>
+                    <div class="cont-metric" style="padding:10px 14px;">
+                      <div class="cont-metric-left">
+                        <span class="cont-metric-label">Compliance</span>
+                        <span class="cont-metric-val" style="font-size:16px;">Permit current</span>
+                        <span class="cont-metric-sub">no open regulatory items</span>
+                      </div>
+                      <div class="cont-bar-wrap">
+                        <div class="cont-bar-bg"><div class="cont-bar-fill green" style="width:92%"></div></div>
+                      </div>
+                    </div>
+                    <div class="cont-metric" style="padding:10px 14px;">
+                      <div class="cont-metric-left">
+                        <span class="cont-metric-label">Insurance</span>
+                        <span class="cont-metric-val" style="font-size:16px;">Coverage gap</span>
+                        <span class="cont-metric-sub">climate-hazard rider under-covers current risk</span>
+                      </div>
+                      <div class="cont-bar-wrap">
+                        <div class="cont-bar-bg"><div class="cont-bar-fill red" style="width:31%"></div></div>
                       </div>
                     </div>
                   </div>
@@ -1355,7 +1571,7 @@
               <div class="phase-left">
                 <div>
                   <h3>Operational Efficiency</h3>
-                  <p>Predictive maintenance, anomaly detection, and setpoint optimisation delivered to operations teams in plain language. Sono reads your existing historian, detects failure modes before alarms fire, traces root cause to specific equipment, and surfaces ranked recommendations with a confidence score.</p>
+                  <p>The largest of the five categories: predictive maintenance, anomaly detection, and setpoint optimisation delivered to operations teams in plain language. Sono reads your existing historian, detects failure modes before alarms fire, traces root cause to specific equipment, and surfaces ranked recommendations with a confidence score.</p>
                   <p style="margin-top: 14px; font-size: 15px; color: var(--ink-60);">No new hardware. No integration project. Historian-native. Physics-constrained so no physically impossible setpoint can ever be suggested.</p>
                 </div>
                 <div style="margin-top: 32px;">
@@ -1399,27 +1615,190 @@
     </div>
   </section>
 
+  <!-- Value created -->
+  <section id="value">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">Value created</span>
+        <h2>What both modules are worth to the owner</h2>
+        <p>Ranges are Sono's modelled estimates for a 60&nbsp;MW colocation asset, to be replaced with pilot-measured figures once the first deployment closes.</p>
+      </div>
+      <div class="value-grid reveal">
+        <div class="value-cell">
+          <div class="value-num">20%+</div>
+          <div class="value-title">Value preservation</div>
+          <div class="value-desc">Insurability, compliance and equipment condition tracked continuously, so the asset holds its investment grade instead of drifting toward a stranded position.</div>
+        </div>
+        <div class="value-cell">
+          <div class="value-num">~5%</div>
+          <div class="value-title">Opex optimisation</div>
+          <div class="value-desc">Predictive maintenance and setpoint discipline instead of reactive callouts and over-cooling.</div>
+        </div>
+        <div class="value-cell">
+          <div class="value-num">+3&ndash;5 yrs</div>
+          <div class="value-title">Asset life extension</div>
+          <div class="value-desc">Replacement planned at end-of-life rather than forced by failure, spreading capex across the hold period.</div>
+        </div>
+        <div class="value-cell">
+          <div class="value-num" style="font-size: 28px;">Lower</div>
+          <div class="value-title">Carbon footprint</div>
+          <div class="value-desc">Planned end-of-life and correct cooling avoid the emergency, carbon-intensive outcome regulators now treat as a risk category.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coverage -->
+  <section id="coverage">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">Coverage</span>
+        <h2>21 scored layers across six domains</h2>
+        <p>Internal and external data &mdash; 30+ sources in &mdash; mapped through category models onto the levers an owner actually pulls.</p>
+      </div>
+      <div class="coverage-grid reveal">
+        <div class="coverage-card">
+          <div class="coverage-card-top"><h3>Revenue</h3><span class="coverage-count">2</span></div>
+          <p>SLA and uptime breach avoidance, stranded capacity monetisation.</p>
+          <div class="coverage-model">Model &middot; Uptime &amp; capacity</div>
+        </div>
+        <div class="coverage-card">
+          <div class="coverage-card-top"><h3>Capex cycles</h3><span class="coverage-count">1</span></div>
+          <p>Asset refresh and end-of-life timing.</p>
+          <div class="coverage-model">Model &middot; Equipment lifecycle &amp; maintenance</div>
+        </div>
+        <div class="coverage-card">
+          <div class="coverage-card-top"><h3>Opex</h3><span class="coverage-count">10</span></div>
+          <p>Energy, predictive maintenance, labour, downtime and SLA penalties, and six more.</p>
+          <div class="coverage-model">Model &middot; Energy &amp; resource consumption &middot; equipment lifecycle</div>
+        </div>
+        <div class="coverage-card">
+          <div class="coverage-card-top"><h3>Compliance</h3><span class="coverage-count">1</span></div>
+          <p>Contractual and SLA compliance.</p>
+          <div class="coverage-model">Model &middot; Infrastructure &amp; resource availability</div>
+        </div>
+        <div class="coverage-card">
+          <div class="coverage-card-top"><h3>Insurance</h3><span class="coverage-count">2</span></div>
+          <p>Fire and water damage, climate and catastrophe hazard exposure.</p>
+          <div class="coverage-model">Model &middot; Physical &amp; climate hazard</div>
+        </div>
+        <div class="coverage-card">
+          <div class="coverage-card-top"><h3>Site selection</h3><span class="coverage-count">5</span></div>
+          <p>Grid and power diligence, climate hazard zoning, permitting risk, and two more.</p>
+          <div class="coverage-model">Model &middot; Site viability</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Competitive landscape -->
+  <section id="competitive">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">Landscape</span>
+        <h2>Continuous and cross-domain is an empty quadrant</h2>
+        <p>Existing tools are either broad but periodic, or continuous but narrow. Nothing tracks every risk category on an asset, continuously.</p>
+      </div>
+      <div class="quadrant-wrap reveal">
+        <div class="quadrant-chart">
+          <svg viewBox="0 0 420 340" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; display:block;">
+            <!-- Axes -->
+            <line x1="50" y1="20" x2="50" y2="290" stroke="#e0dcd6" stroke-width="1.5"/>
+            <line x1="50" y1="290" x2="400" y2="290" stroke="#e0dcd6" stroke-width="1.5"/>
+            <!-- Axis labels -->
+            <text x="50" y="14" font-family="Space Grotesk,sans-serif" font-weight="600" font-size="9.5" letter-spacing="0.06em" fill="rgba(36,34,32,0.6)">CROSS-DOMAIN</text>
+            <text x="50" y="308" font-family="Space Grotesk,sans-serif" font-weight="600" font-size="9.5" letter-spacing="0.06em" fill="rgba(36,34,32,0.6)">SINGLE DOMAIN</text>
+            <text x="55" y="290" font-family="Space Grotesk,sans-serif" font-weight="600" font-size="9.5" letter-spacing="0.06em" fill="rgba(36,34,32,0.6)">POINT-IN-TIME</text>
+            <text x="330" y="290" text-anchor="end" font-family="Space Grotesk,sans-serif" font-weight="600" font-size="9.5" letter-spacing="0.06em" fill="rgba(36,34,32,0.6)">CONTINUOUS</text>
+
+            <!-- Quadrant: Technical due diligence (upper-left) -->
+            <text x="90" y="70" font-family="Plus Jakarta Sans,sans-serif" font-size="11.5" font-weight="600" fill="#242220">Technical due diligence</text>
+            <text x="90" y="86" font-family="Plus Jakarta Sans,sans-serif" font-size="10.5" fill="rgba(36,34,32,0.6)">JLL &middot; CBRE &middot; Ramboll &middot; Arup</text>
+            <circle cx="78" cy="66" r="4.5" fill="rgba(36,34,32,0.6)"/>
+
+            <!-- Quadrant: One-off studies (lower-left) -->
+            <text x="90" y="235" font-family="Plus Jakarta Sans,sans-serif" font-size="11.5" font-weight="600" fill="#242220">One-off studies</text>
+            <text x="90" y="251" font-family="Plus Jakarta Sans,sans-serif" font-size="10.5" fill="rgba(36,34,32,0.6)">Grid studies &middot; insurance surveys</text>
+            <circle cx="78" cy="231" r="4.5" fill="rgba(36,34,32,0.6)"/>
+
+            <!-- Quadrant: Monitoring platforms (lower-right) -->
+            <text x="220" y="255" font-family="Plus Jakarta Sans,sans-serif" font-size="11.5" font-weight="600" fill="#242220">Monitoring platforms</text>
+            <text x="220" y="271" font-family="Plus Jakarta Sans,sans-serif" font-size="10.5" fill="rgba(36,34,32,0.6)">Schneider &middot; Nlyte &middot; Vertiv</text>
+            <text x="220" y="285" font-family="Plus Jakarta Sans,sans-serif" font-size="10.5" fill="rgba(36,34,32,0.6)">Jupiter &middot; XDI</text>
+            <circle cx="208" cy="251" r="4.5" fill="rgba(36,34,32,0.6)"/>
+
+            <!-- Sono: cross-domain + continuous (upper-right, the empty quadrant) -->
+            <rect x="255" y="45" width="140" height="62" rx="10" fill="rgba(106,148,112,0.1)" stroke="#6A9470" stroke-width="1.4"/>
+            <text x="272" y="70" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="14" fill="#6A9470">sono</text>
+            <text x="272" y="88" font-family="Plus Jakarta Sans,sans-serif" font-size="10" fill="rgba(36,34,32,0.6)">21 layers, six categories,</text>
+            <text x="272" y="100" font-family="Plus Jakarta Sans,sans-serif" font-size="10" fill="rgba(36,34,32,0.6)">re-scored as conditions change</text>
+            <circle cx="262" cy="60" r="5" fill="#6A9470"/>
+          </svg>
+        </div>
+        <div class="quadrant-legend">
+          <div class="quadrant-legend-item">
+            <span class="quadrant-dot" style="background: var(--sage);"></span>
+            <div>
+              <h4>Only Sono is both</h4>
+              <p>Cross-domain and continuous: 21 risk layers across six categories, re-scored as conditions change &mdash; and the only one of the four that pairs actionable recommendations with a financial-impact figure.</p>
+            </div>
+          </div>
+          <div class="quadrant-legend-item">
+            <span class="quadrant-dot" style="background: var(--ink-60);"></span>
+            <div>
+              <h4>The alternatives</h4>
+              <p>Technical due diligence firms deliver broad coverage once per engagement. One-off studies cover a single risk factor at a single moment. Monitoring platforms run continuously, but each covers one domain.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Traction -->
   <section id="traction">
     <div class="container">
       <div class="section-header reveal">
         <span class="label">Traction</span>
-        <h2>Validated demand.</h2>
-        <p>Market validation across operators, OEMs, MEP consultants and engineering firms in Europe.</p>
+        <h2>Validated demand, strategic partners.</h2>
+        <p>Market validation across operators, OEMs, MEP consultants and advisors in Europe.</p>
       </div>
       <div class="traction-numbers reveal">
         <div class="traction-num-cell">
-          <div class="traction-big-num">215</div>
-          <div class="traction-num-label">Discovery conversations with operators, OEMs and consultants</div>
+          <div class="traction-big-num">153</div>
+          <div class="traction-num-label">Discovery conversations with operators, OEMs, MEP consultants and advisors</div>
         </div>
         <div class="traction-num-cell">
-          <div class="traction-big-num">5</div>
-          <div class="traction-num-label">Ongoing technical and commercial co-creation partnerships</div>
+          <div class="traction-big-num">3</div>
+          <div class="traction-num-label">Ongoing technical co-creation partnerships</div>
         </div>
         <div class="traction-num-cell">
-          <div class="traction-big-num">4</div>
-          <div class="traction-num-label">Active pilot discussions with colocation operators</div>
+          <div class="traction-big-num">7</div>
+          <div class="traction-num-label">Senior advisors, 150+ combined years in data centres, valuation and underwriting</div>
         </div>
+      </div>
+
+      <div class="partners-grid reveal">
+        <div class="partner-card">
+          <span class="label">Technical co-creation</span>
+          <h4>IPB Berlin</h4>
+          <p>Data centre developer</p>
+        </div>
+        <div class="partner-card">
+          <span class="label">Technical co-creation</span>
+          <h4>JLL</h4>
+          <p>One of the largest facilities management companies globally</p>
+        </div>
+        <div class="partner-card">
+          <span class="label">Technical co-creation</span>
+          <h4>Solwo</h4>
+          <p>Real estate developer</p>
+        </div>
+      </div>
+
+      <div class="ecosystem-strip reveal">
+        <span><strong>Adlershof</strong> &middot; Berlin Startup Stipendium</span>
+        <span><strong>University of Cambridge</strong> &middot; Carbon13</span>
       </div>
     </div>
   </section>
@@ -1564,7 +1943,7 @@
       revealAll();
     }
 
-    // Top-level layer tabs (Site Intelligence / Operational Intelligence)
+    // Top-level module tabs (Portfolio Expansion / Portfolio Management)
     document.querySelectorAll('.phase-tab').forEach(tab => {
       tab.addEventListener('click', () => {
         const idx = tab.dataset.tab;
@@ -1579,7 +1958,7 @@
       });
     });
 
-    // Sub-tabs inside Operational Intelligence (Continuous Monitoring / Operational Efficiency)
+    // Sub-tabs inside Portfolio Management (Live Risk Tracking / Operational Efficiency)
     document.querySelectorAll('.subtab').forEach(tab => {
       tab.addEventListener('click', () => {
         const idx = tab.dataset.subtab;
