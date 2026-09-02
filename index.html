@@ -662,68 +662,6 @@
     .coverage-card p { font-size: 13px; color: var(--ink-60); line-height: 1.55; }
     .coverage-model { margin-top: 10px; font-size: 11px; color: var(--ink-60); font-weight: 500; }
 
-    /* ── Competitive landscape ──────────────────────────────── */
-    #competitive { padding: 96px 0; border-bottom: 1px solid var(--ink-15); }
-    .quadrant-wrap {
-      margin-top: 48px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: center;
-    }
-    .quadrant-chart {
-      background: white;
-      border: 1px solid var(--ink-15);
-      border-radius: 16px;
-      padding: 28px 28px 36px;
-    }
-    .quadrant-legend { display: flex; flex-direction: column; gap: 20px; }
-    .quadrant-legend-item { display: flex; gap: 12px; align-items: flex-start; }
-    .quadrant-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
-    .quadrant-legend h4 { font-size: 14px; letter-spacing: -0.005em; margin-bottom: 3px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
-    .quadrant-legend p { font-size: 13px; color: var(--ink-60); line-height: 1.55; }
-
-    /* ── Traction ────────────────────────────────────────────── */
-    #traction { padding: 96px 0; border-bottom: 1px solid var(--ink-15); background: var(--ink-08); }
-    .traction-numbers {
-      margin-top: 48px; margin-bottom: 48px;
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 2px; background: var(--ink-15);
-      border: 1px solid var(--ink-15); border-radius: 16px; overflow: hidden;
-    }
-    .traction-num-cell { background: var(--paper); padding: 36px 32px; text-align: center; }
-    .traction-big-num {
-      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
-      font-size: 52px; letter-spacing: -0.04em; color: var(--ink); line-height: 1;
-    }
-    .traction-num-label { margin-top: 8px; font-size: 13px; color: var(--ink-60); line-height: 1.5; }
-
-    .partners-grid {
-      margin-top: 16px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-    .partner-card {
-      background: var(--paper);
-      border: 1px solid var(--ink-15);
-      border-radius: 14px;
-      padding: 20px 22px;
-    }
-    .partner-card .label { display: block; margin-bottom: 8px; }
-    .partner-card h4 { font-size: 15px; letter-spacing: -0.01em; margin-bottom: 3px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
-    .partner-card p { font-size: 12.5px; color: var(--ink-60); }
-    .ecosystem-strip {
-      margin-top: 28px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px 28px;
-      align-items: baseline;
-      font-size: 13.5px;
-      color: var(--ink-60);
-    }
-    .ecosystem-strip strong { color: var(--ink); font-weight: 600; }
-
     /* ── Team ───────────────────────────────────────────────── */
     #team {
       padding: 96px 0;
@@ -960,7 +898,6 @@
       .phase-right { min-height: 340px; }
       .phase-left { border-right: none; border-bottom: 1px solid var(--ink-15); }
       .coverage-grid { grid-template-columns: 1fr 1fr; }
-      .quadrant-wrap { grid-template-columns: 1fr; gap: 32px; }
     }
     @media (max-width: 768px) {
       .lifecycle-inner { grid-template-columns: 1fr; }
@@ -975,8 +912,6 @@
       .dimension { border-right: none; border-bottom: 1px solid rgba(247,243,238,0.1); }
       .dimension:last-child { border-bottom: none; }
       nav .btn-secondary { display: none; }
-      .traction-numbers { grid-template-columns: 1fr; }
-      .partners-grid { grid-template-columns: 1fr; }
       .sm-scores { grid-template-columns: repeat(3, 1fr); }
       .modal-wide .modal-box { padding: 28px 24px; }
     }
@@ -1006,7 +941,6 @@
       <nav>
         <a href="#phases">Product</a>
         <a href="#coverage">Coverage</a>
-        <a href="#traction">Traction</a>
         <a href="#team">Team</a>
         <a href="#contact" class="btn-secondary">Get in touch</a>
       </nav>
@@ -1687,118 +1621,6 @@
           <p>Grid and power diligence, climate hazard zoning, permitting risk, and two more.</p>
           <div class="coverage-model">Model &middot; Site viability</div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Competitive landscape -->
-  <section id="competitive">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="label">Landscape</span>
-        <h2>Continuous and cross-domain is an empty quadrant</h2>
-        <p>Existing tools are either broad but periodic, or continuous but narrow. Nothing tracks every risk category on an asset, continuously.</p>
-      </div>
-      <div class="quadrant-wrap reveal">
-        <div class="quadrant-chart">
-          <svg viewBox="0 0 420 340" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; display:block;">
-            <!-- Axes -->
-            <line x1="50" y1="20" x2="50" y2="290" stroke="#e0dcd6" stroke-width="1.5"/>
-            <line x1="50" y1="290" x2="400" y2="290" stroke="#e0dcd6" stroke-width="1.5"/>
-            <!-- Axis labels -->
-            <text x="50" y="14" font-family="Space Grotesk,sans-serif" font-weight="600" font-size="9.5" letter-spacing="0.06em" fill="rgba(36,34,32,0.6)">CROSS-DOMAIN</text>
-            <text x="50" y="308" font-family="Space Grotesk,sans-serif" font-weight="600" font-size="9.5" letter-spacing="0.06em" fill="rgba(36,34,32,0.6)">SINGLE DOMAIN</text>
-            <text x="55" y="290" font-family="Space Grotesk,sans-serif" font-weight="600" font-size="9.5" letter-spacing="0.06em" fill="rgba(36,34,32,0.6)">POINT-IN-TIME</text>
-            <text x="330" y="290" text-anchor="end" font-family="Space Grotesk,sans-serif" font-weight="600" font-size="9.5" letter-spacing="0.06em" fill="rgba(36,34,32,0.6)">CONTINUOUS</text>
-
-            <!-- Quadrant: Technical due diligence (upper-left) -->
-            <text x="90" y="70" font-family="Plus Jakarta Sans,sans-serif" font-size="11.5" font-weight="600" fill="#242220">Technical due diligence</text>
-            <text x="90" y="86" font-family="Plus Jakarta Sans,sans-serif" font-size="10.5" fill="rgba(36,34,32,0.6)">JLL &middot; CBRE &middot; Ramboll &middot; Arup</text>
-            <circle cx="78" cy="66" r="4.5" fill="rgba(36,34,32,0.6)"/>
-
-            <!-- Quadrant: One-off studies (lower-left) -->
-            <text x="90" y="235" font-family="Plus Jakarta Sans,sans-serif" font-size="11.5" font-weight="600" fill="#242220">One-off studies</text>
-            <text x="90" y="251" font-family="Plus Jakarta Sans,sans-serif" font-size="10.5" fill="rgba(36,34,32,0.6)">Grid studies &middot; insurance surveys</text>
-            <circle cx="78" cy="231" r="4.5" fill="rgba(36,34,32,0.6)"/>
-
-            <!-- Quadrant: Monitoring platforms (lower-right) -->
-            <text x="220" y="255" font-family="Plus Jakarta Sans,sans-serif" font-size="11.5" font-weight="600" fill="#242220">Monitoring platforms</text>
-            <text x="220" y="271" font-family="Plus Jakarta Sans,sans-serif" font-size="10.5" fill="rgba(36,34,32,0.6)">Schneider &middot; Nlyte &middot; Vertiv</text>
-            <text x="220" y="285" font-family="Plus Jakarta Sans,sans-serif" font-size="10.5" fill="rgba(36,34,32,0.6)">Jupiter &middot; XDI</text>
-            <circle cx="208" cy="251" r="4.5" fill="rgba(36,34,32,0.6)"/>
-
-            <!-- Sono: cross-domain + continuous (upper-right, the empty quadrant) -->
-            <rect x="255" y="45" width="140" height="62" rx="10" fill="rgba(106,148,112,0.1)" stroke="#6A9470" stroke-width="1.4"/>
-            <text x="272" y="70" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="14" fill="#6A9470">sono</text>
-            <text x="272" y="88" font-family="Plus Jakarta Sans,sans-serif" font-size="10" fill="rgba(36,34,32,0.6)">21 layers, six categories,</text>
-            <text x="272" y="100" font-family="Plus Jakarta Sans,sans-serif" font-size="10" fill="rgba(36,34,32,0.6)">re-scored as conditions change</text>
-            <circle cx="262" cy="60" r="5" fill="#6A9470"/>
-          </svg>
-        </div>
-        <div class="quadrant-legend">
-          <div class="quadrant-legend-item">
-            <span class="quadrant-dot" style="background: var(--sage);"></span>
-            <div>
-              <h4>Only Sono is both</h4>
-              <p>Cross-domain and continuous: 21 risk layers across six categories, re-scored as conditions change &mdash; and the only one of the four that pairs actionable recommendations with a financial-impact figure.</p>
-            </div>
-          </div>
-          <div class="quadrant-legend-item">
-            <span class="quadrant-dot" style="background: var(--ink-60);"></span>
-            <div>
-              <h4>The alternatives</h4>
-              <p>Technical due diligence firms deliver broad coverage once per engagement. One-off studies cover a single risk factor at a single moment. Monitoring platforms run continuously, but each covers one domain.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Traction -->
-  <section id="traction">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="label">Traction</span>
-        <h2>Validated demand, strategic partners.</h2>
-        <p>Market validation across operators, OEMs, MEP consultants and advisors in Europe.</p>
-      </div>
-      <div class="traction-numbers reveal">
-        <div class="traction-num-cell">
-          <div class="traction-big-num">153</div>
-          <div class="traction-num-label">Discovery conversations with operators, OEMs, MEP consultants and advisors</div>
-        </div>
-        <div class="traction-num-cell">
-          <div class="traction-big-num">3</div>
-          <div class="traction-num-label">Ongoing technical co-creation partnerships</div>
-        </div>
-        <div class="traction-num-cell">
-          <div class="traction-big-num">7</div>
-          <div class="traction-num-label">Senior advisors, 150+ combined years in data centres, valuation and underwriting</div>
-        </div>
-      </div>
-
-      <div class="partners-grid reveal">
-        <div class="partner-card">
-          <span class="label">Technical co-creation</span>
-          <h4>IPB Berlin</h4>
-          <p>Data centre developer</p>
-        </div>
-        <div class="partner-card">
-          <span class="label">Technical co-creation</span>
-          <h4>JLL</h4>
-          <p>One of the largest facilities management companies globally</p>
-        </div>
-        <div class="partner-card">
-          <span class="label">Technical co-creation</span>
-          <h4>Solwo</h4>
-          <p>Real estate developer</p>
-        </div>
-      </div>
-
-      <div class="ecosystem-strip reveal">
-        <span><strong>Adlershof</strong> &middot; Berlin Startup Stipendium</span>
-        <span><strong>University of Cambridge</strong> &middot; Carbon13</span>
       </div>
     </div>
   </section>
