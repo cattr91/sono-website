@@ -1784,14 +1784,15 @@
     document.querySelectorAll('.subtab').forEach(tab => {
       tab.addEventListener('click', () => {
         const idx = tab.dataset.subtab;
-        document.querySelectorAll('.subtab').forEach(t => {
+        const panel = tab.closest('.phase-panel');
+        panel.querySelectorAll('.subtab').forEach(t => {
           t.classList.remove('active');
           t.setAttribute('aria-selected', 'false');
         });
-        document.querySelectorAll('.subpanel').forEach(p => p.classList.remove('active'));
+        panel.querySelectorAll('.subpanel').forEach(p => p.classList.remove('active'));
         tab.classList.add('active');
         tab.setAttribute('aria-selected', 'true');
-        document.querySelector(`.subpanel[data-subpanel="${idx}"]`).classList.add('active');
+        panel.querySelector(`.subpanel[data-subpanel="${idx}"]`).classList.add('active');
       });
     });
 
