@@ -1069,3 +1069,4 @@
     .hero-shots .shot-map { height: 443px; overflow: hidden; }
     .hero-shots, .hero-shots * { scrollbar-width: none; }
     .hero-shots *::-webkit-scrollbar { display: none; }
+    .page-head .shot-map { height: 443px; overflow: hidden; }
