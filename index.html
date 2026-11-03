@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>sono · Infrastructure that knows itself.</title>
-  <meta name="description" content="Sono continuously scores data centre risk across revenue, capex, opex, compliance, insurance and site selection — so exposure is priced the day it moves, not the year it's discovered." />
+  <meta name="description" content="Sono is the AI-enabled operating system for data centres: site selection before you build, and every alarm traced from signal to customer once you operate." />
   <meta property="og:title" content="sono · Infrastructure that knows itself.">
-  <meta property="og:description" content="Risk moves continuously. Assessment doesn't. Sono keeps a live, agent-read score on every data centre asset you hold and every site you're evaluating.">
+  <meta property="og:description" content="Sono is the AI-enabled operating system for data centres: site selection before you build, and every alarm traced from signal to customer once you operate.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://sono.so">
   <meta property="og:image" content="https://sono.so/og-image.png">
@@ -15,1093 +15,68 @@
   <meta property="og:site_name" content="sono">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="sono · Infrastructure that knows itself.">
-  <meta name="twitter:description" content="Risk moves continuously. Assessment doesn't. Sono keeps a live score on every data centre asset you hold and every site you're evaluating.">
+  <meta name="twitter:description" content="Sono is the AI-enabled operating system for data centres: site selection before you build, and every alarm traced from signal to customer once you operate.">
   <meta name="twitter:image" content="https://sono.so/og-image.png">
   <link rel="canonical" href="https://sono.so">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --ink:        #242220;
-      --paper:      #F7F3EE;
-      --terracotta: #C87A4F;
-      --sage:       #6A9470;
-      --ink-60:     rgba(36,34,32,0.6);
-      --ink-15:     rgba(36,34,32,0.15);
-      --ink-08:     rgba(36,34,32,0.08);
-      --paper-70:   rgba(247,243,238,0.7);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--paper);
-      color: var(--ink);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-    }
-    h1, h2, h3, .stat-num, .nav-logo, .label {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-    }
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-      opacity: 0.025;
-      pointer-events: none;
-      z-index: 9999;
-    }
-    .container { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
-    .label {
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink-60);
-      font-weight: 600;
-      font-family: 'Space Grotesk', sans-serif;
-    }
-
-    /* ── Header ─────────────────────────────────────────────── */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--paper-70);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--ink-15);
-    }
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 28px;
-      max-width: 1120px;
-      margin: 0 auto;
-    }
-    .nav-logo {
-      font-size: 36px;
-      color: var(--ink);
-      text-decoration: none;
-      letter-spacing: -0.02em;
-    }
-    nav { display: flex; align-items: center; gap: 36px; }
-    nav a {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-weight: 500;
-      font-size: 14px;
-      color: var(--ink-60);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    nav a:hover { color: var(--ink); }
-    .btn-primary {
-      display: inline-block;
-      background: var(--terracotta);
-      color: var(--paper);
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 600;
-      font-size: 14px;
-      padding: 10px 22px;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: opacity 0.2s, transform 0.1s;
-      border: none;
-      cursor: pointer;
-    }
-    .btn-primary:hover { opacity: 0.88; }
-    .btn-primary:active { transform: translateY(1px); }
-    .btn-secondary {
-      display: inline-block;
-      background: transparent;
-      color: var(--ink);
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 600;
-      font-size: 14px;
-      padding: 10px 22px;
-      border-radius: 8px;
-      text-decoration: none;
-      border: 1.5px solid var(--ink-15);
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .btn-secondary:hover { border-color: var(--ink-60); background: var(--ink-08); }
-
-    /* ── Hero ───────────────────────────────────────────────── */
-    #hero {
-      position: relative;
-      overflow: hidden;
-      border-bottom: 1px solid var(--ink-15);
-      background: var(--ink);
-    }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-image: url("https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1600&q=80");
-      background-size: cover;
-      background-position: center;
-      opacity: 0.22;
-    }
-    .hero-vignette {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 30% 60%, rgba(200,122,79,0.18) 0%, transparent 65%),
-                  linear-gradient(to right, rgba(36,34,32,0.6) 0%, transparent 70%);
-    }
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-      padding: 100px 28px 96px;
-      max-width: 1120px;
-      margin: 0 auto;
-    }
-    .hero-eyebrow {
-      display: inline-block;
-      background: rgba(106,148,112,0.25);
-      color: var(--sage);
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 600;
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 5px 12px;
-      border-radius: 100px;
-      border: 1px solid rgba(106,148,112,0.4);
-      margin-bottom: 28px;
-      animation: fadeUp 0.7s ease both;
-    }
-    h1 {
-      font-size: clamp(42px, 6vw, 72px);
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      color: var(--paper);
-      max-width: 760px;
-      animation: fadeUp 0.7s 0.1s ease both;
-    }
-    .hero-sub {
-      margin-top: 24px;
-      font-size: 18px;
-      line-height: 1.6;
-      color: rgba(247,243,238,0.72);
-      max-width: 560px;
-      animation: fadeUp 0.7s 0.2s ease both;
-    }
-    .hero-actions {
-      margin-top: 40px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      animation: fadeUp 0.7s 0.3s ease both;
-    }
-
-    /* ── Five dimensions strip ─────────────────────────────── */
-    .hero-dimensions {
-      position: relative;
-      z-index: 2;
-      border-top: 1px solid rgba(247,243,238,0.1);
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 28px;
-      display: flex;
-      flex-wrap: wrap;
-      animation: fadeUp 0.7s 0.45s ease both;
-    }
-    .dimension {
-      flex: 1;
-      min-width: 140px;
-      padding: 20px 24px 28px;
-      border-right: 1px solid rgba(247,243,238,0.1);
-    }
-    .dimension:last-child { border-right: none; }
-    .dim-icon {
-      width: 28px;
-      height: 28px;
-      margin-bottom: 10px;
-      opacity: 0.7;
-    }
-    .dim-label {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 600;
-      font-size: 13px;
-      color: var(--paper);
-      letter-spacing: -0.01em;
-    }
-    .dim-desc {
-      margin-top: 4px;
-      font-size: 12px;
-      color: rgba(247,243,238,0.45);
-      line-height: 1.5;
-    }
-
-    /* ── The Gap ────────────────────────────────────────────── */
-    #gap { padding: 96px 0; border-bottom: 1px solid var(--ink-15); }
-    .gap-grid {
-      margin-top: 48px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-    .gap-card {
-      border: 1px solid var(--ink-15);
-      border-radius: 14px;
-      padding: 24px;
-      background: white;
-    }
-    .gap-card h3 { font-size: 15px; letter-spacing: -0.01em; margin-bottom: 8px; }
-    .gap-card p { font-size: 13.5px; color: var(--ink-60); line-height: 1.6; }
-
-    /* ── Cost of the gap ────────────────────────────────────── */
-    #cost { padding: 96px 0; border-bottom: 1px solid var(--ink-15); background: var(--ink-08); }
-    .cost-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
-    }
-    .cost-left h2 {
-      font-size: clamp(26px, 3.6vw, 36px);
-      letter-spacing: -0.025em;
-      line-height: 1.15;
-      margin-top: 12px;
-    }
-    .cost-left p { margin-top: 16px; font-size: 15px; color: var(--ink-60); line-height: 1.65; }
-    .cost-stats { display: flex; flex-direction: column; gap: 20px; }
-    .cost-stat { background: var(--paper); border: 1px solid var(--ink-15); border-radius: 16px; padding: 32px; }
-    .cost-stat-num {
-      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
-      font-size: 46px; letter-spacing: -0.03em; color: var(--terracotta); line-height: 1;
-    }
-    .cost-stat-label { margin-top: 10px; font-size: 13.5px; color: var(--ink-60); line-height: 1.55; }
-
-    /* ── Phases ─────────────────────────────────────────────── */
-    #phases {
-      padding: 96px 0;
-      border-bottom: 1px solid var(--ink-15);
-    }
-    .section-header { margin-bottom: 56px; }
-    .section-header h2 {
-      font-size: clamp(28px, 4vw, 40px);
-      letter-spacing: -0.025em;
-      line-height: 1.1;
-      margin-top: 12px;
-    }
-    .section-header p {
-      margin-top: 16px;
-      font-size: 16px;
-      color: var(--ink-60);
-      max-width: 560px;
-    }
-
-    /* Phase tabs */
-    .phase-tabs {
-      border: 1px solid var(--ink-15);
-      border-radius: 16px;
-      overflow: hidden;
-      background: white;
-    }
-    .phase-tab-nav {
-      display: flex;
-      border-bottom: 1px solid var(--ink-15);
-      background: var(--paper);
-    }
-    .phase-tab {
-      flex: 1;
-      padding: 16px 20px;
-      background: none;
-      border: none;
-      border-bottom: 2px solid transparent;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 600;
-      font-size: 13px;
-      color: var(--ink-60);
-      cursor: pointer;
-      white-space: nowrap;
-      transition: color 0.2s, border-color 0.2s;
-      margin-bottom: -1px;
-      text-align: left;
-    }
-    .phase-tab:hover { color: var(--ink); }
-    .phase-tab.active { color: var(--ink); border-bottom-color: var(--terracotta); }
-    .phase-tab-num {
-      display: block;
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      color: var(--terracotta);
-      margin-bottom: 2px;
-    }
-    .phase-panel { display: none; }
-    .phase-panel.active { display: block; }
-
-    /* Sub-tabs (used inside the Operational Intelligence panel) */
-    .subtab-nav {
-      display: flex;
-      gap: 8px;
-      padding: 16px 20px 0;
-      background: var(--paper);
-    }
-    .subtab {
-      padding: 9px 16px;
-      background: white;
-      border: 1px solid var(--ink-15);
-      border-radius: 100px;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 600;
-      font-size: 12.5px;
-      color: var(--ink-60);
-      cursor: pointer;
-      transition: color 0.2s, border-color 0.2s, background 0.2s;
-    }
-    .subtab:hover { color: var(--ink); border-color: var(--ink-60); }
-    .subtab.active { color: var(--paper); background: var(--ink); border-color: var(--ink); }
-    .subpanel-wrap { padding-top: 4px; }
-    .subpanel { display: none; grid-template-columns: 1fr 1fr; min-height: 460px; }
-    .subpanel.active { display: grid; }
-
-    .op-intro {
-      padding: 24px 20px 4px;
-      font-size: 15px;
-      color: var(--ink-60);
-      max-width: none;
-      line-height: 1.65;
-    }
-
-    /* Phase panel left (text) */
-    .phase-left {
-      padding: 40px 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      border-right: 1px solid var(--ink-15);
-      border-top: 1px solid var(--ink-15);
-    }
-    .phase-panel[data-panel="0"] .phase-left { border-top: none; }
-    .phase-left h3 {
-      font-size: 22px;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-    }
-    .phase-left p {
-      font-size: 15px;
-      color: var(--ink-60);
-      line-height: 1.65;
-    }
-    .phase-status { display: none; }
-
-    /* Phase panel right (visual) */
-    .phase-right {
-      background: var(--ink);
-      position: relative;
-      overflow: hidden;
-      border-top: 1px solid var(--ink-15);
-    }
-    .phase-panel[data-panel="0"] .phase-right { border-top: none; }
-
-    /* ── Site map mockup (Phase 1) ───────────────────────────── */
-    .sitemap-mockup {
-      padding: 24px;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .sm-topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .sm-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 600;
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      color: rgba(247,243,238,0.35);
-    }
-    .sm-badge {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 600;
-      font-size: 9px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--sage);
-      background: rgba(106,148,112,0.15);
-      border: 1px solid rgba(106,148,112,0.3);
-      padding: 3px 8px;
-      border-radius: 100px;
-    }
-    /* Map grid */
-    .sm-map {
-      flex: 1;
-      position: relative;
-      border: 1px solid rgba(247,243,238,0.08);
-      border-radius: 10px;
-      overflow: hidden;
-      background: #1a1916;
-    }
-    .sm-map svg { width: 100%; height: 100%; }
-
-    /* Score panel at bottom */
-    .sm-scores {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 4px;
-    }
-    .sm-score-cell {
-      background: rgba(247,243,238,0.04);
-      border: 1px solid rgba(247,243,238,0.08);
-      border-radius: 6px;
-      padding: 8px 6px;
-      text-align: center;
-    }
-    .sm-score-val {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 16px;
-      line-height: 1;
-      color: var(--paper);
-    }
-    .sm-score-val.high { color: var(--sage); }
-    .sm-score-val.mid  { color: #d4a847; }
-    .sm-score-val.low  { color: var(--terracotta); }
-    .sm-score-name {
-      font-size: 9px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: rgba(247,243,238,0.3);
-      margin-top: 4px;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 600;
-    }
-
-    /* ── Continuous mockup ────────────────────────── */
-    .cont-mockup {
-      padding: 24px;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .cont-topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .cont-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 600;
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      color: rgba(247,243,238,0.35);
-    }
-    .pulse-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--sage);
-      animation: alertpulse 2s infinite;
-    }
-    .cont-metric {
-      background: rgba(247,243,238,0.04);
-      border: 1px solid rgba(247,243,238,0.08);
-      border-radius: 8px;
-      padding: 14px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .cont-metric-left { display: flex; flex-direction: column; gap: 2px; }
-    .cont-metric-label {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 600;
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(247,243,238,0.35);
-    }
-    .cont-metric-val {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 20px;
-      color: var(--paper);
-      letter-spacing: -0.02em;
-    }
-    .cont-metric-sub { font-size: 11px; color: rgba(247,243,238,0.4); }
-    .cont-bar-wrap { width: 100px; }
-    .cont-bar-bg { height: 4px; background: rgba(247,243,238,0.08); border-radius: 2px; }
-    .cont-bar-fill { height: 4px; border-radius: 2px; }
-    .cont-bar-fill.green { background: var(--sage); }
-    .cont-bar-fill.amber { background: #d4a847; }
-    .cont-bar-fill.red   { background: var(--terracotta); }
-    .cont-alert {
-      background: rgba(200,122,79,0.1);
-      border: 1px solid rgba(200,122,79,0.25);
-      border-radius: 8px;
-      padding: 10px 14px;
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-    }
-    .cont-alert-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--terracotta); flex-shrink: 0;
-      margin-top: 4px;
-      animation: alertpulse 1.8s infinite;
-    }
-    .cont-alert-text {
-      font-size: 12px;
-      color: rgba(247,243,238,0.6);
-      line-height: 1.5;
-    }
-    .cont-alert-text strong { color: var(--terracotta); font-weight: 600; }
-
-    /* ── Operator mockup (Operational Efficiency) ───────────────────────────── */
-    .mockup-topbar {
-      display: flex; align-items: center; gap: 6px;
-      padding: 12px 16px;
-      border-bottom: 1px solid rgba(247,243,238,0.08);
-      background: rgba(247,243,238,0.03);
-    }
-    .mockup-dot { width: 8px; height: 8px; border-radius: 50%; }
-    .mockup-dot.red   { background: #ff5f57; }
-    .mockup-dot.amber { background: #ffbd2e; }
-    .mockup-dot.green { background: #28c940; }
-    .mockup-title-bar {
-      margin-left: 8px;
-      font-family: 'Space Grotesk', sans-serif; font-weight: 600;
-      font-size: 11px; letter-spacing: 0.06em;
-      color: rgba(247,243,238,0.25);
-    }
-    .mockup-body { padding: 20px; }
-    .mockup-alert {
-      background: rgba(200,122,79,0.12);
-      border: 1px solid rgba(200,122,79,0.3);
-      border-radius: 8px; padding: 12px 14px;
-      margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
-    }
-    .mockup-alert-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--terracotta); flex-shrink: 0;
-      animation: alertpulse 1.8s infinite;
-    }
-    .mockup-alert-text {
-      font-family: 'Space Grotesk', sans-serif; font-weight: 600;
-      font-size: 12px; color: var(--terracotta);
-    }
-    .mockup-rec {
-      background: rgba(247,243,238,0.04);
-      border: 1px solid rgba(247,243,238,0.1);
-      border-radius: 10px; padding: 16px 18px;
-    }
-    .mockup-rec-label {
-      font-family: 'Space Grotesk', sans-serif; font-weight: 600;
-      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--sage); margin-bottom: 6px;
-    }
-    .mockup-rec-title {
-      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
-      font-size: 14px; color: var(--paper); margin-bottom: 5px;
-    }
-    .mockup-rec-body { font-size: 11px; color: rgba(247,243,238,0.45); line-height: 1.55; margin-bottom: 12px; }
-    .mockup-meta { display: flex; gap: 12px; margin-bottom: 12px; }
-    .mockup-meta-item {
-      font-family: 'Space Grotesk', sans-serif; font-weight: 600;
-      font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
-      color: rgba(247,243,238,0.3);
-    }
-    .mockup-meta-item span { color: var(--terracotta); }
-    .mockup-btns { display: flex; gap: 6px; }
-    .mockup-btn {
-      font-family: 'Space Grotesk', sans-serif; font-weight: 600;
-      font-size: 11px; padding: 6px 12px; border-radius: 5px; border: none; cursor: default;
-    }
-    .mockup-btn.approve { background: var(--sage); color: white; }
-    .mockup-btn.defer   { background: rgba(247,243,238,0.08); color: rgba(247,243,238,0.45); }
-    .mockup-btn.dismiss { background: transparent; color: rgba(247,243,238,0.25); border: 1px solid rgba(247,243,238,0.1); }
-
-    /* ── Value created ──────────────────────────────────────── */
-    #value { padding: 96px 0; border-bottom: 1px solid var(--ink-15); }
-    .value-grid {
-      margin-top: 48px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2px;
-      background: var(--ink-15);
-      border: 1px solid var(--ink-15);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-    .value-cell { background: var(--paper); padding: 32px 26px; }
-    .value-num {
-      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
-      font-size: 38px; letter-spacing: -0.03em; color: var(--sage); line-height: 1;
-    }
-    .value-title { margin-top: 10px; font-size: 13px; font-weight: 600; color: var(--ink); font-family: 'Space Grotesk', sans-serif; }
-    .value-desc { margin-top: 6px; font-size: 13px; color: var(--ink-60); line-height: 1.55; }
-
-    /* ── Coverage ───────────────────────────────────────────── */
-    #coverage { padding: 96px 0; border-bottom: 1px solid var(--ink-15); background: var(--ink-08); }
-    .coverage-grid {
-      margin-top: 48px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-    .coverage-card {
-      background: var(--paper);
-      border: 1px solid var(--ink-15);
-      border-radius: 14px;
-      padding: 24px;
-    }
-    .coverage-card-top { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
-    .coverage-card h3 { font-size: 14px; letter-spacing: -0.005em; }
-    .coverage-count { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px; color: var(--terracotta); }
-    .coverage-card p { font-size: 13px; color: var(--ink-60); line-height: 1.55; }
-    .coverage-model { margin-top: 10px; font-size: 11px; color: var(--ink-60); font-weight: 500; }
-
-    /* ── Team ───────────────────────────────────────────────── */
-    #team {
-      padding: 96px 0;
-      border-bottom: 1px solid var(--ink-15);
-    }
-    .team-grid {
-      margin-top: 56px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .team-card {
-      background: var(--paper);
-      border: 1px solid var(--sage);
-      border-radius: 16px;
-      padding: 32px;
-    }
-    .team-avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      overflow: hidden;
-      background: var(--ink-08);
-      margin-bottom: 20px;
-    }
-    .team-avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .team-card h3 { font-size: 18px; letter-spacing: -0.02em; }
-    .team-role {
-      font-size: 13px;
-      color: var(--terracotta);
-      font-weight: 500;
-      margin-top: 2px;
-      margin-bottom: 12px;
-    }
-    .team-card p { font-size: 14px; color: var(--ink-60); line-height: 1.65; }
-    .team-card a { text-decoration: none; }
-    .team-card a h3 { transition: color 0.2s; color: var(--sage); }
-    .team-card a:hover h3 { opacity: 0.8; }
-
-    /* ── Contact ────────────────────────────────────────────── */
-    #contact { padding: 96px 0; }
-    .contact-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: start;
-    }
-    .contact-left h2 {
-      font-size: clamp(28px, 4vw, 40px);
-      letter-spacing: -0.025em;
-      line-height: 1.1;
-      margin-top: 12px;
-    }
-    .contact-left p {
-      margin-top: 16px;
-      font-size: 16px;
-      color: var(--ink-60);
-      line-height: 1.65;
-    }
-    .contact-form {
-      background: white;
-      border: 1px solid var(--ink-15);
-      border-radius: 16px;
-      padding: 36px;
-    }
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 16px;
-    }
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-bottom: 16px;
-    }
-    label {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 600;
-      font-size: 12px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--ink-60);
-    }
-    input, textarea {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 15px;
-      background: var(--paper);
-      border: 1.5px solid var(--ink-15);
-      border-radius: 8px;
-      padding: 11px 14px;
-      color: var(--ink);
-      outline: none;
-      transition: border-color 0.2s;
-      width: 100%;
-    }
-    input::placeholder, textarea::placeholder { color: var(--ink-60); }
-    input:focus, textarea:focus { border-color: var(--ink-60); }
-    textarea { resize: vertical; min-height: 110px; }
-    .form-check {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-    .form-check input[type="checkbox"] {
-      width: 16px;
-      height: 16px;
-      min-width: 16px;
-      margin-top: 2px;
-      accent-color: var(--terracotta);
-    }
-    .form-check label {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 13px;
-      text-transform: none;
-      letter-spacing: 0;
-      color: var(--ink-60);
-      font-weight: 400;
-    }
-
-    /* ── Funders bar ─────────────────────────────────────────── */
-    .funders-bar {
-      border-top: 1px solid var(--ink-15);
-      border-bottom: 1px solid var(--ink-15);
-      padding: 32px 0;
-      background: var(--paper);
-    }
-    .funders-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0;
-      flex-wrap: wrap;
-    }
-    .funders-label {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 600;
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ink-60);
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .funder-logo {
-      display: block;
-      object-fit: contain;
-      object-position: center;
-    }
-    .funder-eu     { height: 48px; width: auto; vertical-align: middle; }
-    .funder-berlin { height: 48px; width: auto; vertical-align: middle; }
-    .funder-asl    { height: 48px; width: auto; vertical-align: middle; }
-    .funder-logo-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 1;
-      transition: opacity 0.2s;
-    }
-    .funder-logo-link:hover { opacity: 0.7; }
-
-    /* ── Footer ─────────────────────────────────────────────── */
-    footer {
-      border-top: 1px solid var(--ink-15);
-      padding: 28px 0;
-    }
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    footer p, footer a { font-size: 13px; color: var(--ink-60); }
-    footer a { text-decoration: none; }
-    footer a:hover { color: var(--ink); }
-    .footer-links { display: flex; gap: 24px; }
-    .footer-linkedin { display: inline-flex; align-items: center; gap: 6px; }
-
-    /* ── Modal styles ───────────────────────────────────────── */
-    .modal-overlay {
-      position: fixed; inset: 0;
-      background: rgba(36,34,32,0.6);
-      z-index: 999; display: flex;
-      align-items: center; justify-content: center;
-      padding: 24px;
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.25s;
-    }
-    .modal-overlay.open { opacity: 1; pointer-events: all; }
-    .modal-box {
-      background: var(--paper);
-      border: 1px solid var(--ink-15);
-      border-radius: 16px; padding: 40px;
-      max-width: 520px; width: 100%;
-      position: relative;
-      transform: translateY(10px);
-      transition: transform 0.25s;
-    }
-    .modal-overlay.open .modal-box { transform: none; }
-    .modal-close {
-      position: absolute; top: 16px; right: 16px;
-      background: none; border: none; cursor: pointer;
-      color: var(--ink-60); font-size: 20px; line-height: 1; padding: 4px; z-index: 10;
-    }
-    .modal-close:hover { color: var(--ink); }
-    .modal-wide .modal-box {
-      max-width: 740px; max-height: 88vh; overflow-y: auto;
-      padding: 44px 48px 40px;
-    }
-    .legal-content h1 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 26px; letter-spacing: -0.025em; margin-bottom: 24px; color: var(--ink); padding-right: 32px; }
-    .legal-content h2 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; margin-top: 28px; margin-bottom: 8px; color: var(--ink); padding-bottom: 6px; border-bottom: 1px solid var(--ink-15); }
-    .legal-content p { font-size: 13px; color: var(--ink-60); line-height: 1.75; margin-bottom: 10px; }
-    .legal-content ul { font-size: 13px; color: var(--ink-60); line-height: 1.75; padding-left: 18px; margin-bottom: 10px; }
-    .legal-content a { color: var(--ink-60); word-break: break-word; }
-    .impressum-block { background: var(--ink-08); border-radius: 10px; padding: 18px 22px; margin-bottom: 16px; }
-    .impressum-block .imp-label { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-60); display: block; margin-bottom: 8px; }
-    .impressum-block p { font-size: 14px; color: var(--ink); margin-bottom: 0 !important; }
-
-    /* ── Animation ──────────────────────────────────────────── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(14px); }
-      to   { opacity: 1; transform: none; }
-    }
-    @keyframes alertpulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
-    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.55s ease, transform 0.55s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-
-    /* ── Responsive ─────────────────────────────────────────── */
-    @media (max-width: 900px) {
-      .subpanel.active { grid-template-columns: 1fr; }
-      .phase-right { min-height: 340px; }
-      .phase-left { border-right: none; border-bottom: 1px solid var(--ink-15); }
-      .coverage-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 768px) {
-      .lifecycle-inner { grid-template-columns: 1fr; }
-      .team-grid { grid-template-columns: 1fr; }
-      .gap-grid { grid-template-columns: 1fr 1fr; }
-      .cost-layout { grid-template-columns: 1fr; gap: 32px; }
-      .value-grid { grid-template-columns: 1fr 1fr; }
-      .coverage-grid { grid-template-columns: 1fr; }
-      .contact-layout { grid-template-columns: 1fr; gap: 40px; }
-      .form-row { grid-template-columns: 1fr; }
-      .hero-dimensions { flex-direction: column; }
-      .dimension { border-right: none; border-bottom: 1px solid rgba(247,243,238,0.1); }
-      .dimension:last-child { border-bottom: none; }
-      nav .btn-secondary { display: none; }
-      .sm-scores { grid-template-columns: repeat(3, 1fr); }
-      .modal-wide .modal-box { padding: 28px 24px; }
-    }
-    @media (max-width: 600px) {
-      nav a:not(:last-child) { display: none; }
-      .gap-grid { grid-template-columns: 1fr; }
-      .value-grid { grid-template-columns: 1fr; }
-      .coverage-grid { grid-template-columns: 1fr; }
-      .phase-tab-nav { overflow-x: auto; scrollbar-width: none; }
-      .phase-tab-nav::-webkit-scrollbar { display: none; }
-      .subtab-nav { overflow-x: auto; scrollbar-width: none; }
-      .subtab-nav::-webkit-scrollbar { display: none; }
-    }
-  </style>
+  <link rel="stylesheet" href="site.css">
 
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d7f477eff0d7458fa1a06c0c83cede21"}'></script>
   <!-- End Cloudflare Web Analytics -->
 </head>
-
 <body>
 
-  <!-- Header -->
   <header>
     <div class="header-inner">
-      <a href="#hero" class="nav-logo">sono</a>
-      <nav>
-        <a href="#phases">Product</a>
-        <a href="#coverage">Coverage</a>
-        <a href="#team">Team</a>
-        <a href="#contact" class="btn-secondary">Get in touch</a>
+      <a href="index.html" class="nav-logo">sono</a>
+      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+      <nav id="site-nav">
+        <a href="portfolio-management.html">Portfolio Management</a>
+        <a href="portfolio-expansion.html">Portfolio Expansion</a>
+        <a href="index.html#team">Team</a>
+        <a href="index.html#contact" class="btn-secondary">Get in touch</a>
       </nav>
     </div>
   </header>
 
-  <!-- Hero -->
   <section id="hero">
     <div class="hero-bg"></div>
     <div class="hero-vignette"></div>
     <div class="hero-inner container">
-      <div class="hero-eyebrow">Developed within Carbon13 &middot; Cambridge University Venture Builder</div>
-      <h1>Infrastructure that knows itself</h1>
-      <p class="hero-sub">
-        A corporate bond is re-priced daily. A data centre portfolio is scored once, at construction, and again at acquisition. Sono keeps a live, agent-read score on every asset you hold and every site you're evaluating, so risk is priced the day it moves, not the year it's discovered.
-      </p>
-      <div class="hero-actions">
-        <a href="#phases" class="btn-primary">See how it works</a>
-        <a href="#contact" class="btn-secondary" style="color:var(--paper); border-color:rgba(247,243,238,0.25);">Request a pilot</a>
-      </div>
-    </div>
-
-    <!-- Six domains strip -->
-    <div class="hero-dimensions container">
-      <div class="dimension">
-        <svg class="dim-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M5 21V13M12 21V8M19 21v-9M23 6l-6 6-4-4-8 8" stroke="rgba(247,243,238,0.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <div class="dim-label">Revenue</div>
-        <div class="dim-desc">SLA breach avoidance, stranded capacity</div>
-      </div>
-      <div class="dimension">
-        <svg class="dim-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="4" y="8" width="8" height="12" rx="1.5" stroke="rgba(247,243,238,0.7)" stroke-width="1.5"/>
-          <rect x="16" y="4" width="8" height="16" rx="1.5" stroke="rgba(247,243,238,0.7)" stroke-width="1.5"/>
-          <path d="M12 20h4" stroke="rgba(247,243,238,0.7)" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-        <div class="dim-label">Capex cycles</div>
-        <div class="dim-desc">Equipment lifecycle, refresh timing</div>
-      </div>
-      <div class="dimension">
-        <svg class="dim-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14 4L4 10v8l10 6 10-6v-8L14 4z" stroke="rgba(247,243,238,0.7)" stroke-width="1.5" stroke-linejoin="round"/>
-          <path d="M4 10l10 6 10-6" stroke="rgba(247,243,238,0.7)" stroke-width="1.5"/>
-          <path d="M14 16v8" stroke="rgba(247,243,238,0.7)" stroke-width="1.5"/>
-        </svg>
-        <div class="dim-label">Opex</div>
-        <div class="dim-desc">Energy, predictive maintenance, downtime</div>
-      </div>
-      <div class="dimension">
-        <svg class="dim-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="5" y="7" width="18" height="14" rx="2" stroke="rgba(247,243,238,0.7)" stroke-width="1.5"/>
-          <path d="M9 12h10M9 16h6" stroke="rgba(247,243,238,0.7)" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-        <div class="dim-label">Compliance</div>
-        <div class="dim-desc">Regulatory and permit status, tracked live</div>
-      </div>
-      <div class="dimension">
-        <svg class="dim-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14 4l9 4v6c0 6-4 9.5-9 10-5-0.5-9-4-9-10V8l9-4z" stroke="rgba(247,243,238,0.7)" stroke-width="1.5" stroke-linejoin="round"/>
-        </svg>
-        <div class="dim-label">Insurance</div>
-        <div class="dim-desc">Fire, water and climate hazard exposure</div>
-      </div>
-      <div class="dimension">
-        <svg class="dim-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14 24s8-7.2 8-13a8 8 0 10-16 0c0 5.8 8 13 8 13z" stroke="rgba(247,243,238,0.7)" stroke-width="1.5" stroke-linejoin="round"/>
-          <circle cx="14" cy="11" r="3" stroke="rgba(247,243,238,0.7)" stroke-width="1.5"/>
-        </svg>
-        <div class="dim-label">Site selection</div>
-        <div class="dim-desc">Grid access, permitting, climate zoning</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- The Gap -->
-  <section id="gap">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="label">The problem</span>
-        <h2>Risk moves continuously. Assessment doesn't.</h2>
-        <p>A corporate bond is re-priced daily. A &euro;5 billion data centre portfolio is scored once, at construction, and again at acquisition, by a consultant. Equipment wears down, contracts renew, insurance terms shift, climate and grid conditions move — the risk keeps moving, and nobody is looking.</p>
-      </div>
-      <div class="gap-grid reveal">
-        <div class="gap-card">
-          <h3>Investors</h3>
-          <p>Price assets on data that's already out of date by the time it reaches the investment committee.</p>
-        </div>
-        <div class="gap-card">
-          <h3>Operators</h3>
-          <p>Find out about failure risk after it happens, not before.</p>
-        </div>
-        <div class="gap-card">
-          <h3>Insurers</h3>
-          <p>Underwrite on a survey that's eleven months old, so exposure builds between renewals and prices at the wrong risk.</p>
-        </div>
-        <div class="gap-card">
-          <h3>Sustainability teams</h3>
-          <p>Unplanned failure is the more carbon-intensive outcome — emergency replacement instead of planned end-of-life.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Cost of the gap -->
-  <section id="cost">
-    <div class="container">
-      <div class="cost-layout reveal">
-        <div class="cost-left">
-          <span class="label">The cost of the gap</span>
-          <h2>Undetected risk becomes a stranded asset</h2>
-          <p>The stranded-asset situation in Ireland wasn't a failure of ambition or capital. It was a failure to track one risk factor — grid capacity — continuously, before it became a binding constraint. When the grid operator froze new connections, projects that looked viable at acquisition had no path to power.</p>
-        </div>
-        <div class="cost-stats">
-          <div class="cost-stat">
-            <div class="cost-stat-num">&euro;176bn</div>
-            <div class="cost-stat-label">Committed to European data centres, 2026&ndash;31. None of it is continuously scored.</div>
-          </div>
-          <div class="cost-stat">
-            <div class="cost-stat-num">&euro;5.8bn</div>
-            <div class="cost-stat-label">Already stranded in Ireland alone &mdash; land bought and permitted, but no grid connection.</div>
+      <div class="hero-grid">
+        <div>
+          <div class="hero-eyebrow">Developed within Carbon13 &middot; Cambridge University Venture Builder</div>
+          <h1>Infrastructure that knows itself</h1>
+          <p class="hero-sub">Sono is the AI-enabled operating system for data centres. It helps you choose the right site, then gives every alarm its exact origin, a calculated priority and the customers it affects.</p>
+          <div class="hero-actions">
+            <a href="#modules" class="btn-primary">See how it works</a>
+            <a href="#contact" class="btn-secondary" style="color:var(--paper); border-color:rgba(247,243,238,0.25);">Request a pilot</a>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Phases -->
-  <section id="phases">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="label">Product</span>
-        <h2>Two modules, one output.</h2>
-        <p>Sono runs a network of agents that read contract terms, insurance terms, manufacturer documentation and external conditions for every asset, continuously. Portfolio Management covers what you already hold; Portfolio Expansion covers what you're evaluating.</p>
-      </div>
-      <div class="phase-tabs reveal">
-        <div class="phase-tab-nav" role="tablist">
-          <button class="phase-tab active" role="tab" aria-selected="true" data-tab="0">
-            <span class="phase-tab-num">Module 2</span>
-            Portfolio Expansion
-          </button>
-          <button class="phase-tab" role="tab" aria-selected="false" data-tab="1">
-            <span class="phase-tab-num">Module 1</span>
-            Portfolio Management
-          </button>
-        </div>
-
-        <!-- Module 2: Portfolio Expansion (site selection, pre-capital) -->
-        <div class="phase-panel active" data-panel="0">
-        <div class="subpanel active">
-          <div class="phase-left">
-            <div>
-              <h3>Portfolio Expansion</h3>
-              <p>The same plot can look very different depending on what grid capacity is actually available, whether the water basin is under stress, or how many competing facilities are already queued for permits nearby. Sono combines those signals into a single score, calibrated against a growing reference population of European sites, so you can compare candidates on a common basis before committing capital.</p>
-              <p style="margin-top: 14px; font-size: 15px; color: var(--ink-60);">No instrumentation required. One category — grid capacity, climate exposure, regulatory trajectory — because the question at this stage is narrow: should you commit capital here at all.</p>
-            </div>
-            <div style="margin-top: 32px;">
-              <a href="#contact" class="btn-primary">Request a demo</a>
-            </div>
-          </div>
-          <div class="phase-right" style="display:flex; flex-direction:column;">
+        <div class="hero-shots" aria-hidden="true"><div class="shot a"><div class="shot-bar"><i></i><i></i><i></i><span>Portfolio Management &middot; Alarm detail</span></div>
+<div class="alarm-ui">
+  <div class="au-top"><div><div class="au-id">DC1-H2-UPS-2A-BATT.ALM</div><div class="au-sub">UPS-2A battery alarm &middot; Hall 2 &middot; raised 3 min ago</div></div><div class="au-badge">PRIORITY 1</div></div>
+  <div class="au-grid">
+    <div class="au-box"><div class="au-h">Origin</div>
+      <div class="au-row"><span>Controller</span><b>PLC-H2-01</b></div>
+      <div class="au-row"><span>Point</span><b>Modbus 3 / 40021</b></div>
+      <div class="au-row"><span>Equipment</span><b>UPS-2A</b></div>
+      <div class="au-row"><span>Position</span><b>Hall 2</b></div></div>
+    <div class="au-box"><div class="au-h">Priority</div>
+      <div class="au-row"><span>Client severity</span><b>Sev 2</b></div><div class="au-bar"><div class="au-bar-top"><span>Urgency</span><b>88</b></div><div class="au-track"><div class="au-fill hot" style="width:88%"></div></div></div><div class="au-bar"><div class="au-bar-top"><span>Impact</span><b>92</b></div><div class="au-track"><div class="au-fill hot" style="width:92%"></div></div></div></div>
+  </div>
+  <div class="au-box"><div class="au-h">Path to customer</div>
+    <div class="au-path"><span class="au-node">UPS-2A</span><span class="au-arrow">&rarr;</span><span class="au-node">PDU-2A.1</span><span class="au-arrow">&rarr;</span><span class="au-node">RPP-2A.1.3</span><span class="au-arrow">&rarr;</span><span class="au-node">Racks C01, C02</span><span class="au-arrow">&rarr;</span><span class="au-node end">Client A &middot; Gold</span></div></div>
+  <div class="au-box"><div class="au-h">Affected</div>
+      <div class="au-row"><span>Racks</span><b>2 (dual-corded)</b></div>
+      <div class="au-row"><span>B feed</span><b>RPP-2B.1.3 healthy</b></div>
+      <div class="au-row"><span>Customer notice</span><b>Required, SLA 15 min</b></div></div>
+  <div class="au-actions"><div class="au-btn">Notify Client A</div><div class="au-btn ghost">Draft ticket for approval</div></div>
+</div></div><div class="shot b"><div class="shot-bar"><i></i><i></i><i></i><span>Portfolio Expansion &middot; Site comparison</span></div><div class="shot-map"><div class="phase-right" style="display:flex; flex-direction:column; flex:1; min-height:0; border-top:none;">
             <div style="flex:1; display:flex; min-height:0;">
 
               <!-- Left sidebar: layers + stats -->
@@ -1402,225 +377,431 @@
               </div><!-- /right scoring panel -->
 
             </div><!-- /three-column row -->
-          </div>
+          </div></div></div><p class="shot-cap">Illustrative data.</p>
         </div>
+      </div>
+    </div>
+  </section>
+  <!-- People, planet, profit -->
+  <section id="ppp">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">People, planet, profit</span>
+        <h2>An operating system that runs the equipment better</h2>
+        <p class="wide">Data centres are a new asset class with too few experienced people.<br>Sono is the AI-enabled operating system that helps you choose the right site and then run it better, so the people you have can act faster and the equipment does more with less.</p>
+      </div>
+      <div class="value-grid value-grid-3 reveal">
+        <div class="value-cell">
+          <div class="value-num" style="font-size: 28px;">People</div>
+          <div class="value-title">Clear tasks for every shift</div>
+          <div class="value-desc">Sono does the continuous watching and ordering of alarms. A short list with origin and context attached lowers the qualification needed on shift and lets you scale operations without scaling headcount at the same rate.</div>
         </div>
-
-
-        <!-- Module 1: Portfolio Management -->
-        <div class="phase-panel" data-panel="1">
-          <p class="op-intro">Management asks one question: what is happening to the assets we already hold. The agents cross-reference contract, insurance and manufacturer documentation against each asset's actual condition, continuously, not at review time.</p>
-
-          <div class="subtab-nav" role="tablist">
-            <button class="subtab active" role="tab" aria-selected="true" data-subtab="0">Live Risk Tracking</button>
-            <button class="subtab" role="tab" aria-selected="false" data-subtab="1">Operational Efficiency</button>
-          </div>
-
-          <div class="subpanel-wrap">
-            <!-- Sub-layer: Live Risk Tracking -->
-            <div class="subpanel active" data-subpanel="0">
-              <div class="phase-left">
-                <div>
-                  <h3>Live risk tracking</h3>
-                  <p>Five categories, one live state per asset: revenue, capex cycles, opex, compliance and insurance, each scored and updated as the inputs move. Financial impact is projected forward in euros today, and the year it crosses your action threshold.</p>
-                  <p style="margin-top: 14px; font-size: 15px; color: var(--ink-60);">Portfolio-level. No site visits. The agent states what it found, what it costs, and the next step to take.</p>
-                </div>
-                <div style="margin-top: 32px;">
-                  <a href="#contact" class="btn-primary">Request a demo</a>
-                </div>
-              </div>
-              <div class="phase-right">
-                <div class="cont-mockup">
-                  <div class="cont-topbar">
-                    <span class="cont-title">sono &middot; Portfolio Management &middot; MXP-Edge-07</span>
-                    <span class="pulse-dot"></span>
-                  </div>
-
-                  <!-- Interpretation card -->
-                  <div style="background:rgba(200,122,79,0.1); border:1px solid rgba(200,122,79,0.28); border-radius:10px; padding:14px 16px; margin-bottom:10px;">
-                    <div style="font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--terracotta); margin-bottom:7px;">Agent summary</div>
-                    <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:13px; color:rgba(247,243,238,0.92); line-height:1.35; margin-bottom:8px;">Two categories need attention this cycle: Capex cycles and Insurance.</div>
-                    <div style="font-size:11px; color:rgba(247,243,238,0.45); line-height:1.55;">Chiller 1 is past manufacturer end-of-life with no replacement scheduled. Current insurance terms leave a coverage gap on the climate-hazard rider renewed last quarter.</div>
-                  </div>
-
-                  <!-- Five-category live state -->
-                  <div style="display:flex; flex-direction:column; gap:6px;">
-                    <div class="cont-metric" style="padding:10px 14px;">
-                      <div class="cont-metric-left">
-                        <span class="cont-metric-label">Revenue</span>
-                        <span class="cont-metric-val" style="font-size:16px;">Renewal 2027</span>
-                        <span class="cont-metric-sub">contract escalation clause reviewed</span>
-                      </div>
-                      <div class="cont-bar-wrap">
-                        <div class="cont-bar-bg"><div class="cont-bar-fill green" style="width:86%"></div></div>
-                      </div>
-                    </div>
-                    <div class="cont-metric" style="padding:10px 14px;">
-                      <div class="cont-metric-left">
-                        <span class="cont-metric-label">Capex cycles</span>
-                        <span class="cont-metric-val" style="font-size:16px;">Chiller at EOL</span>
-                        <span class="cont-metric-sub">flagged before failure, not after</span>
-                      </div>
-                      <div class="cont-bar-wrap">
-                        <div class="cont-bar-bg"><div class="cont-bar-fill red" style="width:24%"></div></div>
-                      </div>
-                    </div>
-                    <div class="cont-metric" style="padding:10px 14px;">
-                      <div class="cont-metric-left">
-                        <span class="cont-metric-label">Opex</span>
-                        <span class="cont-metric-val" style="font-size:16px;">+8% vs. plan</span>
-                        <span class="cont-metric-sub">tracked against actual spend</span>
-                      </div>
-                      <div class="cont-bar-wrap">
-                        <div class="cont-bar-bg"><div class="cont-bar-fill amber" style="width:58%"></div></div>
-                      </div>
-                    </div>
-                    <div class="cont-metric" style="padding:10px 14px;">
-                      <div class="cont-metric-left">
-                        <span class="cont-metric-label">Compliance</span>
-                        <span class="cont-metric-val" style="font-size:16px;">Permit current</span>
-                        <span class="cont-metric-sub">no open regulatory items</span>
-                      </div>
-                      <div class="cont-bar-wrap">
-                        <div class="cont-bar-bg"><div class="cont-bar-fill green" style="width:92%"></div></div>
-                      </div>
-                    </div>
-                    <div class="cont-metric" style="padding:10px 14px;">
-                      <div class="cont-metric-left">
-                        <span class="cont-metric-label">Insurance</span>
-                        <span class="cont-metric-val" style="font-size:16px;">Coverage gap</span>
-                        <span class="cont-metric-sub">climate-hazard rider under-covers current risk</span>
-                      </div>
-                      <div class="cont-bar-wrap">
-                        <div class="cont-bar-bg"><div class="cont-bar-fill red" style="width:31%"></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Sub-layer: Operational Efficiency -->
-            <div class="subpanel" data-subpanel="1">
-              <div class="phase-left">
-                <div>
-                  <h3>Operational Efficiency</h3>
-                  <p>The largest of the five categories: predictive maintenance, anomaly detection, and setpoint optimisation delivered to operations teams in plain language. Sono reads your existing historian, detects failure modes before alarms fire, traces root cause to specific equipment, and surfaces ranked recommendations with a confidence score.</p>
-                  <p style="margin-top: 14px; font-size: 15px; color: var(--ink-60);">No new hardware. No integration project. Historian-native. Physics-constrained so no physically impossible setpoint can ever be suggested.</p>
-                </div>
-                <div style="margin-top: 32px;">
-                  <a href="#contact" class="btn-primary">Request a demo</a>
-                </div>
-              </div>
-              <div class="phase-right">
-                <div class="mockup-topbar">
-                  <span class="mockup-dot red"></span>
-                  <span class="mockup-dot amber"></span>
-                  <span class="mockup-dot green"></span>
-                  <span class="mockup-title-bar">sono · MXP-Edge-07 · 06:04</span>
-                </div>
-                <div class="mockup-body">
-                  <div class="mockup-alert">
-                    <span class="mockup-alert-dot"></span>
-                    <span class="mockup-alert-text">Anomaly detected &middot; Chiller 1 &middot; 06:00</span>
-                  </div>
-                  <div class="mockup-rec">
-                    <div class="mockup-rec-label">Recommendation &middot; 94% confidence</div>
-                    <div class="mockup-rec-title">Raise Chiller 1 setpoint: 6.0&deg;C &rarr; 8.5&deg;C</div>
-                    <div class="mockup-rec-body">Valve response lag detected. Current setpoint is below thermal floor given ambient conditions and IT load. Adjustment remains within safe operating envelope. Estimated compressor load reduction: 3.2% on this circuit.</div>
-                    <div class="mockup-meta">
-                      <div class="mockup-meta-item">Confidence <span>94%</span></div>
-                      <div class="mockup-meta-item">Est. saving <span>3.2%</span></div>
-                      <div class="mockup-meta-item">Reversible <span>Yes</span></div>
-                    </div>
-                    <div class="mockup-btns">
-                      <button class="mockup-btn approve">Approve</button>
-                      <button class="mockup-btn defer">Defer 1h</button>
-                      <button class="mockup-btn dismiss">Dismiss</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div><!-- /subpanel-wrap -->
+        <div class="value-cell">
+          <div class="value-num" style="font-size: 28px;">Planet</div>
+          <div class="value-title">The right site, the right action</div>
+          <div class="value-desc">Choosing a site on grid, climate and water, and acting on each alarm sooner, cuts wasted energy and avoids emergency responses. A lower carbon footprint is the aim, and we will quantify it in the pilot.</div>
         </div>
-
-      </div><!-- /phase-tabs -->
+        <div class="value-cell">
+          <div class="value-num" style="font-size: 28px;">Profit</div>
+          <div class="value-title">Fewer outages, better capital decisions</div>
+          <div class="value-desc">SLA response times are met, affected customers hear from you first, and capital goes to sites that hold up over the life of the asset.</div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Value created -->
-  <section id="value">
+  <!-- Modules -->
+  <section id="modules">
     <div class="container">
       <div class="section-header reveal">
-        <span class="label">Value created</span>
-        <h2>What both modules are worth to the owner</h2>
-        <p>Ranges are Sono's modelled estimates for a 60&nbsp;MW colocation asset, to be replaced with pilot-measured figures once the first deployment closes.</p>
+        <span class="label">Product</span>
+        <h2>Two modules, one operating system.</h2>
+        <p class="wide">Start where the question is.<br>Portfolio Expansion helps you decide where to build.<br>Portfolio Management runs what you already operate.</p>
+      </div>
+      <div class="module-grid reveal">
+        <a class="module-card" href="portfolio-management.html">
+          <div>
+            <div class="module-thumb" aria-hidden="true"><div class="thumb-scale"><div class="shot "><div class="shot-bar"><i></i><i></i><i></i><span>Portfolio Management &middot; Alarm detail</span></div>
+<div class="alarm-ui">
+  <div class="au-top"><div><div class="au-id">DC1-H2-UPS-2A-BATT.ALM</div><div class="au-sub">UPS-2A battery alarm &middot; Hall 2 &middot; raised 3 min ago</div></div><div class="au-badge">PRIORITY 1</div></div>
+  <div class="au-grid">
+    <div class="au-box"><div class="au-h">Origin</div>
+      <div class="au-row"><span>Controller</span><b>PLC-H2-01</b></div>
+      <div class="au-row"><span>Point</span><b>Modbus 3 / 40021</b></div>
+      <div class="au-row"><span>Equipment</span><b>UPS-2A</b></div>
+      <div class="au-row"><span>Position</span><b>Hall 2</b></div></div>
+    <div class="au-box"><div class="au-h">Priority</div>
+      <div class="au-row"><span>Client severity</span><b>Sev 2</b></div><div class="au-bar"><div class="au-bar-top"><span>Urgency</span><b>88</b></div><div class="au-track"><div class="au-fill hot" style="width:88%"></div></div></div><div class="au-bar"><div class="au-bar-top"><span>Impact</span><b>92</b></div><div class="au-track"><div class="au-fill hot" style="width:92%"></div></div></div></div>
+  </div>
+  <div class="au-box"><div class="au-h">Path to customer</div>
+    <div class="au-path"><span class="au-node">UPS-2A</span><span class="au-arrow">&rarr;</span><span class="au-node">PDU-2A.1</span><span class="au-arrow">&rarr;</span><span class="au-node">RPP-2A.1.3</span><span class="au-arrow">&rarr;</span><span class="au-node">Racks C01, C02</span><span class="au-arrow">&rarr;</span><span class="au-node end">Client A &middot; Gold</span></div></div>
+  <div class="au-box"><div class="au-h">Affected</div>
+      <div class="au-row"><span>Racks</span><b>2 (dual-corded)</b></div>
+      <div class="au-row"><span>B feed</span><b>RPP-2B.1.3 healthy</b></div>
+      <div class="au-row"><span>Customer notice</span><b>Required, SLA 15 min</b></div></div>
+  <div class="au-actions"><div class="au-btn">Notify Client A</div><div class="au-btn ghost">Draft ticket for approval</div></div>
+</div></div></div></div>
+            <span class="module-num">Module 1</span>
+            <h3>Portfolio Management</h3>
+            <div class="module-tag">Every alarm, traced from signal to customer</div>
+            <p>Each alarm arrives with its exact origin, a priority Sono calculates, and the racks and customers it affects, built on your existing BMS and CMMS.</p>
+          </div>
+          <span class="module-link">See Portfolio Management &rarr;</span>
+        </a>
+        <a class="module-card" href="portfolio-expansion.html">
+          <div>
+            <div class="module-thumb" aria-hidden="true"><div class="thumb-scale"><div class="shot "><div class="shot-bar"><i></i><i></i><i></i><span>Portfolio Expansion &middot; Site comparison</span></div><div class="shot-map"><div class="phase-right" style="display:flex; flex-direction:column; flex:1; min-height:0; border-top:none;">
+            <div style="flex:1; display:flex; min-height:0;">
+
+              <!-- Left sidebar: layers + stats -->
+              <div style="width:130px; flex-shrink:0; background:#0d0e0f; border-right:1px solid rgba(255,255,255,0.07); display:flex; flex-direction:column; padding:10px; font-family:'Space Grotesk',sans-serif; overflow:hidden;">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-bottom:9px;">
+                  <div style="background:rgba(255,255,255,0.04); border-radius:5px; padding:5px 6px;">
+                    <div style="font-size:7.5px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:2px;">Existing DCs</div>
+                    <div style="font-size:17px; font-weight:700; color:rgba(255,255,255,0.85); letter-spacing:-0.03em; line-height:1;">5</div>
+                    <div style="font-size:7px; color:rgba(255,255,255,0.25); margin-top:1px;">monitored</div>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.04); border-radius:5px; padding:5px 6px;">
+                    <div style="font-size:7.5px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:2px;">Candidates</div>
+                    <div style="font-size:17px; font-weight:700; color:rgba(255,255,255,0.85); letter-spacing:-0.03em; line-height:1;">3</div>
+                    <div style="font-size:7px; color:rgba(255,255,255,0.25); margin-top:1px;">under eval.</div>
+                  </div>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-bottom:11px;">
+                  <div style="background:rgba(255,255,255,0.04); border-radius:5px; padding:5px 6px;">
+                    <div style="font-size:7.5px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:2px;">Avg score</div>
+                    <div style="font-size:17px; font-weight:700; color:#6A9470; letter-spacing:-0.03em; line-height:1;">74</div>
+                    <div style="font-size:7px; color:rgba(255,255,255,0.25); margin-top:1px;">sono</div>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.04); border-radius:5px; padding:5px 6px;">
+                    <div style="font-size:7.5px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:2px;">Layers</div>
+                    <div style="font-size:17px; font-weight:700; color:rgba(255,255,255,0.85); letter-spacing:-0.03em; line-height:1;">9</div>
+                    <div style="font-size:7px; color:rgba(255,255,255,0.25); margin-top:1px;">active</div>
+                  </div>
+                </div>
+                <div style="font-size:7.5px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.25); margin-bottom:7px;">Data Layers</div>
+                <div style="font-size:7px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:rgba(255,255,255,0.18); margin-bottom:5px;">Your DCs</div>
+                <div style="display:flex; flex-direction:column; gap:4px; margin-bottom:8px;">
+                  <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <div style="display:flex; align-items:center; gap:5px;"><div style="width:7px; height:7px; border-radius:50%; background:#ff6b35; flex-shrink:0;"></div><span style="font-size:8px; color:rgba(255,255,255,0.55);">Existing DCs</span></div>
+                    <span style="font-size:7.5px; color:rgba(255,255,255,0.25);">5</span>
+                  </div>
+                  <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <div style="display:flex; align-items:center; gap:5px;"><div style="width:7px; height:7px; border-radius:50%; border:1.5px solid #a78bfa; flex-shrink:0;"></div><span style="font-size:8px; color:rgba(255,255,255,0.55);">Candidates</span></div>
+                    <span style="font-size:7.5px; color:rgba(255,255,255,0.25);">3</span>
+                  </div>
+                  <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <div style="display:flex; align-items:center; gap:5px;"><div style="width:7px; height:7px; border-radius:50%; background:rgba(220,50,50,0.6); flex-shrink:0;"></div><span style="font-size:8px; color:rgba(255,255,255,0.55);">Heat island</span></div>
+                    <span style="font-size:7.5px; color:rgba(255,255,255,0.25);">est.</span>
+                  </div>
+                  <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <div style="display:flex; align-items:center; gap:5px;"><div style="width:7px; height:7px; border-radius:2px; background:#f59e0b; flex-shrink:0;"></div><span style="font-size:8px; color:rgba(255,255,255,0.55);">IX points</span></div>
+                    <span style="font-size:7.5px; color:rgba(255,255,255,0.25);"></span>
+                  </div>
+                </div>
+                <div style="font-size:7px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:rgba(255,255,255,0.18); margin-bottom:5px;">Environment</div>
+                <div style="display:flex; flex-direction:column; gap:4px; margin-bottom:10px;">
+                  <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <div style="display:flex; align-items:center; gap:5px;"><div style="width:8px; height:3px; background:#06b6d4; border-radius:1px; flex-shrink:0;"></div><span style="font-size:8px; color:rgba(255,255,255,0.55);">Rivers</span></div>
+                    <span style="font-size:7.5px; color:rgba(255,255,255,0.25);">1240</span>
+                  </div>
+                  <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <div style="display:flex; align-items:center; gap:5px;"><div style="width:7px; height:7px; border-radius:50%; background:rgba(14,116,144,0.7); flex-shrink:0;"></div><span style="font-size:8px; color:rgba(255,255,255,0.55);">Reservoirs</span></div>
+                    <span style="font-size:7.5px; color:rgba(255,255,255,0.25);">44</span>
+                  </div>
+                  <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <div style="display:flex; align-items:center; gap:5px;"><div style="width:7px; height:7px; border-radius:2px; background:#4ade80; opacity:0.7; flex-shrink:0;"></div><span style="font-size:8px; color:rgba(255,255,255,0.55);">Power plants</span></div>
+                    <span style="font-size:7.5px; color:rgba(255,255,255,0.25);">62</span>
+                  </div>
+                  <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <div style="display:flex; align-items:center; gap:5px;"><div style="width:7px; height:7px; border-radius:50%; border:1.5px solid #facc15; flex-shrink:0;"></div><span style="font-size:8px; color:rgba(255,255,255,0.55);">Grid substations</span></div>
+                    <span style="font-size:7.5px; color:rgba(255,255,255,0.25);">187</span>
+                  </div>
+                  <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <div style="display:flex; align-items:center; gap:5px;"><div style="width:8px; height:2px; background:#6366f1; flex-shrink:0; border-radius:1px;"></div><span style="font-size:8px; color:rgba(255,255,255,0.55);">HV power lines</span></div>
+                    <span style="font-size:7.5px; color:rgba(255,255,255,0.25);">341</span>
+                  </div>
+                </div>
+                <div style="border-top:1px solid rgba(255,255,255,0.07); padding-top:8px;">
+                  <div style="font-size:7px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.2); margin-bottom:5px;">Selected site</div>
+                  <div style="font-size:9px; font-weight:700; color:rgba(255,255,255,0.75); margin-bottom:2px;">FRA-North-03</div>
+                  <div style="font-size:7.5px; color:rgba(255,255,255,0.3); line-height:1.4;">Score 87 &middot; High<br>Eschborn, Hesse</div>
+                </div>
+              </div><!-- /left sidebar -->
+
+              <!-- Map canvas: Frankfurt Rhine-Main region -->
+              <div style="flex:1; position:relative; overflow:hidden; background:#0b0c0d;">
+                <svg viewBox="0 0 300 370" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;" preserveAspectRatio="xMidYMid slice">
+                  <defs>
+                    <radialGradient id="heatGrad2" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stop-color="#dc2626" stop-opacity="0.5"/>
+                      <stop offset="45%" stop-color="#ef4444" stop-opacity="0.2"/>
+                      <stop offset="100%" stop-color="#dc2626" stop-opacity="0"/>
+                    </radialGradient>
+                    <filter id="riverGlow2" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="1.2" result="blur"/>
+                      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                    <filter id="hvGlow2" x="-10%" y="-10%" width="120%" height="120%">
+                      <feGaussianBlur stdDeviation="0.7" result="blur"/>
+                      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                    <filter id="siteGlow2" x="-80%" y="-80%" width="260%" height="260%">
+                      <feGaussianBlur stdDeviation="5" result="blur"/>
+                      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                  </defs>
+
+                  <!-- Base -->
+                  <rect width="300" height="370" fill="#0f1012"/>
+
+                  <!-- Terrain relief -->
+                  <ellipse cx="260" cy="80" rx="55" ry="40" fill="#131415" opacity="0.7"/>
+                  <ellipse cx="30" cy="60" rx="40" ry="30" fill="#131415" opacity="0.5"/>
+                  <ellipse cx="270" cy="300" rx="45" ry="35" fill="#131415" opacity="0.5"/>
+
+                  <!-- Frankfurt urban mass -->
+                  <ellipse cx="155" cy="195" rx="65" ry="50" fill="#151617" opacity="0.9"/>
+                  <ellipse cx="155" cy="195" rx="38" ry="28" fill="#191a1c" opacity="0.9"/>
+
+                  <!-- Heat island: Frankfurt -->
+                  <ellipse cx="155" cy="200" rx="55" ry="42" fill="url(#heatGrad2)" opacity="0.85"/>
+
+                  <!-- HV power lines (indigo) -->
+                  <!-- Main east-west 380kV -->
+                  <path d="M0,155 Q50,150 100,152 Q150,154 200,153 Q250,152 300,150" stroke="#6366f1" stroke-width="1.5" fill="none" opacity="0.6" filter="url(#hvGlow2)"/>
+                  <!-- North-south trunk -->
+                  <path d="M148,0 Q150,50 152,100 Q153,150 154,200 Q155,250 156,300 Q157,335 158,370" stroke="#6366f1" stroke-width="1.2" fill="none" opacity="0.5" filter="url(#hvGlow2)"/>
+                  <!-- NW diagonal -->
+                  <path d="M0,100 Q40,120 75,140 Q110,160 140,180 Q160,194 175,210 Q200,235 225,260 Q255,290 280,315 Q290,328 300,340" stroke="#6366f1" stroke-width="1" fill="none" opacity="0.4"/>
+                  <!-- NE branch -->
+                  <path d="M175,145 Q210,120 245,100 Q265,88 300,75" stroke="#6366f1" stroke-width="1" fill="none" opacity="0.35"/>
+                  <!-- SW branch -->
+                  <path d="M120,240 Q80,255 45,265 Q20,272 0,275" stroke="#6366f1" stroke-width="1" fill="none" opacity="0.35"/>
+
+                  <!-- Rivers: Rhine, Main, Lahn, Nidda -->
+                  <!-- Rhine (far left, north-south, wide) -->
+                  <path d="M18,0 Q20,30 22,60 Q23,90 24,120 Q25,150 26,180 Q27,210 28,240 Q30,270 32,300 Q34,330 36,370" stroke="#06b6d4" stroke-width="3" fill="none" opacity="0.75" filter="url(#riverGlow2)"/>
+                  <!-- Rhine shimmer -->
+                  <path d="M22,0 Q24,30 26,60 Q27,90 28,120 Q29,150 30,180 Q31,210 32,240 Q34,270 36,300 Q38,330 40,370" stroke="#06b6d4" stroke-width="1" fill="none" opacity="0.3"/>
+                  <!-- Main river (west-east, major) -->
+                  <path d="M28,220 Q55,215 90,210 Q120,205 150,202 Q180,200 210,202 Q240,205 270,210 Q285,213 300,216" stroke="#06b6d4" stroke-width="2.5" fill="none" opacity="0.7" filter="url(#riverGlow2)"/>
+                  <!-- Main upstream (bends north then east, Hanau direction) -->
+                  <path d="M270,210 Q285,205 300,200" stroke="#06b6d4" stroke-width="1.8" fill="none" opacity="0.55"/>
+                  <!-- Nidda (tributary from north into Main at Frankfurt) -->
+                  <path d="M140,0 Q142,30 143,60 Q144,90 145,120 Q146,150 147,175 Q148,195 150,202" stroke="#06b6d4" stroke-width="1.4" fill="none" opacity="0.5" filter="url(#riverGlow2)"/>
+                  <!-- Lahn (northwest, joins Rhine) -->
+                  <path d="M0,170 Q30,168 55,165 Q75,163 90,160 Q105,157 115,152 Q125,148 130,140 Q138,128 140,115 Q142,100 142,85" stroke="#06b6d4" stroke-width="1.3" fill="none" opacity="0.45"/>
+                  <!-- Kinzig (east of Frankfurt) -->
+                  <path d="M300,130 Q270,145 250,158 Q235,168 225,178 Q215,188 210,202" stroke="#06b6d4" stroke-width="1.1" fill="none" opacity="0.4"/>
+                  <!-- Gersprenz (south) -->
+                  <path d="M210,370 Q208,340 206,310 Q205,285 205,260 Q205,240 207,225 Q208,214 210,202" stroke="#06b6d4" stroke-width="1" fill="none" opacity="0.35"/>
+
+                  <!-- Grid substations (yellow) -->
+                  <circle cx="55" cy="152" r="3" fill="none" stroke="#facc15" stroke-width="1.1" opacity="0.7"/>
+                  <circle cx="55" cy="152" r="1" fill="#facc15" opacity="0.6"/>
+                  <circle cx="118" cy="148" r="3" fill="none" stroke="#facc15" stroke-width="1.1" opacity="0.65"/>
+                  <circle cx="118" cy="148" r="1" fill="#facc15" opacity="0.55"/>
+                  <circle cx="210" cy="150" r="3" fill="none" stroke="#facc15" stroke-width="1.1" opacity="0.65"/>
+                  <circle cx="210" cy="150" r="1" fill="#facc15" opacity="0.55"/>
+                  <circle cx="268" cy="155" r="2.5" fill="none" stroke="#facc15" stroke-width="1" opacity="0.5"/>
+                  <circle cx="268" cy="155" r="1" fill="#facc15" opacity="0.4"/>
+                  <circle cx="48" cy="258" r="2.5" fill="none" stroke="#facc15" stroke-width="1" opacity="0.5"/>
+                  <circle cx="48" cy="258" r="1" fill="#facc15" opacity="0.4"/>
+                  <circle cx="240" cy="248" r="2.5" fill="none" stroke="#facc15" stroke-width="1" opacity="0.45"/>
+
+                  <!-- Internet exchange: Frankfurt DE-CIX (largest in world) -->
+                  <rect x="148" y="188" width="9" height="9" rx="1.5" fill="#f59e0b" opacity="0.8"/>
+                  <rect x="148" y="188" width="9" height="9" rx="1.5" fill="none" stroke="#fbbf24" stroke-width="0.8" opacity="0.65"/>
+
+                  <!-- Existing DCs (orange) -->
+                  <circle cx="158" cy="192" r="5" fill="#ff6b35" opacity="0.85"/>
+                  <circle cx="158" cy="192" r="8" fill="none" stroke="#ff6b35" stroke-width="1" opacity="0.35"/>
+                  <circle cx="172" cy="183" r="4" fill="#ff6b35" opacity="0.7"/>
+                  <circle cx="165" cy="208" r="3.5" fill="#ff6b35" opacity="0.65"/>
+                  <circle cx="142" cy="200" r="3.5" fill="#ff6b35" opacity="0.65"/>
+                  <circle cx="178" cy="200" r="3" fill="#ff6b35" opacity="0.55"/>
+
+                  <!-- CANDIDATE SITE PINS -->
+
+                  <!-- FRA-North-03: selected, score 87, Eschborn/Taunus foothills -->
+                  <circle cx="128" cy="162" r="28" fill="rgba(220,38,38,0.07)"/>
+                  <circle cx="128" cy="162" r="18" fill="rgba(220,38,38,0.11)"/>
+                  <line x1="128" y1="142" x2="128" y2="182" stroke="#ef4444" stroke-width="0.9" opacity="0.55" stroke-dasharray="2 2"/>
+                  <line x1="108" y1="162" x2="148" y2="162" stroke="#ef4444" stroke-width="0.9" opacity="0.55" stroke-dasharray="2 2"/>
+                  <circle cx="128" cy="162" r="13" fill="#1a0f0f" stroke="#ef4444" stroke-width="2" filter="url(#siteGlow2)"/>
+                  <circle cx="128" cy="162" r="13" fill="#1a0f0f" stroke="#ef4444" stroke-width="2"/>
+                  <text x="128" y="166" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="10" fill="#f87171">87</text>
+                  <rect x="96" y="141" width="64" height="14" rx="3" fill="rgba(20,10,10,0.9)" stroke="rgba(239,68,68,0.4)" stroke-width="0.8"/>
+                  <text x="128" y="151" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="8" fill="rgba(255,255,255,0.88)">FRA-North-03</text>
+
+                  <!-- RHN-East-01: score 71, Rüsselsheim / Rhine corridor -->
+                  <circle cx="68" cy="235" r="12" fill="rgba(139,92,246,0.1)" stroke="#a78bfa" stroke-width="1.6"/>
+                  <circle cx="68" cy="235" r="12" fill="#100d1a" stroke="#a78bfa" stroke-width="1.6"/>
+                  <text x="68" y="239" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="10" fill="#c4b5fd">71</text>
+                  <rect x="36" y="215" width="64" height="13" rx="3" fill="rgba(16,13,26,0.9)" stroke="rgba(167,139,250,0.35)" stroke-width="0.8"/>
+                  <text x="68" y="225" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="7.5" fill="rgba(255,255,255,0.8)">RHN-East-01</text>
+
+                  <!-- HAN-West-06: score 58, south of Hanau -->
+                  <circle cx="242" cy="218" r="11" fill="rgba(139,92,246,0.08)" stroke="#a78bfa" stroke-width="1.4"/>
+                  <circle cx="242" cy="218" r="11" fill="#0e0c18" stroke="#a78bfa" stroke-width="1.4"/>
+                  <text x="242" y="222" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="10" fill="#c4b5fd">58</text>
+                  <rect x="210" y="199" width="64" height="13" rx="3" fill="rgba(14,12,24,0.9)" stroke="rgba(167,139,250,0.3)" stroke-width="0.8"/>
+                  <text x="242" y="209" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="7.5" fill="rgba(255,255,255,0.75)">HAN-West-06</text>
+
+                  <!-- Topbar overlay -->
+                  <rect x="0" y="0" width="300" height="20" fill="rgba(10,10,12,0.78)"/>
+                  <text x="7" y="13" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="10" fill="rgba(255,255,255,0.85)" letter-spacing="-0.01em">sono.</text>
+                  <text x="42" y="13" font-family="Space Grotesk,sans-serif" font-weight="600" font-size="8.5" fill="rgba(255,255,255,0.3)">Frankfurt Rhine-Main</text>
+                  <!-- Zoom controls -->
+                  <rect x="270" y="26" width="16" height="16" rx="3" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+                  <text x="278" y="38" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="11" fill="rgba(255,255,255,0.5)">+</text>
+                  <rect x="270" y="44" width="16" height="16" rx="3" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+                  <text x="278" y="56" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="11" fill="rgba(255,255,255,0.5)">-</text>
+
+                  <!-- Scale bar -->
+                  <line x1="190" y1="358" x2="260" y2="358" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+                  <line x1="190" y1="354" x2="190" y2="362" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+                  <line x1="260" y1="354" x2="260" y2="362" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+                  <text x="225" y="352" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="7" fill="rgba(255,255,255,0.28)">15 km</text>
+
+                </svg>
+              </div><!-- /map canvas -->
+
+              <!-- Right scoring panel -->
+              <div style="width:132px; flex-shrink:0; border-left:1px solid rgba(255,255,255,0.07); background:#0d0e0f; display:flex; flex-direction:column; padding:12px 10px; gap:0; font-family:'Space Grotesk',sans-serif; overflow-y:auto;">
+
+                <div style="margin-bottom:8px;">
+                  <div style="font-size:10px; font-weight:700; color:rgba(255,255,255,0.85); letter-spacing:-0.01em;">FRA-North-03</div>
+                  <div style="font-size:8px; color:rgba(255,255,255,0.35); line-height:1.4; margin-top:2px;">Eschborn, Hesse<br>50.14&deg;N, 8.56&deg;E &middot; 6.8 ha</div>
+                </div>
+
+                <!-- Overall score -->
+                <div style="background:rgba(106,148,112,0.12); border:1px solid rgba(106,148,112,0.28); border-radius:7px; padding:9px; text-align:center; margin-bottom:12px;">
+                  <div style="font-size:26px; font-weight:700; color:#6A9470; line-height:1; letter-spacing:-0.03em;">87</div>
+                  <div style="font-size:8px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-top:3px;">Resilience score</div>
+                </div>
+
+                <!-- Dimension bars -->
+                <div style="display:flex; flex-direction:column; gap:9px;">
+
+                  <div>
+                    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:3px;">
+                      <span style="font-size:8px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.35);">Power</span>
+                      <span style="font-size:10px; font-weight:700; color:#6A9470;">91</span>
+                    </div>
+                    <div style="height:3px; background:rgba(255,255,255,0.07); border-radius:2px;">
+                      <div style="width:91%; height:3px; background:#6A9470; border-radius:2px;"></div>
+                    </div>
+                    <div style="font-size:8px; color:rgba(255,255,255,0.28); margin-top:3px; line-height:1.3;">380kV line 0.9km &middot; dual feed</div>
+                  </div>
+
+                  <div>
+                    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:3px;">
+                      <span style="font-size:8px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.35);">Climate</span>
+                      <span style="font-size:10px; font-weight:700; color:#6A9470;">82</span>
+                    </div>
+                    <div style="height:3px; background:rgba(255,255,255,0.07); border-radius:2px;">
+                      <div style="width:82%; height:3px; background:#6A9470; border-radius:2px;"></div>
+                    </div>
+                    <div style="font-size:8px; color:rgba(255,255,255,0.28); margin-top:3px; line-height:1.3;">3,540 free cooling hrs/yr</div>
+                  </div>
+
+                  <div>
+                    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:3px;">
+                      <span style="font-size:8px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.35);">Compliance</span>
+                      <span style="font-size:10px; font-weight:700; color:#d4a847;">78</span>
+                    </div>
+                    <div style="height:3px; background:rgba(255,255,255,0.07); border-radius:2px;">
+                      <div style="width:78%; height:3px; background:#d4a847; border-radius:2px;"></div>
+                    </div>
+                    <div style="font-size:8px; color:rgba(255,255,255,0.28); margin-top:3px; line-height:1.3;">EnEfG compliant &middot; 1 open item</div>
+                  </div>
+
+                  <div>
+                    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:3px;">
+                      <span style="font-size:8px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.35);">Infra</span>
+                      <span style="font-size:10px; font-weight:700; color:#6A9470;">90</span>
+                    </div>
+                    <div style="height:3px; background:rgba(255,255,255,0.07); border-radius:2px;">
+                      <div style="width:90%; height:3px; background:#6A9470; border-radius:2px;"></div>
+                    </div>
+                    <div style="font-size:8px; color:rgba(255,255,255,0.28); margin-top:3px; line-height:1.3;">Low seismic &middot; no flood zone</div>
+                  </div>
+
+                  <div>
+                    <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:3px;">
+                      <span style="font-size:8px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.35);">Adaptability</span>
+                      <span style="font-size:10px; font-weight:700; color:#d4a847;">71</span>
+                    </div>
+                    <div style="height:3px; background:rgba(255,255,255,0.07); border-radius:2px;">
+                      <div style="width:71%; height:3px; background:#d4a847; border-radius:2px;"></div>
+                    </div>
+                    <div style="font-size:8px; color:rgba(255,255,255,0.28); margin-top:3px; line-height:1.3;">Liquid cooling ready &middot; partial</div>
+                  </div>
+
+                </div>
+
+                <!-- Flag -->
+                <div style="margin-top:12px; background:rgba(106,148,112,0.08); border:1px solid rgba(106,148,112,0.2); border-radius:6px; padding:8px;">
+                  <div style="font-size:7.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#6A9470; margin-bottom:4px;">Top ranked</div>
+                  <div style="font-size:8px; color:rgba(255,255,255,0.4); line-height:1.45;">Best grid access in portfolio. Taunus foothills reduce UHI exposure. Minor EnEfG gap addressable pre-build.</div>
+                </div>
+
+              </div><!-- /right scoring panel -->
+
+            </div><!-- /three-column row -->
+          </div></div></div></div></div>
+            <span class="module-num">Module 2</span>
+            <h3>Portfolio Expansion</h3>
+            <div class="module-tag">Site selection, before the first euro is committed</div>
+            <p>Compare candidate sites on one common basis: grid capacity, climate and water exposure, and the permits queue, with planet and optimisation built in.</p>
+          </div>
+          <span class="module-link">See Portfolio Expansion &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">How it works</span>
+        <h2>From your existing systems to the next action</h2>
+        <p class="wide">Today the mapping from signal to equipment to rack to customer is built by hand in Excel. Sono turns it into a maintained record and puts it behind every alarm.</p>
+      </div>
+      <div class="answer-grid reveal">
+        <div class="answer-card"><span class="answer-q">Step 1</span><h3>Connect</h3><p>Sono reads your BMS or EPMS point list and your asset data from your CMMS, as a one-time file upload or through an API.</p></div>
+        <div class="answer-card"><span class="answer-q">Step 2</span><h3>Map</h3><p>Signals, equipment and racks are structured into three linked sheets, so every signal can be followed from its source to the customer. An optional pre-analysis fills the gaps with your team.</p></div>
+        <div class="answer-card"><span class="answer-q">Step 3</span><h3>Act</h3><p>Operators get alarms ordered by priority, with origin and affected customers attached. A person approves every ticket and every customer alert.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section id="story">
+    <div class="container reveal">
+      <span class="label">Why it matters</span>
+      <p class="story-quote">More than 200 unprioritised alarms were open when a UPS began running down its battery. About 3&nbsp;MW went dark for 20 minutes.</p>
+      <p class="story-src">A maintenance handover at a hyperscale site. Origin, priority and affected customer would have answered the technician&rsquo;s first three questions.</p>
+      <a class="story-link" href="portfolio-management.html#cost">See how Sono traces it &rarr;</a>
+    </div>
+  </section>
+
+  <!-- Trust -->
+  <section id="trust">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">Security and integration</span>
+        <h2>Designed for your security review</h2>
+        <p class="wide">Sono sits beside your control systems, not inside them, and works with the tools your team already uses.</p>
       </div>
       <div class="value-grid reveal">
-        <div class="value-cell">
-          <div class="value-num">20%+</div>
-          <div class="value-title">Value preservation</div>
-          <div class="value-desc">Insurability, compliance and equipment condition tracked continuously, so the asset holds its investment grade instead of drifting toward a stranded position.</div>
-        </div>
-        <div class="value-cell">
-          <div class="value-num">~5%</div>
-          <div class="value-title">Opex optimisation</div>
-          <div class="value-desc">Predictive maintenance and setpoint discipline instead of reactive callouts and over-cooling.</div>
-        </div>
-        <div class="value-cell">
-          <div class="value-num">+3&ndash;5 yrs</div>
-          <div class="value-title">Asset life extension</div>
-          <div class="value-desc">Replacement planned at end-of-life rather than forced by failure, spreading capex across the hold period.</div>
-        </div>
-        <div class="value-cell">
-          <div class="value-num" style="font-size: 28px;">Lower</div>
-          <div class="value-title">Carbon footprint</div>
-          <div class="value-desc">Planned end-of-life and correct cooling avoid the emergency, carbon-intensive outcome regulators now treat as a risk category.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Coverage -->
-  <section id="coverage">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="label">Coverage</span>
-        <h2>21 scored layers across six domains</h2>
-        <p>Internal and external data &mdash; 30+ sources in &mdash; mapped through category models onto the levers an owner actually pulls.</p>
-      </div>
-      <div class="coverage-grid reveal">
-        <div class="coverage-card">
-          <div class="coverage-card-top"><h3>Revenue</h3><span class="coverage-count">2</span></div>
-          <p>SLA and uptime breach avoidance, stranded capacity monetisation.</p>
-          <div class="coverage-model">Model &middot; Uptime &amp; capacity</div>
-        </div>
-        <div class="coverage-card">
-          <div class="coverage-card-top"><h3>Capex cycles</h3><span class="coverage-count">1</span></div>
-          <p>Asset refresh and end-of-life timing.</p>
-          <div class="coverage-model">Model &middot; Equipment lifecycle &amp; maintenance</div>
-        </div>
-        <div class="coverage-card">
-          <div class="coverage-card-top"><h3>Opex</h3><span class="coverage-count">10</span></div>
-          <p>Energy, predictive maintenance, labour, downtime and SLA penalties, and six more.</p>
-          <div class="coverage-model">Model &middot; Energy &amp; resource consumption &middot; equipment lifecycle</div>
-        </div>
-        <div class="coverage-card">
-          <div class="coverage-card-top"><h3>Compliance</h3><span class="coverage-count">1</span></div>
-          <p>Contractual and SLA compliance.</p>
-          <div class="coverage-model">Model &middot; Infrastructure &amp; resource availability</div>
-        </div>
-        <div class="coverage-card">
-          <div class="coverage-card-top"><h3>Insurance</h3><span class="coverage-count">2</span></div>
-          <p>Fire and water damage, climate and catastrophe hazard exposure.</p>
-          <div class="coverage-model">Model &middot; Physical &amp; climate hazard</div>
-        </div>
-        <div class="coverage-card">
-          <div class="coverage-card-top"><h3>Site selection</h3><span class="coverage-count">5</span></div>
-          <p>Grid and power diligence, climate hazard zoning, permitting risk, and two more.</p>
-          <div class="coverage-model">Model &middot; Site viability</div>
-        </div>
+        <div class="value-cell"><div class="value-num sm">Read only</div><div class="value-title">Nothing written back</div><div class="value-desc">A read-only collector inside your network. Sono never writes to your control systems.</div></div>
+        <div class="value-cell"><div class="value-num sm">Your network</div><div class="value-title">Data stays with you</div><div class="value-desc">Your operational data stays in your network, and access follows the users and roles you configure.</div></div>
+        <div class="value-cell"><div class="value-num sm">A person decides</div><div class="value-title">Human approval</div><div class="value-desc">Every action, ticket draft and customer alert is approved by a person before it goes out.</div></div>
+        <div class="value-cell"><div class="value-num sm">Your tools</div><div class="value-title">CMMS and ticketing</div><div class="value-desc">We integrate with your existing CMMS and ticketing system and use their data. We do not replace them.</div></div>
       </div>
     </div>
   </section>
@@ -1670,10 +851,10 @@
           <span class="label">Contact</span>
           <h2>Work with us on an early pilot</h2>
           <p>
-            Data centres carry risk across five dimensions simultaneously. The data to track most of it already exists. Sono reads it, structures it, and gives your team something to act on.
+            The data to trace an alarm to its source and its customer already exists in your BMS, CMMS and asset records. Sono reads it, structures it, and gives your team the next action.
           </p>
           <p style="margin-top: 12px;">
-            We work with colocation operators, infrastructure fund managers, and OEM partners across Europe.
+            We work with colocation and wholesale operators, and with operations service providers, across Europe.
           </p>
         </div>
         <div class="contact-form">
@@ -1693,8 +874,18 @@
               <input type="text" id="company" name="company" autocomplete="organization" placeholder="e.g. Equinix, Aruba, Digital Realty" />
             </div>
             <div class="form-group">
+              <label for="interest">I am interested in</label>
+              <select id="interest" name="interest">
+                <option value="">Select one</option>
+                <option value="alarms">Alarms and operations (Portfolio Management)</option>
+                <option value="sites">Site selection (Portfolio Expansion)</option>
+                <option value="both">Both</option>
+                <option value="other">Something else</option>
+              </select>
+            </div>
+            <div class="form-group">
               <label for="message">Message</label>
-              <textarea required id="message" name="message" placeholder="Describe your facility, portfolio, or what you'd like to explore"></textarea>
+              <textarea required id="message" name="message" placeholder="Describe your facility, your BMS and CMMS, or what you'd like to explore"></textarea>
             </div>
             <div class="form-check">
               <input id="gdpr" type="checkbox" required />
@@ -1742,113 +933,9 @@
     </div>
   </footer>
 
-  <div id="legal-modals"></div>
+    <div id="legal-modals"></div>
 
-  <script>
-    // Footer year
-    const yearEl = document.getElementById('year');
-    if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-    // Scroll reveal
-    function revealAll() {
-      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
-    }
-    if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-        });
-      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-      if (window.location.protocol === 'file:') setTimeout(revealAll, 300);
-    } else {
-      revealAll();
-    }
-
-    // Top-level module tabs (Portfolio Expansion / Portfolio Management)
-    document.querySelectorAll('.phase-tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        const idx = tab.dataset.tab;
-        document.querySelectorAll('.phase-tab').forEach(t => {
-          t.classList.remove('active');
-          t.setAttribute('aria-selected', 'false');
-        });
-        document.querySelectorAll('.phase-panel').forEach(p => p.classList.remove('active'));
-        tab.classList.add('active');
-        tab.setAttribute('aria-selected', 'true');
-        document.querySelector(`.phase-panel[data-panel="${idx}"]`).classList.add('active');
-      });
-    });
-
-    // Sub-tabs inside Portfolio Management (Live Risk Tracking / Operational Efficiency)
-    document.querySelectorAll('.subtab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        const idx = tab.dataset.subtab;
-        const panel = tab.closest('.phase-panel');
-        panel.querySelectorAll('.subtab').forEach(t => {
-          t.classList.remove('active');
-          t.setAttribute('aria-selected', 'false');
-        });
-        panel.querySelectorAll('.subpanel').forEach(p => p.classList.remove('active'));
-        tab.classList.add('active');
-        tab.setAttribute('aria-selected', 'true');
-        panel.querySelector(`.subpanel[data-subpanel="${idx}"]`).classList.add('active');
-      });
-    });
-
-    // Legal modals
-    const MODALS_PATH = 'legal/modals.html';
-    const LINK_MAP = {
-      'link-impressum':   'modal-impressum',
-      'link-datenschutz': 'modal-datenschutz',
-      'link-terms':       'modal-terms',
-    };
-    function openModal(id) {
-      const el = document.getElementById(id);
-      if (!el) return;
-      el.classList.add('open');
-      document.body.style.overflow = 'hidden';
-      const closeBtn = el.querySelector('.modal-close');
-      if (closeBtn) closeBtn.focus();
-    }
-    function closeModal(id) {
-      const el = document.getElementById(id);
-      if (!el) return;
-      el.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-    function wireModals() {
-      document.querySelectorAll('.modal-close').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const m = btn.closest('.modal-overlay');
-          if (m) closeModal(m.id);
-        });
-      });
-      document.querySelectorAll('.modal-overlay').forEach(m => {
-        m.addEventListener('click', e => { if (e.target === m) closeModal(m.id); });
-      });
-      document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') {
-          document.querySelectorAll('.modal-overlay.open').forEach(m => m.classList.remove('open'));
-          document.body.style.overflow = '';
-        }
-      });
-      Object.entries(LINK_MAP).forEach(([linkId, modalId]) => {
-        const link = document.getElementById(linkId);
-        if (!link) return;
-        link.addEventListener('click', e => { e.preventDefault(); openModal(modalId); });
-      });
-    }
-    if (window.location.protocol !== 'file:') {
-      fetch(MODALS_PATH)
-        .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
-        .then(html => {
-          const container = document.getElementById('legal-modals');
-          if (container) { container.innerHTML = html; wireModals(); }
-        })
-        .catch(() => {});
-    }
-  </script>
-
+  <script src="js/main.js" defer></script>
+  <script src="js/legal.js" defer></script>
 </body>
 </html>
